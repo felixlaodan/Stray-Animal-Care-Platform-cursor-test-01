@@ -8,7 +8,7 @@
         <version>3.3.0</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.example</groupId>
+    <groupId>com.strayanimal.platform</groupId>
     <artifactId>stray-animal-care</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>Stray Animal Care Platform</name>
