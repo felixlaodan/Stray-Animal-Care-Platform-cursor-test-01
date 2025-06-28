@@ -47,13 +47,12 @@
 </template>
 
 <script setup>
-import { ref, onMounted, getCurrentInstance } from 'vue';
+import { ref, onMounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
+import { getPostDetail } from '../api.js';
 
 const route = useRoute();
 const router = useRouter();
-const { appContext } = getCurrentInstance();
-const $http = appContext.config.globalProperties.$http;
 
 const post = ref({});
 
@@ -62,7 +61,7 @@ const fetchPostDetail = async () => {
   if (!postId) return;
 
   try {
-    const response = await $http.get(`/api/posts/${postId}`);
+    const response = await getPostDetail(postId);
     if (response.data && response.data.code === 200) {
       post.value = response.data.data;
     } else {

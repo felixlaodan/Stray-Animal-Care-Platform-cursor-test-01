@@ -26,16 +26,15 @@
 </template>
 
 <script setup>
-import { ref, onMounted, getCurrentInstance } from 'vue';
+import { ref, onMounted } from 'vue';
 import { RouterLink } from 'vue-router';
+import { getPosts } from '../api.js';
 
 const posts = ref([]);
-const { appContext } = getCurrentInstance();
-const $http = appContext.config.globalProperties.$http;
 
 const fetchPosts = async () => {
   try {
-    const response = await $http.get('/api/posts?page=1&size=10');
+    const response = await getPosts({ page: 1, size: 10 });
     if (response.data && response.data.code === 200) {
       posts.value = response.data.data.records;
     }
