@@ -23,13 +23,15 @@ public class ForumPostServiceImpl extends ServiceImpl<ForumPostMapper, ForumPost
     private ForumCommentMapper forumCommentMapper;
 
     @Override
-    public Page<ForumPost> getPostList(Page<ForumPost> page) {
-        return forumPostMapper.selectPage(page, null);
+    public Page<ForumPost> getPostList(Page<ForumPost> postPage) {
+        QueryWrapper<ForumPost> queryWrapper = new QueryWrapper<>();
+        queryWrapper.orderByDesc("created_at");
+        return baseMapper.selectPage(postPage, queryWrapper);
     }
 
     @Override
     public ForumPost getPostDetailById(Long id) {
-        ForumPost post = forumPostMapper.selectById(id);
+        ForumPost post = baseMapper.selectById(id);
         if (post != null) {
             QueryWrapper<ForumComment> queryWrapper = new QueryWrapper<>();
             queryWrapper.eq("post_id", id);
@@ -37,5 +39,13 @@ public class ForumPostServiceImpl extends ServiceImpl<ForumPostMapper, ForumPost
             post.setComments(comments);
         }
         return post;
+    }
+
+    @Override
+    public boolean deletePostByIdAndUserId(Long postId, Long userId) {
+        QueryWrapper<ForumPost> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("id", postId).eq("user_id", userId);
+        int affectedRows = baseMapper.delete(queryWrapper);
+        return affectedRows > 0;
     }
 } 

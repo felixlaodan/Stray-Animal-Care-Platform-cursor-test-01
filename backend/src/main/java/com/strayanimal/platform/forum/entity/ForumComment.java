@@ -21,6 +21,9 @@ public class ForumComment {
     @TableField("author_name")
     private String authorName;
 
+    @TableField("user_id")
+    private Long userId;
+
     @TableField("content")
     private String content;
 

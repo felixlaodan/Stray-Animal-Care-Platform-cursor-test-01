@@ -6,5 +6,17 @@ spring:
     url: jdbc:mysql://localhost:3306/stray_animal_db?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
     username: 28
     password: 28
+#  jackson:
+#    property-naming-strategy: CAMEL_CASE # 新增这行，让 Jackson 自动处理下划线到驼峰的转换
+
+# ... (其他配置)
+
+mybatis-plus:
+  configuration:
+    # 开启下划线转驼峰命名自动映射
+    map-underscore-to-camel-case: true
+
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 
+    # ... (可能存在的其他全局配置)

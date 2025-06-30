@@ -25,6 +25,8 @@ public class ForumPost {
     @TableField("author_name")
     private String authorName;
 
+    private Long userId;
+
     @TableField("created_at")
     private LocalDateTime createdAt;
 

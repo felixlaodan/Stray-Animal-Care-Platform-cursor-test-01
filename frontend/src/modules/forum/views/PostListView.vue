@@ -8,6 +8,9 @@
         <template #header>
           <div class="card-header">
             <span>最新帖子</span>
+            <router-link to="/create-post">
+              <el-button type="primary">发表新帖</el-button>
+            </router-link>
           </div>
         </template>
         <div v-if="posts.length">
@@ -20,6 +23,16 @@
         <div v-else>
           <p>正在加载帖子...</p>
         </div>
+
+        <div class="pagination-container" v-if="pagination.total > 0">
+          <el-pagination
+            layout="prev, pager, next, jumper, ->, total"
+            :current-page="pagination.currentPage"
+            :page-size="pagination.pageSize"
+            :total="pagination.total"
+            @current-change="handlePageChange"
+          />
+        </div>
       </el-card>
     </el-main>
   </el-container>
@@ -31,16 +44,30 @@ import { RouterLink } from 'vue-router';
 import { getPosts } from '../api.js';
 
 const posts = ref([]);
+const pagination = ref({
+  currentPage: 1,
+  pageSize: 10,
+  total: 0,
+});
 
 const fetchPosts = async () => {
   try {
-    const response = await getPosts({ page: 1, size: 10 });
+    const response = await getPosts({
+      page: pagination.value.currentPage,
+      size: pagination.value.pageSize,
+    });
     if (response.data && response.data.code === 200) {
       posts.value = response.data.data.records;
+      pagination.value.total = response.data.data.total;
     }
   } catch (error) {
     console.error("获取帖子列表失败:", error);
   }
+};
+
+const handlePageChange = (newPage) => {
+  pagination.value.currentPage = newPage;
+  fetchPosts();
 };
 
 onMounted(() => {
@@ -50,6 +77,7 @@ onMounted(() => {
 
 <style scoped>
 .common-layout {
+  width: 100%;
   min-height: 100vh;
 }
 
@@ -64,7 +92,6 @@ onMounted(() => {
 
 .main-content {
   padding: 20px;
-  background-color: #f4f4f5;
 }
 
 .box-card {
@@ -73,7 +100,16 @@ onMounted(() => {
 }
 
 .card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   font-weight: bold;
+}
+
+.pagination-container {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
 }
 
 .post-item {

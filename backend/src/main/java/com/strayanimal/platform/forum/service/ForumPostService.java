@@ -9,4 +9,6 @@ public interface ForumPostService extends IService<ForumPost> {
     Page<ForumPost> getPostList(Page<ForumPost> page);
 
     ForumPost getPostDetailById(Long id);
+
+    boolean deletePostByIdAndUserId(Long postId, Long userId);
 } 

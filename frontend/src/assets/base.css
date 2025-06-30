@@ -31,9 +31,7 @@
   --color-border-hover: var(--vt-c-divider-light-1);
 
   --color-heading: var(--vt-c-text-light-1);
-  --color-text: var(--vt-c-text-light-1);
-
-  --section-gap: 160px;
+  --color-text: var(--vt-c-text-dark-2);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -50,16 +48,7 @@
   }
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  font-weight: normal;
-}
-
 body {
-  min-height: 100vh;
   color: var(--color-text);
   background: var(--color-background);
   transition:

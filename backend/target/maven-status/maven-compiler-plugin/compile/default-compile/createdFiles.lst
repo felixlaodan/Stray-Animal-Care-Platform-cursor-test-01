@@ -1,9 +1,9 @@
+com\strayanimal\platform\forum\entity\ForumComment.class
+com\strayanimal\platform\forum\mapper\ForumPostMapper.class
 com\strayanimal\platform\forum\service\impl\ForumPostServiceImpl.class
 com\strayanimal\platform\forum\entity\ForumPost.class
 com\strayanimal\platform\core\common\Result.class
 com\strayanimal\platform\PlatformApplication.class
-com\strayanimal\platform\forum\entity\ForumComment.class
-com\strayanimal\platform\forum\mapper\ForumPostMapper.class
 com\strayanimal\platform\forum\controller\ForumPostController.class
 com\strayanimal\platform\core\config\MyBatisPlusConfig.class
 com\strayanimal\platform\forum\service\ForumPostService.class
