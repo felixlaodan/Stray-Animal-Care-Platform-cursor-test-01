@@ -75,8 +75,36 @@ const submitPost = async () => {
 .create-post-container {
   max-width: 800px;
   margin: 20px auto;
-  padding: 20px;
-  border: 1px solid #ddd;
+  padding: 30px;
+  border: 1px solid #ebeef5;
   border-radius: 8px;
+  background-color: #fff; /* 添加白色背景以突出表单 */
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1); /* 添加细微阴影以增加立体感 */
+}
+
+.create-post-container h2 {
+  color: #303133;
+  text-align: center;
+  margin-bottom: 30px;
+  font-weight: 600;
+}
+
+/* 覆盖 Element Plus 的默认样式，确保文字清晰可见 */
+.create-post-container :deep(.el-form-item__label) {
+  color: #333 !important;
+  font-weight: 500;
+}
+
+.create-post-container :deep(.el-input__inner) {
+  color: #333 !important;
+}
+
+.create-post-container :deep(.el-textarea__inner) {
+  color: #333 !important;
+}
+
+.create-post-container :deep(.el-input__inner::placeholder),
+.create-post-container :deep(.el-textarea__inner::placeholder) {
+  color: #999 !important;
 }
 </style> 

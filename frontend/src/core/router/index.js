@@ -22,7 +22,7 @@ router.beforeEach((to, from, next) => {
   const userStore = useUserStore()
   
   // 定义需要登录才能访问的路由名称
-  const requiresAuth = ['create-post'] // 使用正确的路由名称
+  const requiresAuth = ['create-post', 'edit-post']
 
   // 检查目标路由是否需要认证
   if (requiresAuth.includes(to.name) && !userStore.isAuthenticated) {

@@ -83,9 +83,7 @@ const handlePageChange = (newPage) => {
 };
 
 const handleEdit = (postId) => {
-  // 我们暂时只实现删除，编辑功能作为后续扩展
-  // 可以跳转到编辑页面，例如：router.push(`/posts/edit/${postId}`);
-  ElMessage.info('编辑功能正在开发中...');
+  router.push(`/posts/edit/${postId}`);
 };
 
 const handleDelete = async (postId) => {
