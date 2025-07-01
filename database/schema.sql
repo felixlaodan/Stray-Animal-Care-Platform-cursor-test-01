@@ -18,15 +18,15 @@ CREATE TABLE `forum_post` (
 -- ----------------------------
 DROP TABLE IF EXISTS `forum_comment`;
 CREATE TABLE `forum_comment` (
-  `id` BIGINT NOT NULL AUTO_INCREMENT COMMENT '主键ID',
-  `post_id` BIGINT NOT NULL COMMENT '关联的帖子ID',
-  `author_name` VARCHAR(50) COMMENT '评论者昵称',
-  `user_id` BIGINT NOT NULL COMMENT '评论用户ID（为未来用户系统预留）',
-  `content` TEXT COMMENT '评论内容',
-  `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='评论表'; 
-
+  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '评论ID',
+  `post_id` bigint NOT NULL COMMENT '所属帖子ID',
+  `content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '评论内容',
+  `author_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '评论者昵称',
+  `user_id` bigint DEFAULT NULL COMMENT '关联用户ID',
+  `create_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  PRIMARY KEY (`id`),
+  KEY `idx_post_id` (`post_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='论坛评论表';
 
 -- 下面是测试数据
 

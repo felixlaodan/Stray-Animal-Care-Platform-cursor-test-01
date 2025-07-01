@@ -6,9 +6,13 @@ import com.strayanimal.platform.forum.entity.ForumPost;
 
 public interface ForumPostService extends IService<ForumPost> {
 
-    Page<ForumPost> getPostList(Page<ForumPost> page);
+    Page<ForumPost> getPostList(Page<ForumPost> postPage);
 
     ForumPost getPostDetailById(Long id);
 
     boolean deletePostByIdAndUserId(Long postId, Long userId);
+
+    ForumPost createPost(ForumPost post);
+    ForumPost updatePost(ForumPost post);
+    void deletePost(Long id);
 } 

@@ -20,3 +20,14 @@ mybatis-plus:
 
 
     # ... (可能存在的其他全局配置)
+
+logging:
+  level:
+    com.strayanimal: debug
+
+# JWT-related configuration
+jwt:
+  # The secret key used for signing the JWT. This should be a long, random string in a production environment.
+  secret: c2VjcmV0LWtleS1mb3Itc3RyYXktYW5pbWFsLXBsYXRmb3JtLXVzZS1hLWxvbmctYW5kLXJhbmRvbS1zdHJpbmctaW4tcHJvZHVjdGlvbg==
+  # Token validity period in milliseconds (e.g., 86400000 for 24 hours)
+  expiration: 86400000

@@ -1,5 +1,10 @@
 C:\Users\dong_\Desktop\03ObsidianOfDong\2025spring_courses\2ndSummershortterm\Stray-Animal-Care-Platform-cursor-test-01\backend\src\main\java\com\strayanimal\platform\core\common\Result.java
 C:\Users\dong_\Desktop\03ObsidianOfDong\2025spring_courses\2ndSummershortterm\Stray-Animal-Care-Platform-cursor-test-01\backend\src\main\java\com\strayanimal\platform\core\config\MyBatisPlusConfig.java
+C:\Users\dong_\Desktop\03ObsidianOfDong\2025spring_courses\2ndSummershortterm\Stray-Animal-Care-Platform-cursor-test-01\backend\src\main\java\com\strayanimal\platform\core\config\SecurityConfig.java
+C:\Users\dong_\Desktop\03ObsidianOfDong\2025spring_courses\2ndSummershortterm\Stray-Animal-Care-Platform-cursor-test-01\backend\src\main\java\com\strayanimal\platform\core\config\WebConfig.java
+C:\Users\dong_\Desktop\03ObsidianOfDong\2025spring_courses\2ndSummershortterm\Stray-Animal-Care-Platform-cursor-test-01\backend\src\main\java\com\strayanimal\platform\core\jwt\JwtRequestFilter.java
+C:\Users\dong_\Desktop\03ObsidianOfDong\2025spring_courses\2ndSummershortterm\Stray-Animal-Care-Platform-cursor-test-01\backend\src\main\java\com\strayanimal\platform\core\jwt\JwtUtil.java
+C:\Users\dong_\Desktop\03ObsidianOfDong\2025spring_courses\2ndSummershortterm\Stray-Animal-Care-Platform-cursor-test-01\backend\src\main\java\com\strayanimal\platform\core\util\SecurityUtil.java
 C:\Users\dong_\Desktop\03ObsidianOfDong\2025spring_courses\2ndSummershortterm\Stray-Animal-Care-Platform-cursor-test-01\backend\src\main\java\com\strayanimal\platform\forum\controller\ForumCommentController.java
 C:\Users\dong_\Desktop\03ObsidianOfDong\2025spring_courses\2ndSummershortterm\Stray-Animal-Care-Platform-cursor-test-01\backend\src\main\java\com\strayanimal\platform\forum\controller\ForumPostController.java
 C:\Users\dong_\Desktop\03ObsidianOfDong\2025spring_courses\2ndSummershortterm\Stray-Animal-Care-Platform-cursor-test-01\backend\src\main\java\com\strayanimal\platform\forum\entity\ForumComment.java
@@ -12,6 +17,7 @@ C:\Users\dong_\Desktop\03ObsidianOfDong\2025spring_courses\2ndSummershortterm\St
 C:\Users\dong_\Desktop\03ObsidianOfDong\2025spring_courses\2ndSummershortterm\Stray-Animal-Care-Platform-cursor-test-01\backend\src\main\java\com\strayanimal\platform\forum\service\impl\ForumPostServiceImpl.java
 C:\Users\dong_\Desktop\03ObsidianOfDong\2025spring_courses\2ndSummershortterm\Stray-Animal-Care-Platform-cursor-test-01\backend\src\main\java\com\strayanimal\platform\PlatformApplication.java
 C:\Users\dong_\Desktop\03ObsidianOfDong\2025spring_courses\2ndSummershortterm\Stray-Animal-Care-Platform-cursor-test-01\backend\src\main\java\com\strayanimal\platform\user\controller\UserController.java
+C:\Users\dong_\Desktop\03ObsidianOfDong\2025spring_courses\2ndSummershortterm\Stray-Animal-Care-Platform-cursor-test-01\backend\src\main\java\com\strayanimal\platform\user\dto\LoginResponseDTO.java
 C:\Users\dong_\Desktop\03ObsidianOfDong\2025spring_courses\2ndSummershortterm\Stray-Animal-Care-Platform-cursor-test-01\backend\src\main\java\com\strayanimal\platform\user\entity\User.java
 C:\Users\dong_\Desktop\03ObsidianOfDong\2025spring_courses\2ndSummershortterm\Stray-Animal-Care-Platform-cursor-test-01\backend\src\main\java\com\strayanimal\platform\user\mapper\UserMapper.java
 C:\Users\dong_\Desktop\03ObsidianOfDong\2025spring_courses\2ndSummershortterm\Stray-Animal-Care-Platform-cursor-test-01\backend\src\main\java\com\strayanimal\platform\user\service\impl\UserServiceImpl.java

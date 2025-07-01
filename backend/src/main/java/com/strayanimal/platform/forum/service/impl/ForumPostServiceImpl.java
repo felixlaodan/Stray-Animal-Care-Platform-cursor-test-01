@@ -48,4 +48,21 @@ public class ForumPostServiceImpl extends ServiceImpl<ForumPostMapper, ForumPost
         int affectedRows = baseMapper.delete(queryWrapper);
         return affectedRows > 0;
     }
+
+    @Override
+    public ForumPost createPost(ForumPost post) {
+        save(post);
+        return post;
+    }
+
+    @Override
+    public ForumPost updatePost(ForumPost post) {
+        updateById(post);
+        return post;
+    }
+
+    @Override
+    public void deletePost(Long id) {
+        removeById(id);
+    }
 } 

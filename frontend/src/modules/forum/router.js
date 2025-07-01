@@ -4,12 +4,12 @@ import CreatePostView from './views/CreatePostView.vue';
 
 export default [
   {
-    path: '/',
+    path: '/posts',
     name: 'post-list',
     component: PostListView
   },
   {
-    path: '/post/:id',
+    path: '/posts/:id',
     name: 'post-detail',
     component: PostDetailView
   },

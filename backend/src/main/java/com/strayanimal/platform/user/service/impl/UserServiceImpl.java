@@ -6,6 +6,12 @@ import com.strayanimal.platform.core.common.Result;
 import com.strayanimal.platform.user.entity.User;
 import com.strayanimal.platform.user.mapper.UserMapper;
 import com.strayanimal.platform.user.service.UserService;
+import jakarta.annotation.Resource;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 /**
@@ -19,6 +25,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
 
+    @Resource
+    @Lazy
+    private PasswordEncoder passwordEncoder;
+
     @Override
     public Result<String> register(User user) {
         // 检查用户名是否已存在
@@ -30,31 +40,37 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             return Result.error("用户名已存在");
         }
 
-        // TODO: 在后续的安全升级中，密码需要加密存储
-        // user.setPassword(passwordEncoder.encode(user.getPassword()));
+        // 使用Bcrypt对密码进行加密
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
 
         save(user);
         return Result.success("注册成功");
     }
 
     @Override
-    public Result<User> login(User user) {
-        // 根据用户名查询用户
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        // 根据用户名从数据库查询用户
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("username", user.getUsername());
-        User userInDb = getOne(queryWrapper);
+        queryWrapper.eq("username", username);
+        User user = getOne(queryWrapper);
 
-        if (userInDb == null) {
-            return Result.error("用户名或密码错误");
+        if (user == null) {
+            throw new UsernameNotFoundException("用户不存在: " + username);
         }
 
-        // TODO: 在后续的安全升级中，此处应为加密密码匹配
-        if (!user.getPassword().equals(userInDb.getPassword())) {
-            return Result.error("用户名或密码错误");
-        }
+        // 将我们自己的User实体转换为Spring Security需要的UserDetails对象
+        // 为所有用户授予 "ROLE_USER" 默认权限
+        return new org.springframework.security.core.userdetails.User(
+                user.getUsername(),
+                user.getPassword(),
+                AuthorityUtils.createAuthorityList("ROLE_USER")
+        );
+    }
 
-        // 登录成功，返回用户信息（注意：为安全起见，清空密码）
-        userInDb.setPassword(null);
-        return Result.success(userInDb);
+    @Override
+    public User findByUsername(String username) {
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("username", username);
+        return getOne(queryWrapper);
     }
 } 

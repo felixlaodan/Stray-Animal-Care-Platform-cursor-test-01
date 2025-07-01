@@ -1,33 +1,72 @@
-import apiClient from '@/core/api';
+import request from '@/core/api/index.js';
 
+// 获取帖子列表（分页）
 export const getPosts = (params) => {
-  return apiClient.get('/api/posts', { params });
+  return request({
+    url: '/forum-post/list',
+    method: 'get',
+    params: {
+      pageNum: params.page,
+      pageSize: params.size,
+    },
+  });
 };
 
-export const getPostDetail = (id) => {
-  return apiClient.get(`/api/posts/${id}`);
+// 根据ID获取帖子详情
+export const getPostById = (id) => {
+  return request({
+    url: `/forum-post/${id}`,
+    method: 'get'
+  });
 };
 
-export const addComment = (postId, commentData) => {
-  return apiClient.post(`/api/posts/${postId}/comments`, commentData);
+// 创建新帖子
+export const createPost = (data) => {
+  return request({
+    url: '/forum-post',
+    method: 'post',
+    data
+  });
 };
 
-export const createPost = (postData) => {
-  return apiClient.post('/api/posts', postData);
+// 更新帖子
+export const updatePost = (id, data) => {
+    return request({
+        url: `/forum-post/${id}`,
+        method: 'put',
+        data
+    });
 };
 
-export const deletePost = (postId, userId) => {
-  return apiClient.delete(`/api/posts/${postId}`, { params: { userId } });
+// 删除帖子
+export const deletePost = (id) => {
+    return request({
+        url: `/forum-post/${id}`,
+        method: 'delete'
+    });
 };
 
-export const deleteComment = (commentId, userId) => {
-  return apiClient.delete(`/api/comments/${commentId}`, { params: { userId } });
+// 添加评论
+export const addComment = (data) => {
+  return request({
+    url: `/forum-comment`,
+    method: 'post',
+    data
+  });
 };
 
-export const updatePost = (postId, userId, postData) => {
-  return apiClient.put(`/api/posts/${postId}`, postData, { params: { userId } });
+// 根据帖子ID获取评论列表
+export const getCommentsByPostId = (postId) => {
+  return request({
+    url: `/forum-comment/post/${postId}`,
+    method: 'get',
+  });
 };
 
-export const updateComment = (commentId, userId, commentData) => {
-  return apiClient.put(`/api/comments/${commentId}`, commentData, { params: { userId } });
+// 删除评论
+export const deleteComment = (id) => {
+    return request({
+        url: `/forum-comment/${id}`,
+        method: 'delete'
+    });
 }; 

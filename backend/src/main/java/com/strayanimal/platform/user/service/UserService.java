@@ -3,6 +3,7 @@ package com.strayanimal.platform.user.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.strayanimal.platform.core.common.Result;
 import com.strayanimal.platform.user.entity.User;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 /**
  * <p>
@@ -12,7 +13,7 @@ import com.strayanimal.platform.user.entity.User;
  * @author dong
  * @since 2024-07-25
  */
-public interface UserService extends IService<User> {
+public interface UserService extends IService<User>, UserDetailsService {
 
     /**
      * 用户注册
@@ -21,10 +22,5 @@ public interface UserService extends IService<User> {
      */
     Result<String> register(User user);
 
-    /**
-     * 用户登录
-     * @param user 包含用户名和密码的用户对象
-     * @return 登录结果
-     */
-    Result<User> login(User user);
+    User findByUsername(String username);
 } 
