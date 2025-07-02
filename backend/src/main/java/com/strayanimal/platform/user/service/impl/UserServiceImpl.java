@@ -59,11 +59,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         }
 
         // 将我们自己的User实体转换为Spring Security需要的UserDetails对象
-        // 为所有用户授予 "ROLE_USER" 默认权限
+        // 从数据库动态加载用户的角色
         return new org.springframework.security.core.userdetails.User(
                 user.getUsername(),
                 user.getPassword(),
-                AuthorityUtils.createAuthorityList("ROLE_USER")
+                AuthorityUtils.createAuthorityList("ROLE_" + user.getRole())
         );
     }
 

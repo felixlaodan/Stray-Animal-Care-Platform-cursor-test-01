@@ -30,7 +30,7 @@
         <div v-for="comment in comments" :key="comment.id" class="comment-item">
           <div class="comment-header">
             <strong>{{ comment.authorName }}:</strong>
-            <div class="comment-actions" v-if="userStore.isAuthenticated && userStore.user?.id === comment.userId">
+            <div class="comment-actions" v-if="userStore.isAuthenticated && (userStore.user?.id === comment.userId || userStore.isAdmin)">
               <el-button type="primary" link @click="openEditDialog(comment)">编辑</el-button>
               <el-button type="danger" link @click="deleteComment(comment.id)">删除</el-button>
             </div>

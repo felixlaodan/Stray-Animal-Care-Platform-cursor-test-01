@@ -56,11 +56,18 @@ public class SecurityConfig {
 
                 // 2. 配置URL的授权规则
                 .authorizeHttpRequests(auth -> auth
-                        // 允许对/user/login, /user/register以及/uploads/**的匿名访问
+                        // 公开访问: 登录/注册/静态资源/GET请求帖子和评论
                         .requestMatchers("/user/login", "/user/register", "/uploads/**").permitAll()
-                        // 允许游客匿名访问帖子列表和帖子详情
                         .requestMatchers(HttpMethod.GET, "/forum-post/**", "/forum-comment/**").permitAll()
-                        // 除上述路径外，所有其他请求都需要认证
+                        
+                        // 用户权限: 发表帖子/评论/点赞 (所有POST请求)
+                        .requestMatchers(HttpMethod.POST, "/forum-post/**", "/forum-comment/**").hasAnyRole("USER", "ADMIN")
+
+                        // 管理员或用户权限: 修改/删除帖子/评论
+                        .requestMatchers(HttpMethod.PUT, "/forum-post/**", "/forum-comment/**").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/forum-post/**", "/forum-comment/**").hasAnyRole("USER", "ADMIN")
+
+                        // 其他所有请求都需要认证 (例如获取个人信息等)
                         .anyRequest().authenticated()
                 )
 

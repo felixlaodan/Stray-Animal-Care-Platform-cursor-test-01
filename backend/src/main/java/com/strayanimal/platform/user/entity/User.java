@@ -34,6 +34,11 @@ public class User {
     private String password;
 
     /**
+     * 角色
+     */
+    private String role;
+
+    /**
      * 昵称
      */
     private String nickname;

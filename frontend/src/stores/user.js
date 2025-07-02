@@ -11,6 +11,8 @@ export const useUserStore = defineStore('user', () => {
   // 一个计算属性，用于方便地判断用户是否已登录
   const isAuthenticated = computed(() => !!token.value);
 
+  const isAdmin = computed(() => user.value?.role === 'ADMIN');
+
   // === Actions ===
 
   /**
@@ -37,7 +39,8 @@ export const useUserStore = defineStore('user', () => {
   return { 
     token, 
     user, 
-    isAuthenticated, 
+    isAuthenticated,
+    isAdmin,
     loginSuccess, 
     logout 
   };

@@ -33,7 +33,7 @@
         <template #header>
           <div class="card-header">
             <span>{{ post.authorName }}</span>
-            <div class="post-actions" v-if="userStore.isAuthenticated && userStore.user?.id === post.userId">
+            <div class="post-actions" v-if="userStore.isAuthenticated && (userStore.user?.id === post.userId || userStore.isAdmin)">
               <el-button type="primary" link @click="handleEdit(post.id)">编辑</el-button>
               <el-button type="danger" link @click="handleDelete(post.id)">删除</el-button>
             </div>

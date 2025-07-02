@@ -88,13 +88,16 @@ public class ForumPostController {
             return Result.error("用户信息不存在");
         }
         
-        // 检查权限：只有帖子作者才能删除
+        // 检查权限：只有帖子作者或管理员才能删除
         ForumPost existingPost = forumPostService.getById(id);
         if (existingPost == null) {
             return Result.error("帖子不存在");
         }
         
-        if (!existingPost.getUserId().equals(currentUser.getId())) {
+        boolean isOwner = existingPost.getUserId().equals(currentUser.getId());
+        boolean isAdmin = "ADMIN".equals(currentUser.getRole());
+
+        if (!isOwner && !isAdmin) {
             return Result.error("无权限删除此帖子");
         }
         
@@ -116,13 +119,16 @@ public class ForumPostController {
             return Result.error("用户信息不存在");
         }
 
-        // 检查权限：只有帖子作者才能编辑
+        // 检查权限：只有帖子作者或管理员才能编辑
         ForumPost existingPost = forumPostService.getById(id);
         if (existingPost == null) {
             return Result.error("帖子不存在");
         }
 
-        if (!existingPost.getUserId().equals(currentUser.getId())) {
+        boolean isOwner = existingPost.getUserId().equals(currentUser.getId());
+        boolean isAdmin = "ADMIN".equals(currentUser.getRole());
+
+        if (!isOwner && !isAdmin) {
             return Result.error("无权限编辑此帖子");
         }
 

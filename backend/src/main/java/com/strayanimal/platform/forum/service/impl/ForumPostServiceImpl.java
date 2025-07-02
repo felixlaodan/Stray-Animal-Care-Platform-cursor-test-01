@@ -52,7 +52,7 @@ public class ForumPostServiceImpl extends ServiceImpl<ForumPostMapper, ForumPost
             queryWrapper.orderByDesc("likes_count", "create_time"); // 按热度排序，热度相同则按时间
         } else {
             // 默认为按创建时间排序
-            queryWrapper.orderByDesc("create_time");
+        queryWrapper.orderByDesc("create_time");
         }
         
         Page<ForumPost> page = baseMapper.selectPage(postPage, queryWrapper);

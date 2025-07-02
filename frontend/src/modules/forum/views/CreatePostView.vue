@@ -2,11 +2,11 @@
   <div class="create-post-container">
     <h2>发表新帖</h2>
     <el-form :model="form" label-position="top">
-      <el-form-item label="标题">
+        <el-form-item label="标题">
         <el-input v-model="form.title" placeholder="请输入帖子标题"></el-input>
-      </el-form-item>
+        </el-form-item>
       
-      <el-form-item label="内容">
+        <el-form-item label="内容">
         <el-input
           v-model="form.content"
           type="textarea"
@@ -27,13 +27,13 @@
           <img v-if="form.imageUrl" :src="fullImageUrl" class="image" />
           <el-icon v-else class="image-uploader-icon"><Plus /></el-icon>
         </el-upload>
-      </el-form-item>
+        </el-form-item>
       
-      <el-form-item>
+        <el-form-item>
         <el-button type="primary" @click="submitForm">立即发布</el-button>
         <el-button @click="goBack">取消</el-button>
-      </el-form-item>
-    </el-form>
+        </el-form-item>
+      </el-form>
   </div>
 </template>
 
@@ -104,8 +104,8 @@ const submitForm = async () => {
       content: form.content,
       imageUrl: form.imageUrl,
     });
-    ElMessage.success('帖子发布成功！');
-    router.push('/posts');
+      ElMessage.success('帖子发布成功！');
+      router.push('/posts');
   } catch (error) {
     console.error('发布帖子失败:', error);
     ElMessage.error('发布帖子失败');
