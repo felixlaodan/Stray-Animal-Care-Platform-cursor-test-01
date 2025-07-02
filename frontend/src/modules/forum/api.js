@@ -8,6 +8,7 @@ export const getPosts = (params) => {
     params: {
       pageNum: params.page,
       pageSize: params.size,
+      keyword: params.keyword,
     },
   });
 };
@@ -68,5 +69,14 @@ export const deleteComment = (id) => {
     return request({
         url: `/forum-comment/${id}`,
         method: 'delete'
+    });
+};
+
+// 更新评论
+export const updateComment = (id, data) => {
+    return request({
+        url: `/forum-comment/${id}`,
+        method: 'put',
+        data
     });
 }; 

@@ -25,13 +25,14 @@ public class ForumPost {
     @TableField("author_name")
     private String authorName;
 
+    @TableField("user_id")
     private Long userId;
 
-    @TableField("created_at")
-    private LocalDateTime createdAt;
+    @TableField("create_time")
+    private LocalDateTime createTime;
 
-    @TableField("updated_at")
-    private LocalDateTime updatedAt;
+    @TableField("update_time")
+    private LocalDateTime updateTime;
 
     @TableField(exist = false)
     private List<ForumComment> comments;

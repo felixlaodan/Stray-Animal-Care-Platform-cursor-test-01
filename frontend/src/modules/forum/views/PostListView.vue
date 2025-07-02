@@ -3,7 +3,20 @@
     <el-card class="page-header-card">
       <div class="page-header-content">
         <h1 class="page-title">流浪动物交流论坛</h1>
-        <el-button type="primary" @click="goToCreatePost">发表新帖</el-button>
+        <el-button v-if="userStore.isAuthenticated" type="primary" @click="goToCreatePost">发表新帖</el-button>
+      </div>
+      <div class="search-bar">
+        <el-input
+          v-model="searchKeyword"
+          placeholder="搜索帖子标题或内容..."
+          clearable
+          @clear="handleSearch"
+          @keyup.enter="handleSearch"
+        >
+          <template #append>
+            <el-button @click="handleSearch">搜索</el-button>
+          </template>
+        </el-input>
       </div>
     </el-card>
 
@@ -52,6 +65,7 @@ import { useUserStore } from '@/stores/user.js';
 const router = useRouter();
 const userStore = useUserStore();
 const posts = ref([]);
+const searchKeyword = ref('');
 
 const pagination = reactive({
   currentPage: 1,
@@ -73,6 +87,7 @@ const fetchPosts = async () => {
     const response = await getPosts({
       page: pagination.currentPage,
       size: pagination.pageSize,
+      keyword: searchKeyword.value,
     });
     posts.value = response.data.records;
     pagination.total = response.data.total;
@@ -80,6 +95,11 @@ const fetchPosts = async () => {
     console.error("获取帖子列表失败:", error);
     ElMessage.error("获取帖子列表失败，请稍后重试");
   }
+};
+
+const handleSearch = () => {
+  pagination.currentPage = 1;
+  fetchPosts();
 };
 
 const handlePageChange = (newPage) => {
@@ -133,11 +153,13 @@ onMounted(() => {
   margin-bottom: 20px;
   background-color: #409eff;
   color: white;
+  overflow: visible;
 }
 .page-header-content {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 20px;
 }
 .page-title {
   margin: 0;
@@ -180,5 +202,8 @@ onMounted(() => {
   display: flex;
   justify-content: center;
   margin-top: 20px;
+}
+.search-bar {
+  width: 100%;
 }
 </style> 

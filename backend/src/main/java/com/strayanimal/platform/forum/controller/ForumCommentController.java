@@ -64,23 +64,39 @@ public class ForumCommentController {
         return Result.success(null);
     }
 
+    /**
+     * 更新评论
+     * @param id 评论ID
+     * @param comment 包含新内容的评论对象
+     * @return 更新后的评论
+     */
     @PutMapping("/{id}")
-    public Result<?> updateComment(@PathVariable Long id, @RequestParam Long userId, @RequestBody ForumComment commentUpdate) {
-        // 1. 查询原始评论
-        ForumComment originalComment = forumCommentService.getById(id);
-
-        // 2. 权限校验
-        if (originalComment == null || !originalComment.getUserId().equals(userId)) {
-            return Result.error(403, "无权修改或评论不存在");
+    public Result<ForumComment> updateComment(@PathVariable Long id, @RequestBody ForumComment comment) {
+        String currentUsername = SecurityUtil.getCurrentUsername();
+        if (currentUsername == null) {
+            return Result.error("用户未登录");
         }
 
-        // 3. 只更新内容
-        originalComment.setContent(commentUpdate.getContent());
+        User currentUser = userService.findByUsername(currentUsername);
+        if (currentUser == null) {
+            return Result.error("用户信息不存在");
+        }
 
-        // 4. 执行更新
-        forumCommentService.updateById(originalComment);
+        ForumComment existingComment = forumCommentService.getById(id);
+        if (existingComment == null) {
+            return Result.error("评论不存在");
+        }
 
-        return Result.success("评论更新成功");
+        // 权限检查：只有评论的作者才能编辑
+        if (!existingComment.getUserId().equals(currentUser.getId())) {
+            return Result.error("无权限编辑此评论");
+        }
+
+        // 只允许更新内容
+        existingComment.setContent(comment.getContent());
+        forumCommentService.updateById(existingComment);
+
+        return Result.success(existingComment);
     }
 
     /**

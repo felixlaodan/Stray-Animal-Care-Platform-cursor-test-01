@@ -2,16 +2,16 @@
   <div class="create-post-container">
     <h2>发表新帖子</h2>
     <el-form :model="form" label-width="80px">
-      <el-form-item label="标题">
+        <el-form-item label="标题">
         <el-input v-model="form.title" placeholder="请输入帖子标题"></el-input>
-      </el-form-item>
-      <el-form-item label="内容">
+        </el-form-item>
+        <el-form-item label="内容">
         <el-input type="textarea" v-model="form.content" :rows="5" placeholder="分享你的想法..."></el-input>
-      </el-form-item>
-      <el-form-item>
+        </el-form-item>
+        <el-form-item>
         <el-button type="primary" @click="submitPost" :loading="loading">立即发布</el-button>
-      </el-form-item>
-    </el-form>
+        </el-form-item>
+      </el-form>
   </div>
 </template>
 
@@ -43,7 +43,7 @@ const submitPost = async () => {
     router.push('/login');
     return;
   }
-  
+
   loading.value = true;
 
   try {

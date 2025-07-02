@@ -5,7 +5,7 @@
       <h1>{{ post.title }}</h1>
       <p class="post-meta">作者: {{ post.authorName }} | 发布于: {{ new Date(post.createTime).toLocaleString() }}</p>
       <div class="content-body" v-html="post.content"></div>
-    </div>
+          </div>
 
     <hr />
 
@@ -16,13 +16,10 @@
         <div v-for="comment in comments" :key="comment.id" class="comment-item">
           <div class="comment-header">
             <strong>{{ comment.authorName }}:</strong>
-            <el-button 
-              v-if="userStore.isAuthenticated && userStore.user.id === comment.userId"
-              type="danger" 
-              link
-              @click="deleteComment(comment.id)">
-              删除
-            </el-button>
+            <div class="comment-actions" v-if="userStore.isAuthenticated && userStore.user?.id === comment.userId">
+              <el-button type="primary" link @click="openEditDialog(comment)">编辑</el-button>
+              <el-button type="danger" link @click="deleteComment(comment.id)">删除</el-button>
+            </div>
           </div>
           <p>{{ comment.content }}</p>
           <small>{{ new Date(comment.createTime).toLocaleString() }}</small>
@@ -30,29 +27,45 @@
       </div>
       <div v-else>
         <p>暂无评论，快来抢沙发吧！</p>
-      </div>
-    </div>
+        </div>
+          </div>
 
     <!-- 发表评论 -->
     <div class="add-comment">
       <h3>发表你的看法</h3>
-      <el-input
+            <el-input
         v-model="newComment.content"
-        type="textarea"
+              type="textarea"
         :rows="3"
         placeholder="写下你的评论..."
       ></el-input>
       <el-button type="primary" @click="submitComment" style="margin-top: 10px;">提交评论</el-button>
     </div>
+
+    <!-- 编辑评论对话框 -->
+    <el-dialog v-model="editDialogVisible" title="编辑评论" width="500px">
+      <el-input
+        v-model="editingCommentContent"
+        type="textarea"
+        :rows="4"
+        placeholder="请输入评论内容"
+      />
+      <template #footer>
+        <span class="dialog-footer">
+          <el-button @click="editDialogVisible = false">取消</el-button>
+          <el-button type="primary" @click="handleUpdateComment">确定</el-button>
+        </span>
+      </template>
+    </el-dialog>
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted, reactive } from 'vue';
 import { useRoute } from 'vue-router';
-import { getPostById, getCommentsByPostId, addComment, deleteComment as apiDeleteComment } from '../api.js';
+import { getPostById, getCommentsByPostId, addComment, deleteComment as apiDeleteComment, updateComment as apiUpdateComment } from '../api.js';
 import { useUserStore } from '@/stores/user.js';
-import { ElMessage } from 'element-plus';
+import { ElMessage, ElMessageBox } from 'element-plus';
 
 const route = useRoute();
 const userStore = useUserStore();
@@ -60,11 +73,16 @@ const userStore = useUserStore();
 const post = ref(null);
 const comments = ref([]);
 const loading = ref(true);
-const postId = route.params.id;
+  const postId = route.params.id;
 
 const newComment = reactive({
   content: '',
 });
+
+// 编辑评论相关状态
+const editDialogVisible = ref(false);
+const editingComment = ref(null);
+const editingCommentContent = ref('');
 
 onMounted(async () => {
   try {
@@ -121,13 +139,39 @@ const submitComment = async () => {
 
 const deleteComment = async (commentId) => {
   try {
+    await ElMessageBox.confirm('确定要删除这条评论吗？', '提示', { type: 'warning' });
     await apiDeleteComment(commentId);
-    ElMessage.success('评论删除成功！');
-    // 从评论列表中移除已删除的评论
+      ElMessage.success('评论删除成功！');
     comments.value = comments.value.filter(c => c.id !== commentId);
   } catch (error) {
-    console.error('删除评论失败:', error);
-    ElMessage.error('删除评论失败');
+    if (error !== 'cancel') ElMessage.error('删除评论失败');
+    }
+};
+
+const openEditDialog = (comment) => {
+  editingComment.value = comment;
+  editingCommentContent.value = comment.content;
+  editDialogVisible.value = true;
+};
+
+const handleUpdateComment = async () => {
+  if (!editingCommentContent.value.trim()) {
+    ElMessage.warning('评论内容不能为空');
+    return;
+  }
+  try {
+    const res = await apiUpdateComment(editingComment.value.id, {
+      content: editingCommentContent.value,
+    });
+    const updatedComment = res.data;
+    const index = comments.value.findIndex(c => c.id === updatedComment.id);
+    if (index !== -1) {
+      comments.value[index] = updatedComment;
+    }
+    ElMessage.success('评论更新成功！');
+    editDialogVisible.value = false;
+  } catch (error) {
+    ElMessage.error('更新评论失败');
   }
 };
 </script>
@@ -167,7 +211,7 @@ hr {
 .comment-section h3, .add-comment h3 {
   font-size: 1.5em;
   margin-bottom: 1em;
-  color: #303133;
+    color: #303133;
   border-left: 4px solid #409eff;
   padding-left: 10px;
 }
@@ -196,4 +240,7 @@ hr {
 .add-comment {
   margin-top: 30px;
 }
-</style>
+.comment-actions {
+  display: inline-block;
+}
+</style> 

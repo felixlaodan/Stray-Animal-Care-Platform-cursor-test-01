@@ -10,6 +10,7 @@ import com.strayanimal.platform.forum.mapper.ForumPostMapper;
 import com.strayanimal.platform.forum.service.ForumPostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 
@@ -23,9 +24,16 @@ public class ForumPostServiceImpl extends ServiceImpl<ForumPostMapper, ForumPost
     private ForumCommentMapper forumCommentMapper;
 
     @Override
-    public Page<ForumPost> getPostList(Page<ForumPost> postPage) {
+    public Page<ForumPost> getPostList(Page<ForumPost> postPage, String keyword) {
         QueryWrapper<ForumPost> queryWrapper = new QueryWrapper<>();
-        queryWrapper.orderByDesc("created_at");
+        
+        if (StringUtils.hasText(keyword)) {
+            // 如果关键字不为空，则添加模糊查询条件
+            // 查询标题或内容中包含关键字的帖子
+            queryWrapper.and(qw -> qw.like("title", keyword).or().like("content", keyword));
+        }
+
+        queryWrapper.orderByDesc("create_time");
         return baseMapper.selectPage(postPage, queryWrapper);
     }
 

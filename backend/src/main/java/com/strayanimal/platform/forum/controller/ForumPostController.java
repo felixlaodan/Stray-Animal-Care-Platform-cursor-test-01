@@ -27,10 +27,11 @@ public class ForumPostController {
     private UserService userService;
 
     @GetMapping("/list")
-    public Result<Page<ForumPost>> getPostList(@RequestParam(defaultValue = "1") long page,
-                                               @RequestParam(defaultValue = "10") long size) {
-        Page<ForumPost> postPage = new Page<>(page, size);
-        return Result.success(forumPostService.getPostList(postPage));
+    public Result<Page<ForumPost>> getPostList(@RequestParam(defaultValue = "1") int pageNum,
+                                               @RequestParam(defaultValue = "10") int pageSize,
+                                               @RequestParam(required = false) String keyword) {
+        Page<ForumPost> postPage = new Page<>(pageNum, pageSize);
+        return Result.success(forumPostService.getPostList(postPage, keyword));
     }
 
     @GetMapping("/{id}")

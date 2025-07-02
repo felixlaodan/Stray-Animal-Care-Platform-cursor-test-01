@@ -4,6 +4,7 @@ import com.strayanimal.platform.core.jwt.JwtRequestFilter;
 import jakarta.annotation.Resource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -57,6 +58,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         // 允许对/user/login和/user/register的匿名访问
                         .requestMatchers("/user/login", "/user/register").permitAll()
+                        // 允许游客匿名访问帖子列表和帖子详情
+                        .requestMatchers(HttpMethod.GET, "/forum-post/**", "/forum-comment/**").permitAll()
                         // 除上述路径外，所有其他请求都需要认证
                         .anyRequest().authenticated()
                 )
