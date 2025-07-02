@@ -5,18 +5,26 @@
         <h1 class="page-title">流浪动物交流论坛</h1>
         <el-button v-if="userStore.isAuthenticated" type="primary" @click="goToCreatePost">发表新帖</el-button>
       </div>
-      <div class="search-bar">
-        <el-input
-          v-model="searchKeyword"
-          placeholder="搜索帖子标题或内容..."
-          clearable
-          @clear="handleSearch"
-          @keyup.enter="handleSearch"
-        >
-          <template #append>
-            <el-button @click="handleSearch">搜索</el-button>
-          </template>
-        </el-input>
+      <div class="action-bar">
+        <div class="sort-options">
+          <el-radio-group v-model="sortBy" size="large">
+            <el-radio-button value="latest">最新发布</el-radio-button>
+            <el-radio-button value="popular">热度最高</el-radio-button>
+          </el-radio-group>
+        </div>
+        <div class="search-bar">
+          <el-input
+            v-model="searchKeyword"
+            placeholder="搜索帖子标题或内容..."
+            clearable
+            @clear="handleSearch"
+            @keyup.enter="handleSearch"
+          >
+            <template #append>
+              <el-button @click="handleSearch">搜索</el-button>
+            </template>
+          </el-input>
+        </div>
       </div>
     </el-card>
 
@@ -42,13 +50,11 @@
         </router-link>
 
         <div class="post-footer">
-          <div class="like-action" @click.stop="handleLike(post)">
-            <el-icon>
-              <StarFilled v-if="post.likedByCurrentUser" class="is-liked" />
-              <Star v-else />
-            </el-icon>
-            <span>{{ post.likesCount }}</span>
-          </div>
+          <LikeButton 
+            :liked="post.likedByCurrentUser" 
+            :likes-count="post.likesCount" 
+            @toggle-like="handleLike(post)" 
+          />
         </div>
       </el-card>
       
@@ -69,17 +75,18 @@
 </template>
 
 <script setup>
-import { ref, onMounted, reactive } from 'vue';
+import { ref, onMounted, reactive, watch } from 'vue';
 import { useRouter } from 'vue-router';
 import { getPosts, deletePost, toggleLikePost } from '../api.js';
 import { ElMessage, ElMessageBox } from 'element-plus';
 import { useUserStore } from '@/stores/user.js';
-import { Star, StarFilled } from '@element-plus/icons-vue';
+import LikeButton from '../components/LikeButton.vue';
 
 const router = useRouter();
 const userStore = useUserStore();
 const posts = ref([]);
 const searchKeyword = ref('');
+const sortBy = ref('latest'); // 默认按最新排序
 
 const pagination = reactive({
   currentPage: 1,
@@ -110,6 +117,7 @@ const fetchPosts = async () => {
       page: pagination.currentPage,
       size: pagination.pageSize,
       keyword: searchKeyword.value,
+      sortBy: sortBy.value, // 传递排序参数
     });
     posts.value = response.data.records;
     pagination.total = response.data.total;
@@ -149,6 +157,7 @@ const handleLike = async (post) => {
     post.likedByCurrentUser = originalLikedState;
     post.likesCount = originalLikesCount;
     ElMessage.error('操作失败，请稍后重试');
+    console.error('点赞操作失败:', error); 
   }
 };
 
@@ -183,6 +192,14 @@ const handleDelete = async (postId) => {
     }
   }
 };
+
+// 监听排序变化
+watch(sortBy, (newValue, oldValue) => {
+  if (newValue !== oldValue) {
+    pagination.currentPage = 1; // 切换排序时回到第一页
+    fetchPosts();
+  }
+});
 
 onMounted(() => {
   fetchPosts();
@@ -258,8 +275,18 @@ onMounted(() => {
   justify-content: center;
   margin-top: 20px;
 }
+.action-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
 .search-bar {
-  width: 100%;
+  width: 300px; /* Adjust width as needed */
+}
+.sort-options {
+  flex-grow: 1;
 }
 .post-footer {
   margin-top: 15px;
@@ -269,18 +296,9 @@ onMounted(() => {
   align-items: center;
   gap: 20px;
 }
-.like-action {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  cursor: pointer;
-  color: #666;
-  transition: color 0.3s;
-}
-.like-action:hover {
-  color: #409eff;
-}
-.like-action .is-liked {
-  color: #ff6f61;
+.post-title {
+  font-size: 1.4em;
+  margin: 0 0 10px 0;
+  color: #333;
 }
 </style> 

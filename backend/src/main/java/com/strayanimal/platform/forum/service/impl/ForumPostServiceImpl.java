@@ -38,7 +38,7 @@ public class ForumPostServiceImpl extends ServiceImpl<ForumPostMapper, ForumPost
     private UserPostLikeService userPostLikeService;
 
     @Override
-    public Page<ForumPost> getPostList(Page<ForumPost> postPage, String keyword) {
+    public Page<ForumPost> getPostList(Page<ForumPost> postPage, String keyword, String sortBy) {
         QueryWrapper<ForumPost> queryWrapper = new QueryWrapper<>();
         
         if (StringUtils.hasText(keyword)) {
@@ -47,7 +47,14 @@ public class ForumPostServiceImpl extends ServiceImpl<ForumPostMapper, ForumPost
             queryWrapper.and(qw -> qw.like("title", keyword).or().like("content", keyword));
         }
 
-        queryWrapper.orderByDesc("create_time");
+        // 根据sortBy参数动态设置排序规则
+        if ("popular".equals(sortBy)) {
+            queryWrapper.orderByDesc("likes_count", "create_time"); // 按热度排序，热度相同则按时间
+        } else {
+            // 默认为按创建时间排序
+            queryWrapper.orderByDesc("create_time");
+        }
+        
         Page<ForumPost> page = baseMapper.selectPage(postPage, queryWrapper);
 
         // 高效处理"当前用户是否点赞"

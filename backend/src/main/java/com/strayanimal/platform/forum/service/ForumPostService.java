@@ -6,7 +6,7 @@ import com.strayanimal.platform.forum.entity.ForumPost;
 
 public interface ForumPostService extends IService<ForumPost> {
 
-    Page<ForumPost> getPostList(Page<ForumPost> postPage, String keyword);
+    Page<ForumPost> getPostList(Page<ForumPost> postPage, String keyword, String sortBy);
 
     ForumPost getPostDetailById(Long id);
 

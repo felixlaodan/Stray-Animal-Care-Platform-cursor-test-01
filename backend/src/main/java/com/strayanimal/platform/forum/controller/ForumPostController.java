@@ -29,9 +29,10 @@ public class ForumPostController {
     @GetMapping("/list")
     public Result<Page<ForumPost>> getPostList(@RequestParam(defaultValue = "1") int pageNum,
                                                @RequestParam(defaultValue = "10") int pageSize,
-                                               @RequestParam(required = false) String keyword) {
+                                               @RequestParam(required = false) String keyword,
+                                               @RequestParam(defaultValue = "latest") String sortBy) {
         Page<ForumPost> postPage = new Page<>(pageNum, pageSize);
-        return Result.success(forumPostService.getPostList(postPage, keyword));
+        return Result.success(forumPostService.getPostList(postPage, keyword, sortBy));
     }
 
     @GetMapping("/{id}")

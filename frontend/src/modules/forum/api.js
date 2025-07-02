@@ -9,6 +9,7 @@ export const getPosts = (params) => {
       pageNum: params.page,
       pageSize: params.size,
       keyword: params.keyword,
+      sortBy: params.sortBy, // 添加 sortBy 参数
     },
   });
 };

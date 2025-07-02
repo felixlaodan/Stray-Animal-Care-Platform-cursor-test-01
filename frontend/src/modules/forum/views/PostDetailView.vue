@@ -6,13 +6,11 @@
       <div class="post-meta">
         <span>作者: {{ post.authorName }}</span>
         <span>发布于: {{ new Date(post.createTime).toLocaleString() }}</span>
-        <div class="like-action" @click="handleLike">
-          <el-icon>
-            <StarFilled v-if="post.likedByCurrentUser" class="is-liked" />
-            <Star v-else />
-          </el-icon>
-          <span>{{ post.likesCount }}</span>
-        </div>
+        <LikeButton 
+          :liked="post.likedByCurrentUser" 
+          :likes-count="post.likesCount" 
+          @toggle-like="handleLike" 
+        />
       </div>
       
       <!-- 如果有图片，则显示图片 -->
@@ -82,7 +80,7 @@ import { useRoute, useRouter } from 'vue-router';
 import { getPostById, getCommentsByPostId, addComment, deleteComment as apiDeleteComment, updateComment as apiUpdateComment, toggleLikePost } from '../api.js';
 import { useUserStore } from '@/stores/user.js';
 import { ElMessage, ElMessageBox } from 'element-plus';
-import { Star, StarFilled } from '@element-plus/icons-vue';
+import LikeButton from '../components/LikeButton.vue';
 
 const route = useRoute();
 const router = useRouter();
@@ -253,20 +251,6 @@ const handleLike = async () => {
   display: flex;
   align-items: center;
   gap: 15px;
-}
-.like-action {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  cursor: pointer;
-  color: #666;
-  transition: color 0.3s;
-}
-.like-action:hover {
-  color: #409eff;
-}
-.like-action .is-liked {
-  color: #ff6f61;
 }
 .content-body {
   line-height: 1.8;
