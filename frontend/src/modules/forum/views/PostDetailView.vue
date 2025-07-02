@@ -3,9 +3,25 @@
     <div v-if="loading" class="loading">正在加载...</div>
     <div v-if="post && !loading" class="post-content">
       <h1>{{ post.title }}</h1>
-      <p class="post-meta">作者: {{ post.authorName }} | 发布于: {{ new Date(post.createTime).toLocaleString() }}</p>
+      <div class="post-meta">
+        <span>作者: {{ post.authorName }}</span>
+        <span>发布于: {{ new Date(post.createTime).toLocaleString() }}</span>
+        <div class="like-action" @click="handleLike">
+          <el-icon>
+            <StarFilled v-if="post.likedByCurrentUser" class="is-liked" />
+            <Star v-else />
+          </el-icon>
+          <span>{{ post.likesCount }}</span>
+        </div>
+      </div>
+      
+      <!-- 如果有图片，则显示图片 -->
+      <div v-if="post.imageUrl" class="post-image-container">
+        <img :src="fullImageUrl" alt="帖子图片" class="post-image">
+      </div>
+      
       <div class="content-body" v-html="post.content"></div>
-          </div>
+    </div>
 
     <hr />
 
@@ -61,19 +77,29 @@
 </template>
 
 <script setup>
-import { ref, onMounted, reactive } from 'vue';
-import { useRoute } from 'vue-router';
-import { getPostById, getCommentsByPostId, addComment, deleteComment as apiDeleteComment, updateComment as apiUpdateComment } from '../api.js';
+import { ref, onMounted, reactive, computed } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
+import { getPostById, getCommentsByPostId, addComment, deleteComment as apiDeleteComment, updateComment as apiUpdateComment, toggleLikePost } from '../api.js';
 import { useUserStore } from '@/stores/user.js';
 import { ElMessage, ElMessageBox } from 'element-plus';
+import { Star, StarFilled } from '@element-plus/icons-vue';
 
 const route = useRoute();
+const router = useRouter();
 const userStore = useUserStore();
 
 const post = ref(null);
 const comments = ref([]);
 const loading = ref(true);
-  const postId = route.params.id;
+const postId = route.params.id;
+
+const fullImageUrl = computed(() => {
+  if (!post.value || !post.value.imageUrl) return '';
+  if (post.value.imageUrl.startsWith('http')) {
+    return post.value.imageUrl;
+  }
+  return 'http://localhost:8080' + post.value.imageUrl;
+});
 
 const newComment = reactive({
   content: '',
@@ -174,6 +200,32 @@ const handleUpdateComment = async () => {
     ElMessage.error('更新评论失败');
   }
 };
+
+const handleLike = async () => {
+  if (!userStore.isAuthenticated) {
+    ElMessage.warning('请先登录再点赞');
+    router.push('/login');
+    return;
+  }
+  if (!post.value) return;
+
+  // 乐观更新UI
+  const originalLikedState = post.value.likedByCurrentUser;
+  const originalLikesCount = post.value.likesCount;
+
+  post.value.likedByCurrentUser = !post.value.likedByCurrentUser;
+  post.value.likesCount += post.value.likedByCurrentUser ? 1 : -1;
+
+  try {
+    await toggleLikePost(post.value.id);
+  } catch (error) {
+    // 如果API请求失败，则恢复UI
+    post.value.likedByCurrentUser = originalLikedState;
+    post.value.likesCount = originalLikesCount;
+    ElMessage.error('操作失败，请稍后重试');
+    console.error("点赞失败:", error);
+  }
+};
 </script>
 
 <style scoped>
@@ -198,6 +250,23 @@ const handleUpdateComment = async () => {
   color: #888;
   font-size: 0.9em;
   margin-bottom: 1.5em;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.like-action {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  color: #666;
+  transition: color 0.3s;
+}
+.like-action:hover {
+  color: #409eff;
+}
+.like-action .is-liked {
+  color: #ff6f61;
 }
 .content-body {
   line-height: 1.8;
@@ -242,5 +311,13 @@ hr {
 }
 .comment-actions {
   display: inline-block;
+}
+.post-image-container {
+  width: 100%;
+  margin-bottom: 1.5em;
+}
+.post-image {
+  max-width: 100%;
+  border-radius: 8px;
 }
 </style> 

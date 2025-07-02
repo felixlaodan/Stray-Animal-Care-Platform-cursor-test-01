@@ -15,4 +15,5 @@ public interface ForumPostService extends IService<ForumPost> {
     ForumPost createPost(ForumPost post);
     ForumPost updatePost(ForumPost post);
     void deletePost(Long id);
+    void toggleLike(Long postId);
 } 

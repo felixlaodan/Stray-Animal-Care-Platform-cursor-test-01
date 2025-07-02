@@ -79,4 +79,12 @@ export const updateComment = (id, data) => {
         method: 'put',
         data
     });
+};
+
+// 切换帖子点赞状态
+export const toggleLikePost = (postId) => {
+    return request({
+        url: `/forum-post/${postId}/like`,
+        method: 'post'
+    });
 }; 

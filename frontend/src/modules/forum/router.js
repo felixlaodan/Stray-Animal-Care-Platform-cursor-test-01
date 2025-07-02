@@ -3,25 +3,27 @@ import PostDetailView from './views/PostDetailView.vue';
 import CreatePostView from './views/CreatePostView.vue';
 import EditPostView from './views/EditPostView.vue';
 
-export default [
+const routes = [
   {
     path: '/posts',
-    name: 'post-list',
-    component: PostListView
+    name: 'PostList',
+    component: PostListView,
   },
   {
     path: '/posts/:id',
-    name: 'post-detail',
-    component: PostDetailView
+    name: 'PostDetail',
+    component: PostDetailView,
   },
   {
     path: '/create-post',
-    name: 'create-post',
-    component: CreatePostView
+    name: 'CreatePost',
+    component: CreatePostView,
   },
   {
     path: '/posts/edit/:id',
-    name: 'edit-post',
+    name: 'EditPost',
     component: EditPostView,
-  }
-]; 
+  },
+];
+
+export default routes; 

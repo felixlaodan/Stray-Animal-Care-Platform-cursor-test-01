@@ -6,12 +6,27 @@ CREATE TABLE `forum_post` (
   `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键ID',
   `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '帖子标题',
   `content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci COMMENT '帖子内容',
+  `image_url` varchar(255) DEFAULT NULL COMMENT '帖子配图URL',
+  `likes_count` int DEFAULT '0' COMMENT '点赞数',
   `user_id` bigint DEFAULT NULL COMMENT '发布用户ID',
   `author_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '作者昵称',
   `create_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_time` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='论坛帖子表';
+
+-- ----------------------------
+-- Table structure for user_post_like
+-- ----------------------------
+DROP TABLE IF EXISTS `user_post_like`;
+CREATE TABLE `user_post_like` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `user_id` bigint NOT NULL COMMENT '用户ID',
+  `post_id` bigint NOT NULL COMMENT '帖子ID',
+  `create_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '点赞时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uk_user_post` (`user_id`,`post_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='用户点赞帖子关联表';
 
 -- ----------------------------
 -- Table structure for forum_comment
@@ -27,8 +42,6 @@ CREATE TABLE `forum_comment` (
   PRIMARY KEY (`id`),
   KEY `idx_post_id` (`post_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='论坛评论表';
-
--- 下面是测试数据
 
 
 

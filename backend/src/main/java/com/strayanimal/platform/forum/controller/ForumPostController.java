@@ -128,9 +128,16 @@ public class ForumPostController {
         // 更新字段
         existingPost.setTitle(postUpdate.getTitle());
         existingPost.setContent(postUpdate.getContent());
+        existingPost.setImageUrl(postUpdate.getImageUrl());
         
         forumPostService.updateById(existingPost);
 
         return Result.success(existingPost);
+    }
+
+    @PostMapping("/{postId}/like")
+    public Result<Void> likePost(@PathVariable Long postId) {
+        forumPostService.toggleLike(postId);
+        return Result.success();
     }
 } 

@@ -34,9 +34,22 @@
         <router-link :to="`/posts/${post.id}`" class="post-link">
           <div class="post-content">
             <h3 class="post-title">{{ post.title }}</h3>
+            <div v-if="post.imageUrl" class="thumbnail-container">
+              <img :src="getFullImageUrl(post.imageUrl)" :alt="post.title" class="thumbnail-image">
+            </div>
             <p class="post-preview">{{ truncateContent(post.content) }}</p>
           </div>
         </router-link>
+
+        <div class="post-footer">
+          <div class="like-action" @click.stop="handleLike(post)">
+            <el-icon>
+              <StarFilled v-if="post.likedByCurrentUser" class="is-liked" />
+              <Star v-else />
+            </el-icon>
+            <span>{{ post.likesCount }}</span>
+          </div>
+        </div>
       </el-card>
       
       <el-empty v-if="!posts.length" description="暂无帖子"></el-empty>
@@ -58,9 +71,10 @@
 <script setup>
 import { ref, onMounted, reactive } from 'vue';
 import { useRouter } from 'vue-router';
-import { getPosts, deletePost } from '../api.js';
+import { getPosts, deletePost, toggleLikePost } from '../api.js';
 import { ElMessage, ElMessageBox } from 'element-plus';
 import { useUserStore } from '@/stores/user.js';
+import { Star, StarFilled } from '@element-plus/icons-vue';
 
 const router = useRouter();
 const userStore = useUserStore();
@@ -80,6 +94,14 @@ const truncateContent = (content, length = 120) => {
     return strippedContent;
   }
   return strippedContent.substring(0, length) + '...';
+};
+
+const getFullImageUrl = (imageUrl) => {
+  if (!imageUrl) return '';
+  if (imageUrl.startsWith('http')) {
+    return imageUrl;
+  }
+  return 'http://localhost:8080' + imageUrl;
 };
 
 const fetchPosts = async () => {
@@ -105,6 +127,29 @@ const handleSearch = () => {
 const handlePageChange = (newPage) => {
   pagination.currentPage = newPage;
   fetchPosts();
+};
+
+const handleLike = async (post) => {
+  if (!userStore.isAuthenticated) {
+    ElMessage.warning('请先登录再点赞');
+    return;
+  }
+  
+  // 乐观更新
+  const originalLikedState = post.likedByCurrentUser;
+  const originalLikesCount = post.likesCount;
+
+  post.likedByCurrentUser = !post.likedByCurrentUser;
+  post.likesCount += post.likedByCurrentUser ? 1 : -1;
+
+  try {
+    await toggleLikePost(post.id);
+  } catch (error) {
+    // 失败时恢复
+    post.likedByCurrentUser = originalLikedState;
+    post.likesCount = originalLikesCount;
+    ElMessage.error('操作失败，请稍后重试');
+  }
 };
 
 const goToCreatePost = () => {
@@ -187,11 +232,21 @@ onMounted(() => {
 .post-link {
   text-decoration: none;
   color: inherit;
+  display: block;
 }
 .post-title {
   font-size: 1.4em;
   margin: 0 0 10px 0;
   color: #333;
+}
+.thumbnail-container {
+  margin-bottom: 10px;
+}
+.thumbnail-image {
+  max-width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 4px;
 }
 .post-preview {
   font-size: 1em;
@@ -205,5 +260,27 @@ onMounted(() => {
 }
 .search-bar {
   width: 100%;
+}
+.post-footer {
+  margin-top: 15px;
+  padding-top: 10px;
+  border-top: 1px solid #f0f0f0;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.like-action {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  color: #666;
+  transition: color 0.3s;
+}
+.like-action:hover {
+  color: #409eff;
+}
+.like-action .is-liked {
+  color: #ff6f61;
 }
 </style> 
