@@ -14,6 +14,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 
 /**
  * Spring Security配置类
@@ -51,21 +52,30 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                // 1. 关闭CSRF保护，因为我们使用JWT，不需要传统的session
-                .csrf(csrf -> csrf.disable())
+                // 1. 使用最新的推荐方式关闭CSRF保护
+                .csrf(AbstractHttpConfigurer::disable)
 
                 // 2. 配置URL的授权规则
                 .authorizeHttpRequests(auth -> auth
                         // 公开访问: 登录/注册/静态资源/GET请求帖子和评论
-                        .requestMatchers("/user/login", "/user/register", "/uploads/**").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/forum-post/**", "/forum-comment/**").permitAll()
+                        .requestMatchers("/api/user/login", "/api/user/register", "/uploads/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/forum-post/**", "/api/forum-comment/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/rescue/**").permitAll()
                         
                         // 用户权限: 发表帖子/评论/点赞 (所有POST请求)
-                        .requestMatchers(HttpMethod.POST, "/forum-post/**", "/forum-comment/**").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/forum-post/**", "/api/forum-comment/**").hasAnyRole("USER", "ADMIN")
 
                         // 管理员或用户权限: 修改/删除帖子/评论
-                        .requestMatchers(HttpMethod.PUT, "/forum-post/**", "/forum-comment/**").hasAnyRole("USER", "ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "/forum-post/**", "/forum-comment/**").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/api/forum-post/**", "/api/forum-comment/**").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/forum-post/**", "/api/forum-comment/**").hasAnyRole("USER", "ADMIN")
+
+                        // 新增：要求rescue模块的写操作需要认证
+                        .requestMatchers(HttpMethod.POST, "/api/rescue/**").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/api/rescue/**").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/rescue/**").hasAnyRole("USER", "ADMIN")
+
+                        // 新增：文件上传需要认证
+                        .requestMatchers(HttpMethod.POST, "/api/files/upload").hasAnyRole("USER", "ADMIN")
 
                         // 其他所有请求都需要认证 (例如获取个人信息等)
                         .anyRequest().authenticated()

@@ -3,7 +3,7 @@ import request from '@/core/api/index.js';
 // 获取帖子列表（分页）
 export const getPosts = (params) => {
   return request({
-    url: '/forum-post/list',
+    url: '/api/forum-post/list',
     method: 'get',
     params: {
       pageNum: params.page,
@@ -17,7 +17,7 @@ export const getPosts = (params) => {
 // 根据ID获取帖子详情
 export const getPostById = (id) => {
   return request({
-    url: `/forum-post/${id}`,
+    url: `/api/forum-post/${id}`,
     method: 'get'
   });
 };
@@ -25,7 +25,7 @@ export const getPostById = (id) => {
 // 创建新帖子
 export const createPost = (data) => {
   return request({
-    url: '/forum-post',
+    url: '/api/forum-post',
     method: 'post',
     data
   });
@@ -34,7 +34,7 @@ export const createPost = (data) => {
 // 更新帖子
 export const updatePost = (id, data) => {
     return request({
-        url: `/forum-post/${id}`,
+        url: `/api/forum-post/${id}`,
         method: 'put',
         data
     });
@@ -43,7 +43,7 @@ export const updatePost = (id, data) => {
 // 删除帖子
 export const deletePost = (id) => {
     return request({
-        url: `/forum-post/${id}`,
+        url: `/api/forum-post/${id}`,
         method: 'delete'
     });
 };
@@ -51,7 +51,7 @@ export const deletePost = (id) => {
 // 添加评论
 export const addComment = (data) => {
   return request({
-    url: `/forum-comment`,
+    url: `/api/forum-comment`,
     method: 'post',
     data
   });
@@ -60,7 +60,7 @@ export const addComment = (data) => {
 // 根据帖子ID获取评论列表
 export const getCommentsByPostId = (postId) => {
   return request({
-    url: `/forum-comment/post/${postId}`,
+    url: `/api/forum-comment/post/${postId}`,
     method: 'get',
   });
 };
@@ -68,7 +68,7 @@ export const getCommentsByPostId = (postId) => {
 // 删除评论
 export const deleteComment = (id) => {
     return request({
-        url: `/forum-comment/${id}`,
+        url: `/api/forum-comment/${id}`,
         method: 'delete'
     });
 };
@@ -76,7 +76,7 @@ export const deleteComment = (id) => {
 // 更新评论
 export const updateComment = (id, data) => {
     return request({
-        url: `/forum-comment/${id}`,
+        url: `/api/forum-comment/${id}`,
         method: 'put',
         data
     });
@@ -85,7 +85,7 @@ export const updateComment = (id, data) => {
 // 切换帖子点赞状态
 export const toggleLikePost = (postId) => {
     return request({
-        url: `/forum-post/${postId}/like`,
+        url: `/api/forum-post/${postId}/like`,
         method: 'post'
     });
 }; 

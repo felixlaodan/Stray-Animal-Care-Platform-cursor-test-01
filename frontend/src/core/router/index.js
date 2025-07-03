@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import forumRoutes from '@/modules/forum/router.js'
 import userRoutes from '@/modules/user/router.js'
+import rescueRoutes from '@/modules/rescue/router.js'
+import HomeView from '@/views/Home.vue'
 import { useUserStore } from '@/stores/user.js'
 import { ElMessage } from 'element-plus'
 
@@ -9,10 +11,12 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      redirect: '/posts'
+      name: 'Home',
+      component: HomeView
     },
     ...forumRoutes,
     ...userRoutes,
+    ...rescueRoutes,
     // 未来在此处扩展其他模块的路由
   ]
 })

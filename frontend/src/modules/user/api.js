@@ -2,7 +2,7 @@ import request from '@/core/api/index.js';
 
 export const login = (data) => {
   return request({
-    url: '/user/login',
+    url: '/api/user/login',
     method: 'post',
     data,
   });
@@ -10,7 +10,7 @@ export const login = (data) => {
 
 export const register = (data) => {
   return request({
-    url: '/user/register',
+    url: '/api/user/register',
     method: 'post',
     data,
   });

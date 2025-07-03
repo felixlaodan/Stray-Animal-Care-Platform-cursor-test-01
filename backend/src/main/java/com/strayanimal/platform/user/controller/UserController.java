@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2024-07-25
  */
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/api/user")
 public class UserController {
 
     @Resource

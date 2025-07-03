@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import './base.css';
+
+/* 全局应用边框盒模型 */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* 为根元素 #app 设置一个背景色，使其与我们的组件背景色更协调 */
+#app {
+  width: 100%;
+  min-height: 100vh;
+  font-weight: normal;
+  background-color: #f4f4f5; /* 与 PostListView 的背景色一致 */
+}
+
+a,
+.green {
+  text-decoration: none;
+  color: hsla(160, 100%, 37%, 1);
+  transition: 0.4s;
+  padding: 3px;
+}
+
+@media (hover: hover) {
+  a:hover {
+    background-color: hsla(160, 100%, 37%, 0.2);
+  }
+} 

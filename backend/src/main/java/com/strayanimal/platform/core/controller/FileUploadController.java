@@ -12,10 +12,10 @@ import java.io.IOException;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/upload")
+@RequestMapping("/api/files")
 public class FileUploadController {
 
-    @PostMapping("/image")
+    @PostMapping("/upload")
     public Result<String> uploadImage(@RequestParam("file") MultipartFile file) {
         if (file.isEmpty()) {
             return Result.error("上传失败，请选择文件");
@@ -49,7 +49,7 @@ public class FileUploadController {
             file.transferTo(dest);
 
             // 构建并返回文件的可访问URL
-            // 注意：这里的URL应该是前端可以访问到的地址
+            // 修正：在生产环境中，这应该是一个完整的、可公开访问的URL
             String fileUrl = "/uploads/" + uniqueFileName;
             return Result.success(fileUrl);
 
