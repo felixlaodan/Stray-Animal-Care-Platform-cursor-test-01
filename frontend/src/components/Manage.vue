@@ -25,12 +25,11 @@
 
             <!-- 终止流浪 -->
             <div class="relative group">
-              <router-link to="/rescue/adoption-info" class="nav-link flex items-center">终止流浪</router-link>
+              <a href="#" class="nav-link flex items-center">终止流浪 <i class="fas fa-chevron-down ml-1 text-xs"></i></a>
               <div class="absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 transform origin-top scale-95 group-hover:scale-100">
                 <div class="py-1" role="menu" aria-orientation="vertical">
-                  <router-link to="/rescue/adoption-info" class="block px-4 py-2 text-sm text-gray-700 hover:bg-lemon hover:text-white transition-colors duration-200">领养信息</router-link>
-                  <!-- TODO: 领养记录页面待创建 -->
-                  <!-- <router-link to="/rescue/adoption-records" class="block px-4 py-2 text-sm text-gray-700 hover:bg-lemon hover:text-white transition-colors duration-200">领养记录</router-link> -->
+                  <router-link to="/rescue/adoption-info" class="block px-4 py-2 text-sm text-gray-700 hover:bg-lemon hover:text-white transition-colors duration-200">领养中心</router-link>
+                  <router-link to="/rescue/adoption-records" class="block px-4 py-2 text-sm text-gray-700 hover:bg-lemon hover:text-white transition-colors duration-200">我的领养记录</router-link>
                 </div>
               </div>
             </div>
@@ -67,7 +66,8 @@
         <div v-if="isMobileMenuOpen" class="md:hidden mt-2 space-y-2">
           <router-link to="/" class="block nav-link">主页</router-link>
           <router-link to="/rescue/upload-stray" class="block nav-link">上报流浪</router-link>
-          <router-link to="/rescue/adoption-info" class="block nav-link">终止流浪</router-link>
+          <router-link to="/rescue/adoption-info" class="block nav-link">领养中心</router-link>
+          <router-link to="/rescue/adoption-records" class="block nav-link">我的领养记录</router-link>
            <router-link to="/posts" class="block nav-link">社区论坛</router-link>
            <div v-if="!userStore.isAuthenticated" class="border-t pt-2 space-y-2">
               <router-link to="/login" class="block nav-link">登录</router-link>

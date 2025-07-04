@@ -42,9 +42,6 @@ public class UploadRecord {
 
     private String description;
 
-    @TableField("image_url")
-    private String imageUrl;
-
     @TableField("create_time")
     private Date createTime;
 

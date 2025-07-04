@@ -30,24 +30,30 @@ request.interceptors.request.use(
 // 响应拦截器 (可选，但推荐添加以统一处理错误)
 request.interceptors.response.use(
   response => {
+    // 任何2xx范围内的状态码都会触发该函数
     const res = response.data;
-    // 如果后端返回的不是成功状态码，可以在这里统一处理
-    if (res.code !== 200) {
-      // 例如，对于 token 过期或无效的情况，可以引导用户重新登录
+
+    // 健壮性修复：
+    // 1. 如果响应体没有 code 字段 (例如直接返回文件流或普通JSON)，直接视为成功
+    // 2. 如果有 code 字段，则严格按照业务约定判断
+    if (res && res.code !== undefined && res.code != 200) {
+      ElMessage.error(res.message || '业务错误，请联系管理员');
+
       if (res.code === 401 || res.code === 403) {
-        ElMessage.error('认证失败或已过期，请重新登录');
-        // 清除本地登录状态并跳转到登录页
         useUserStore().logout();
-        window.location.href = '/login'; 
+        window.location.href = '/login';
       }
+      
       return Promise.reject(new Error(res.message || 'Error'));
-    } else {
-      // 成功响应，直接返回 data 字段
-      return res;
     }
+    
+    // 对于所有其他情况（包括 code === 200 或没有 code 字段），都返回响应体
+    return res;
   },
   error => {
-    ElMessage.error(error.message || '网络请求错误');
+    // 超出 2xx 范围的状态码都会触发该函数
+    console.error('网络请求错误:', error);
+    ElMessage.error(error.message || '网络错误，请检查您的连接');
     return Promise.reject(error);
   }
 );

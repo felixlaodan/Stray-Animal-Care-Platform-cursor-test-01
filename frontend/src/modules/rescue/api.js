@@ -1,104 +1,44 @@
 import request from '@/core/api/index.js';
 
-// --- Adoption Info API ---
+// --- Adoption Info & Record API ---
 
-export const getAdoptionInfos = (params) => {
-  return request({
-    url: '/api/rescue/adoption-info',
-    method: 'get',
-    params
-  });
-};
-
-export const getAdoptionInfoById = (id) => {
-  return request({
-    url: `/api/rescue/adoption-info/${id}`,
-    method: 'get'
-  });
-};
-
-export const createAdoptionInfo = (data) => {
-  return request({
-    url: '/api/rescue/adoption-info',
-    method: 'post',
-    data
-  });
-};
-
-export const updateAdoptionInfo = (data) => {
+export const getAdoptionInfosPage = (params) => {
     return request({
-        url: `/api/rescue/adoption-info`,
-        method: 'put',
-        data
-    });
-};
-
-export const deleteAdoptionInfo = (id) => {
-    return request({
-        url: `/api/rescue/adoption-info/${id}`,
-        method: 'delete'
-    });
-};
-
-export const deleteAdoptionInfoBatch = (ids) => {
-    return request({
-        url: `/api/rescue/adoption-info/batch`,
-        method: 'delete',
-        data: ids
-    });
-};
-
-// --- Adoption Records API ---
-
-export const getAdoptionRecords = (params) => {
-    return request({
-        url: '/api/rescue/adoption-records',
+        url: '/api/adoption/infos',
         method: 'get',
         params
     });
 };
 
-export const getAdoptionRecordById = (id) => {
+export const getAdoptionInfoDetail = (id) => {
     return request({
-        url: `/api/rescue/adoption-records/${id}`,
+        url: `/api/adoption/infos/${id}`,
         method: 'get'
     });
 };
 
 export const createAdoptionRecord = (data) => {
     return request({
-        url: '/api/rescue/adoption-records',
+        url: '/api/adoption/records',
         method: 'post',
         data
     });
 };
 
-export const updateAdoptionRecord = (data) => {
+export const getMyAdoptionRecords = () => {
     return request({
-        url: `/api/rescue/adoption-records`,
-        method: 'put',
-        data
-    });
-};
-
-export const deleteAdoptionRecord = (id) => {
-    return request({
-        url: `/api/rescue/adoption-records/${id}`,
-        method: 'delete'
-    });
-};
-
-export const deleteAdoptionRecordBatch = (ids) => {
-    return request({
-        url: `/api/rescue/adoption-records/batch`,
-        method: 'delete',
-        data: ids
+        url: '/api/adoption/records/my',
+        method: 'get'
     });
 };
 
 // --- Upload Records API ---
 
-export const getUploadRecords = (params) => {
+/**
+ * 分页查询上报记录
+ * @param {object} params - 查询参数，例如 { pageNum: 1, pageSize: 10 }
+ */
+export const getUploadRecordsPage = (params) => {
     return request({
         url: '/api/rescue/upload-records',
         method: 'get',
@@ -106,40 +46,14 @@ export const getUploadRecords = (params) => {
     });
 };
 
-export const getUploadRecordById = (id) => {
-    return request({
-        url: `/api/rescue/upload-records/${id}`,
-        method: 'get'
-    });
-};
-
+/**
+ * 创建一个新的上报记录
+ * @param {object} data - 上报记录的数据，包含图片URL列表
+ */
 export const createUploadRecord = (data) => {
     return request({
         url: '/api/rescue/upload-records',
         method: 'post',
         data
-    });
-};
-
-export const updateUploadRecord = (data) => {
-    return request({
-        url: `/api/rescue/upload-records`,
-        method: 'put',
-        data
-    });
-};
-
-export const deleteUploadRecord = (id) => {
-    return request({
-        url: `/api/rescue/upload-records/${id}`,
-        method: 'delete'
-    });
-};
-
-export const deleteUploadRecordBatch = (ids) => {
-    return request({
-        url: `/api/rescue/upload-records/batch`,
-        method: 'delete',
-        data: ids
     });
 }; 
