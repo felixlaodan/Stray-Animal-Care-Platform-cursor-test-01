@@ -75,7 +75,7 @@
       <div class="text-center mb-12">
         <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-gray-900 mb-4">关于我们的平台</h2>
         <div class="w-20 h-1 bg-[rgb(252,211,55)] mx-auto mb-6"></div>
-        <p class="text-gray-600 max-w-3xl mx-auto text-lg">我们致力于为流浪动物提供帮助，连接救助者、领养者和爱心人士，共同创造一个更美好的世界</p>
+        <p class="text-gray-600 max-w-3xl mx-auto text-lg">我们致力于为流浪动物提供帮助，连接救助者、领养者和爱心人士，共同创造一个更美好的世界。</p>
       </div>
 
       <div class="grid md:grid-cols-3 gap-8">
@@ -86,7 +86,7 @@
           </div>
           <div class="p-6">
             <h3 class="text-xl font-bold text-gray-900 mb-3">流浪动物救助</h3>
-            <p class="text-gray-600 mb-4">我们组织志愿者团队，救助街头流浪的小动物，为它们提供临时庇护和基本医疗</p>
+            <p class="text-gray-600 mb-4">我们让好心路人和有能力帮助流浪动物的爱心人士聚集起来，共同拯救流浪动物。</p>
             <a href="#" class="inline-flex items-center text-[rgb(252,211,55)] font-medium hover:text-[rgb(252,200,0)] transition-colors">
               了解更多 <i class="fa fa-arrow-right ml-2"></i>
             </a>
@@ -99,8 +99,8 @@
             <img src="@/assets/images/Home/aboutus2.jpg" alt="宠物领养服务" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
           </div>
           <div class="p-6">
-            <h3 class="text-xl font-bold text-gray-900 mb-3">宠物领养服务</h3>
-            <p class="text-gray-600 mb-4">我们为流浪动物寻找合适的领养家庭，同时提供领养咨询和后续跟进服务</p>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">流浪动物领养</h3>
+            <p class="text-gray-600 mb-4">我们提供流浪动物上报与领养双侧信息，为流浪动物寻找合适的领养家庭。</p>
             <a href="#" class="inline-flex items-center text-[rgb(252,211,55)] font-medium hover:text-[rgb(252,200,0)] transition-colors">
               了解更多 <i class="fa fa-arrow-right ml-2"></i>
             </a>
@@ -113,8 +113,8 @@
             <img src="@/assets/images/Home/aboutus3.jpg" alt="志愿者活动" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
           </div>
           <div class="p-6">
-            <h3 class="text-xl font-bold text-gray-900 mb-3">志愿者活动</h3>
-            <p class="text-gray-600 mb-4">我们欢迎每一位有爱心的人士加入我们的志愿者团队，一起为流浪动物的福利努力</p>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">互助交流论坛</h3>
+            <p class="text-gray-600 mb-4">我们鼓励每一位有爱心的人士信息共享，互帮互助，一起为流浪动物的福利努力</p>
             <a href="#" class="inline-flex items-center text-[rgb(252,211,55)] font-medium hover:text-[rgb(252,200,0)] transition-colors">
               了解更多 <i class="fa fa-arrow-right ml-2"></i>
             </a>
@@ -131,16 +131,16 @@
             <!-- 统计数据 -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div class="bg-white rounded-xl shadow-lg p-6 transform transition-all hover:scale-105 hover:shadow-xl">
-              <div class="text-4xl font-bold text-lemon mb-2">10万+</div>
-              <div class="text-gray-600">流浪动物在城市中艰难生存</div>
+              <div class="text-4xl font-bold text-lemon mb-2">4,000万+</div>
+              <div class="text-gray-600">我国流浪动物总数触目惊心</div>
             </div>
             <div class="bg-white rounded-xl shadow-lg p-6 transform transition-all hover:scale-105 hover:shadow-xl">
-              <div class="text-4xl font-bold text-lemon mb-2">30%</div>
-              <div class="text-gray-600">流浪动物患有不同程度伤病</div>
+              <div class="text-4xl font-bold text-lemon mb-2">89.28%</div>
+              <div class="text-gray-600">流浪动物患病率远大于宠物</div>
             </div>
             <div class="bg-white rounded-xl shadow-lg p-6 transform transition-all hover:scale-105 hover:shadow-xl">
-              <div class="text-4xl font-bold text-lemon mb-2">5000+</div>
-              <div class="text-gray-600">通过领养重获新生的生命</div>
+              <div class="text-4xl font-bold text-lemon mb-2">2-5岁</div>
+              <div class="text-gray-600">流浪动物平均寿命远远低于宠物</div>
             </div>
           </div>
           <br><br><br>
@@ -153,7 +153,7 @@
                   </p>
                 </div>
                 <div class="md:w-1/2 rounded-xl overflow-hidden shadow-lg">
-                  <img src="@/assets/images/Home/why1.jpg" class="w-full h-auto object-cover">
+                  <img src="@/assets/images/Home/why1.png" class="w-full h-auto object-cover">
                 </div>
               </div>
 
