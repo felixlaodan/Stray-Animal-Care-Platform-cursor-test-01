@@ -54,7 +54,7 @@
             <!-- 用户信息 (登录/未登录状态) -->
             <div v-if="userStore.isAuthenticated" class="hidden md:flex items-center space-x-4">
               <span class="font-medium text-gray-700">欢迎, {{ userStore.user?.nickname || '用户' }}</span>
-              <button @click="handleLogout" class="!hover:bg-lemon !hover:text-white !bg-grey !text-lemon ">退出登录</button>
+              <button @click="handleLogout" class="quit">退出登录</button>
             </div>
             <div v-else class="hidden md:flex items-center space-x-4">
               <router-link to="/login" class="nav-link">登录</router-link>
@@ -137,6 +137,11 @@ onBeforeUnmount(() => {
 .nav-link {
   @apply px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-lemon hover:text-white transition-colors duration-200;
 }
+
+.quit {
+  @apply px-3 py-2 rounded-md text-base font-medium text-gray-700 bg-lemon hover:bg-lemon hover:text-white transition-colors duration-200;
+}
+
 
 /* 当前激活的导航链接 */
 .router-link-exact-active {
