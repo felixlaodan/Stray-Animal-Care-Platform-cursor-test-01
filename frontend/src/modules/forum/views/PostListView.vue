@@ -3,13 +3,13 @@
     <el-card class="page-header-card max-w-[90%] mx-auto">
       <div class="page-header-content">
         <h1 class="page-title">流浪动物交流论坛</h1>
-        <el-button v-if="userStore.isAuthenticated" type="success" @click="goToCreatePost">发表新帖</el-button>
+        <el-button v-if="userStore.isAuthenticated" type="success" @click="goToCreatePost" data-type="custom">发表新帖</el-button>
       </div>
       <div class="action-bar">
         <div class="sort-options">
           <el-radio-group v-model="sortBy" size="large">
-            <el-radio-button size="large" style="--el-radio-button-bg-color: var(--el-color-warning); --el-radio-button-text-color: var(--el-color-white);" value="latest">最新发布</el-radio-button>
-            <el-radio-button size="large" style="--el-radio-button-bg-color: var(--el-color-white); --el-radio-button-text-color: var(--el-color-primary);" value="popular">热度最高</el-radio-button>
+            <el-radio-button  value="latest">最新发布</el-radio-button>
+            <el-radio-button  value="popular">热度最高</el-radio-button>
           </el-radio-group>
         </div>
         <div class="search-bar">
@@ -21,7 +21,7 @@
             @keyup.enter="handleSearch"
           >
             <template #append>
-              <el-button type="lemon" @click="handleSearch">搜索</el-button>
+              <el-button type="white" @click="handleSearch" data-type="custom">搜索</el-button>
             </template>
           </el-input>
         </div>
@@ -34,8 +34,8 @@
           <div class="card-header">
             <span>{{ post.authorName }}</span>
             <div class="post-actions" v-if="userStore.isAuthenticated && (userStore.user?.id === post.userId || userStore.isAdmin)">
-              <el-button type="white" link @click="handleEdit(post.id)">编辑</el-button>
-              <el-button type="warning" link @click="handleDelete(post.id)">删除</el-button>
+              <el-button type="white" link @click="handleEdit(post.id)" data-type="custom">编辑</el-button>
+              <el-button type="warning" link @click="handleDelete(post.id)" data-type="custom">删除</el-button>
             </div>
           </div>
         </template>
@@ -303,46 +303,47 @@ onMounted(() => {
 .img-bg1 {
   background-image: url('@/assets/images/background.jpg');
   background-size: cover;
-  background-position: auto;
+  background-position: auto；
 }
 /* 覆盖Element Plus，设置lemon样式 */
-.el-button--lemon {
-  background-color: rgb(252, 211, 55);
-  border-color: rgb(252, 211, 55);
-  color: #ffffff;
+.post-list-container .el-button--lemon[data-type="custom"] {
+  background-color: rgb(252, 211, 55) !important;
+  border-color: rgb(252, 211, 55) !important;
+  color: #ffffff !important;
 }
-.el-button--lemon:hover {
-  background-color: rgb(245, 198, 21); /* 悬停时稍深的黄色 */
-  border-color: rgb(245, 198, 21);
-  color: #ffffff;
+.post-list-container .el-button--lemon[data-type="custom"]:hover {
+  background-color: rgb(245, 198, 21) !important; /* 悬停时稍深的黄色 */
+  border-color: rgb(245, 198, 21) !important;
+  color: #ffffff !important;
 }
 
-.el-message--lemon {
-  background-color: rgba(255, 255, 255, 0.1); /* 半透明黄色背景 */
-  border-left-color: rgb(252, 211, 55);
-  color: #ffffff;
+.post-list-container .el-message--lemon[data-type="custom"] {
+  background-color: rgba(255, 255, 255, 0.1)!important; /* 半透明黄色背景 */
+  border-left-color: rgb(252, 211, 55)!important;
+  color: #ffffff!important;
 }
-.el-message--lemon .el-message__content {
-  color: #ffffff;
+.post-list-container .el-message--lemon[data-type="custom"] .el-message__content {
+  color: #ffffff!important;
 }
 /* 覆盖Element Plus，设置white样式 */
-.el-button--white {
-  background-color: rgb(255, 255, 255);
-  border-color: rgb(252, 211, 55);
-  color: #5a5a5a;
+.post-list-container .el-button--white[data-type="custom"] {
+  background-color: rgb(255, 255, 255)!important;
+  border-color: rgb(255, 255, 255)!important;
+  color:rgb(252, 211, 55)!important;
 }
-.el-button--white:hover {
-  background-color: rgb(252, 211, 55); /* 悬停时稍深的黄色 */
-  border-color: rgb(245, 198, 21);
-  color: #ffffff;
+.post-list-container .el-button--white[data-type="custom"]:hover {
+  background-color: rgb(252, 211, 55)!important; /* 悬停时稍深的黄色 */
+  border-color: rgb(245, 198, 21)!important;
+  color: rgb(255, 255, 255)!important;
 }
 
-.el-message--white {
-  background-color: rgba(255, 255, 255, 0.1); /* 半透明黄色背景 */
-  border-left-color: rgb(252, 211, 55);
+.post-list-container .el-message--white[data-type="custom"] {
+  background-color: rgba(255, 255, 255, 0.1)!important; /* 半透明黄色背景 */
+  border-left-color: rgb(252, 211, 55)!important;
   color: #ffffff;
 }
-.el-message--white .el-message__content {
-  color: #ffffff;
+.post-list-container .el-message--white[data-type="custom"] .el-message__content {
+  color: #ffffff!important;
 }
+
 </style>
