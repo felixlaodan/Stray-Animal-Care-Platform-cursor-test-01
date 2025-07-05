@@ -107,7 +107,7 @@
           </div>
         </div>
 
-        <!-- 志愿者服务 -->
+        <!-- 交流互助 -->
         <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
           <div class="h-48 overflow-hidden">
             <img src="@/assets/images/Home/aboutus3.jpg" alt="志愿者活动" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
@@ -122,6 +122,69 @@
         </div>
       </div>
     </div>
+
+      <!-- 呼吁内容 -->
+      <div class="bg-white py-16">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">我们为什么要救助流浪动物</h2>
+            <!-- 统计数据 -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-white rounded-xl shadow-lg p-6 transform transition-all hover:scale-105 hover:shadow-xl">
+              <div class="text-4xl font-bold text-lemon mb-2">10万+</div>
+              <div class="text-gray-600">流浪动物在城市中艰难生存</div>
+            </div>
+            <div class="bg-white rounded-xl shadow-lg p-6 transform transition-all hover:scale-105 hover:shadow-xl">
+              <div class="text-4xl font-bold text-lemon mb-2">30%</div>
+              <div class="text-gray-600">流浪动物患有不同程度伤病</div>
+            </div>
+            <div class="bg-white rounded-xl shadow-lg p-6 transform transition-all hover:scale-105 hover:shadow-xl">
+              <div class="text-4xl font-bold text-lemon mb-2">5000+</div>
+              <div class="text-gray-600">通过领养重获新生的生命</div>
+            </div>
+          </div>
+          <br><br><br>
+            <div class="space-y-8">
+              <div class="flex flex-col md:flex-row items-center gap-8">
+                <div class="md:w-1/2">
+                  <h3 class="text-2xl font-semibold text-gray-800 mb-4">它们也有生存的权利</h3>
+                  <p class="text-gray-600 leading-relaxed">
+                    流浪动物并非天生就该流浪，很多是因为人类的遗弃或疏忽而失去了家园。每一个生命都有感受痛苦和快乐的能力，我们有责任给予它们尊重和保护。
+                  </p>
+                </div>
+                <div class="md:w-1/2 rounded-xl overflow-hidden shadow-lg">
+                  <img src="@/assets/images/EndStray/1.png" alt="流浪猫在街头寻找食物" class="w-full h-auto object-cover">
+                </div>
+              </div>
+
+              <div class="flex flex-col md:flex-row-reverse items-center gap-8">
+                <div class="md:w-1/2">
+                  <h3 class="text-2xl font-semibold text-gray-800 mb-4">它们是城市的一部分</h3>
+                  <p class="text-gray-600 leading-relaxed">
+                    流浪动物已经成为城市生态的一部分，它们的存在反映了我们社会的文明程度。善待流浪动物，不仅是对生命的尊重，也有助于维护城市生态平衡。
+                  </p>
+                </div>
+                <div class="md:w-1/2 rounded-xl overflow-hidden shadow-lg">
+                  <img src="@/assets/images/EndStray/1.png" alt="流浪狗在公园休息" class="w-full h-auto object-cover">
+                </div>
+              </div>
+
+              <div class="flex flex-col md:flex-row items-center gap-8">
+                <div class="md:w-1/2">
+                  <h3 class="text-2xl font-semibold text-gray-800 mb-4">领养代替购买</h3>
+                  <p class="text-gray-600 leading-relaxed">
+                    领养一只流浪动物，不仅能给它们一个温暖的家，还能减少对商业繁殖的需求，从而遏制非法宠物交易。每一个领养行为都是对生命的救赎。
+                  </p>
+                </div>
+                <div class="md:w-1/2 rounded-xl overflow-hidden shadow-lg">
+                  <img src="@/assets/images/EndStray/1.png" alt="幸福的领养家庭" class="w-full h-auto object-cover">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
 
     <!-- 成功案例 -->
     <div class="py-16 px-6 bg-gray-100">
