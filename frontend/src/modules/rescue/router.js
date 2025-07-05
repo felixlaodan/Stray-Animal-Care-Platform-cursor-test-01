@@ -3,6 +3,8 @@ import UploadStray from './views/UploadStray.vue';
 import UploadRecords from './views/UploadRecords.vue';
 import AdoptionInfoView from './views/AdoptionInfoView.vue';
 import AdoptionRecordView from './views/AdoptionRecordView.vue';
+import AI from './views/AI.vue';
+import Team from '@/views/Team.vue';
 
 const routes = [
   {
@@ -33,6 +35,18 @@ const routes = [
     component: UploadRecords,
     meta: { requiresAuth: true }
   },
+  {
+    path: '/ai',
+    name: 'AI',
+    component: AI,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/team',
+    name: 'Team',
+    component: Team,
+    meta: { requiresAuth: true }
+  }
 ];
 
-export default routes; 
+export default routes;

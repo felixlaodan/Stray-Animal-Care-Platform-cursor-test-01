@@ -12,7 +12,7 @@
         <el-input type="password" v-model="form.password" show-password></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="onSubmit" :loading="loading">注册</el-button>
+        <el-button type="primary" @click="onSubmit" :loading="loading" class="lemon-btn">注册</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -78,6 +78,12 @@ const onSubmit = async () => {
   margin-bottom: 30px;
 }
 
+.lemon-btn {
+  text-align: center;
+  background-color: rgb(252,211, 55) !important;
+  border-color: rgb(252,211, 55) !important;
+}
+
 /* 覆盖 Element Plus 的默认样式，确保文字清晰可见 */
 .register-container :deep(.el-form-item__label) {
   color: #333 !important;
@@ -91,4 +97,4 @@ const onSubmit = async () => {
 .register-container :deep(.el-input__inner::placeholder) {
   color: #999 !important;
 }
-</style> 
+</style>

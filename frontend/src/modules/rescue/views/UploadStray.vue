@@ -1,12 +1,12 @@
 <template>
-  <div class="flex justify-center items-start min-h-screen bg-gray-50 p-4">
+  <div class="flex justify-center items-start min-h-screen p-4 bg-img1">
     <div class="w-full max-w-4xl bg-white p-8 rounded-lg shadow-lg">
       <h1 class="text-3xl font-bold mb-8 text-center text-gray-800">
         {{ isEditMode ? '编辑流浪动物信息' : '上报流浪动物信息' }}
       </h1>
-      
+
       <el-form :model="form" :rules="rules" ref="formRef" label-position="top">
-        
+
         <!-- 表单项 -->
         <el-row :gutter="20">
           <el-col :span="12">
@@ -42,8 +42,8 @@
           <el-col :span="12">
             <el-form-item label="性别" prop="gender">
               <el-radio-group v-model="form.gender">
-                <el-radio label="公">公</el-radio>
-                <el-radio label="母">母</el-radio>
+                <el-radio label="公" class="lemon-radio"><span>公</span></el-radio>
+                <el-radio label="母" class="lemon-radio"><span>母</span></el-radio>
               </el-radio-group>
             </el-form-item>
           </el-col>
@@ -57,7 +57,7 @@
             </el-form-item>
           </el-col>
         </el-row>
-        
+
         <el-form-item label="健康状态" prop="healthStatus">
           <el-input v-model="form.healthStatus" placeholder="例如：活泼、有皮肤病、腿部受伤等"></el-input>
         </el-form-item>
@@ -65,11 +65,11 @@
         <el-form-item label="发现时间" prop="discoveryTime">
           <el-date-picker v-model="form.discoveryTime" type="date" placeholder="请选择发现日期" class="w-full" format="YYYY-MM-DD" value-format="YYYY-MM-DD"></el-date-picker>
         </el-form-item>
-        
+
         <el-form-item label="发现地点" prop="discoveryPlace">
           <el-input v-model="form.discoveryPlace" placeholder="请输入详细的发现地点"></el-input>
         </el-form-item>
-        
+
         <el-form-item label="补充描述" prop="description">
           <el-input v-model="form.description" type="textarea" :rows="4" placeholder="可以描述它的性格、外貌特征等信息"></el-input>
         </el-form-item>
@@ -91,7 +91,7 @@
             <el-icon><Plus /></el-icon>
           </el-upload>
         </el-form-item>
-        
+
         <div class="text-center mt-6">
           <el-button type="primary" @click="submitForm" :loading="loading" size="large" class="w-1/2">
             {{ isEditMode ? '确认修改' : '提交上报' }}
@@ -107,9 +107,9 @@ import { ref, computed, reactive, onMounted } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import { ElMessage } from 'element-plus';
 import { Plus } from '@element-plus/icons-vue';
-import { 
-  createUploadRecord, 
-  updateUploadRecord, 
+import {
+  createUploadRecord,
+  updateUploadRecord,
   getUploadRecordById,
   adminUpdateUploadRecord,
   adminGetUploadById // 引入Admin API
@@ -130,10 +130,10 @@ const form = reactive({
   reporter: '',
   reporterPhone: '',
   name: '',
-  species: '猫',
-  gender: '公',
+  species: '',
+  gender: '',
   healthStatus: '',
-  sterilizationStatus: '不详',
+  sterilizationStatus: '',
   discoveryTime: '',
   discoveryPlace: '',
   description: '',
@@ -182,7 +182,7 @@ const fetchRecordData = async () => {
     // 关键修改：根据是否为管理员模式，调用不同的API
     const apiToCall = isAdminMode.value ? adminGetUploadById : getUploadRecordById;
     const res = await apiToCall(recordId.value);
-    
+
     if (res.code === 200 && res.data) {
       // 填充表单
       Object.assign(form, res.data);
@@ -237,12 +237,12 @@ const submitForm = async () => {
         ElMessage.error('请至少上传一张有效的照片');
         return;
       }
-      
+
       const finalData = { ...form, imageUrls: uploadedImageUrls };
       loading.value = true;
       try {
         let successMessage = '';
-        
+
         if (isAdminMode.value) {
           // --- 管理员模式 ---
           if (isEditMode.value) {
@@ -262,7 +262,7 @@ const submitForm = async () => {
             successMessage = '上报成功！感谢您的爱心！';
           }
         }
-        
+
         ElMessage.success(successMessage);
         // 根据模式跳转到不同的列表页
         router.push(isAdminMode.value ? '/admin/upload-management' : '/rescue/upload-records');
@@ -277,8 +277,38 @@ const submitForm = async () => {
 };
 </script>
 
-<style scoped>
+<style>
+.bg-img1 {
+  background-image: url('@/assets/images/UploadStray.jpg');
+  background-size: cover;
+  background-position: center;
+}
 .el-form {
   margin-top: 20px;
 }
-</style> 
+
+.lemon-radio .el-radio__inner {
+  border-color: rgb(252, 211, 55);
+  background-color: white;
+}
+.lemon-radio.is-checked .el-radio__inner {
+  border-color: rgb(252, 211, 55);
+  background-color: rgb(252, 211, 55);
+}
+.bg-lemon {
+  background-color: rgb(252, 211, 55);
+}
+.bg-lemon:hover {
+  background-color: rgb(252, 211, 55, 0.9);
+}
+.max-w-4xl {
+  background-color: rgba(255, 255, 255, 0.7);
+}
+.el-input__inner, .el-select-dropdown__item, .el-date-editor .el-input__inner {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+.el-form-item, .el-input__inner, .el-select-dropdown__item, .el-date-editor .el-input__inner, .el-radio__label, .el-button {
+  font-size: 16px;
+  font-weight: bold;
+}
+</style>

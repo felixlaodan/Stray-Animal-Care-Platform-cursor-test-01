@@ -1,7 +1,8 @@
 <template>
-  <div class="p-4 sm:p-6 lg:p-8 bg-gray-50 min-h-screen">
+  <div class="p-4 sm:p-6 lg:p-8 bg-gray-50 min-h-screen bg-img">
     <div class="max-w-7xl mx-auto">
       <h1 class="text-3xl font-bold text-gray-800 mb-6">我的上报记录</h1>
+<<<<<<< Updated upstream
       
       <!-- 搜索区域 -->
       <div class="p-4 bg-white rounded-lg shadow mb-6">
@@ -18,11 +19,13 @@
           <el-button @click="handleReset">重置</el-button>
         </div>
       </div>
+=======
+>>>>>>> Stashed changes
 
       <div v-if="loading" class="text-center py-10">
         <p>加载中...</p>
       </div>
-      
+
       <div v-else-if="tableData.length === 0" class="text-center py-10 bg-white rounded-lg shadow">
         <p class="text-gray-500">您还没有任何上报记录。</p>
         <el-button type="primary" class="mt-4" @click="$router.push('/rescue/upload-stray')">去上报</el-button>
@@ -46,7 +49,7 @@
               </div>
             </template>
           </el-table-column>
-          
+
           <el-table-column prop="name" label="动物名字" width="150"></el-table-column>
           <el-table-column prop="species" label="物种" width="100"></el-table-column>
           <el-table-column prop="gender" label="性别" width="80"></el-table-column>
@@ -122,7 +125,7 @@ const fetchData = async () => {
     console.log("请求参数:", params);
 
     const res = await getUploadRecordsPage(params);
-    
+
     console.log("后端已响应, res 内容:", JSON.stringify(res, null, 2));
 
     if (res && res.code === 200 && res.data) {
@@ -188,6 +191,10 @@ onMounted(() => {
 });
 </script>
 
-<style scoped>
-/* 可以在这里添加一些微调样式 */
+<style>
+.bg-img {
+  background-image: url('@/assets/images/background.jpg');
+  background-size: cover;
+  background-position: center;
+}
 </style>

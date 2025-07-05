@@ -14,16 +14,16 @@
         </p>
       </div>
       <div class="md:w-1/3 rounded-2xl overflow-hidden shadow-2xl transform transition-all duration-700 hover:scale-105">
-        <img 
-          src="@/assets/images/EndStray/1.png" 
-          alt="志愿者救助流浪动物" 
+        <img
+          src="@/assets/images/EndStray/1.png"
+          alt="志愿者救助流浪动物"
           class="w-full h-auto object-cover transform transition-transform duration-1000 hover:scale-105"
         >
       </div>
     </div>
   </div>
 </div>
-  
+
       <!-- 统计数据 -->
       <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -41,13 +41,13 @@
           </div>
         </div>
       </div>
-  
+
       <!-- 呼吁内容 -->
       <div class="bg-white py-16">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
           <div class="max-w-4xl mx-auto">
             <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">我们为什么要救助流浪动物</h2>
-            
+
             <div class="space-y-8">
               <div class="flex flex-col md:flex-row items-center gap-8">
                 <div class="md:w-1/2">
@@ -60,7 +60,7 @@
                   <img src="@/assets/images/EndStray/1.png" alt="流浪猫在街头寻找食物" class="w-full h-auto object-cover">
                 </div>
               </div>
-              
+
               <div class="flex flex-col md:flex-row-reverse items-center gap-8">
                 <div class="md:w-1/2">
                   <h3 class="text-2xl font-semibold text-gray-800 mb-4">它们是城市的一部分</h3>
@@ -72,7 +72,7 @@
                   <img src="@/assets/images/EndStray/1.png" alt="流浪狗在公园休息" class="w-full h-auto object-cover">
                 </div>
               </div>
-              
+
               <div class="flex flex-col md:flex-row items-center gap-8">
                 <div class="md:w-1/2">
                   <h3 class="text-2xl font-semibold text-gray-800 mb-4">领养代替购买</h3>
@@ -88,12 +88,12 @@
           </div>
         </div>
       </div>
-  
+
       <!-- 我们能做什么 -->
       <div class="bg-gray-50 py-16">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
           <h2 class="text-3xl font-bold text-gray-800 mb-12 text-center">我们能为它们做些什么</h2>
-          
+
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div class="bg-white rounded-xl shadow-md overflow-hidden transform transition-all hover:shadow-xl">
               <div class="h-48 overflow-hidden">
@@ -109,7 +109,7 @@
                 </router-link>
               </div>
             </div>
-            
+
             <div class="bg-white rounded-xl shadow-md overflow-hidden transform transition-all hover:shadow-xl">
               <div class="h-48 overflow-hidden">
                 <img src="@/assets/images/EndStray/1.png" alt="捐赠物资" class="w-full h-full object-cover">
@@ -124,7 +124,7 @@
                 </button>
               </div>
             </div>
-            
+
             <div class="bg-white rounded-xl shadow-md overflow-hidden transform transition-all hover:shadow-xl">
               <div class="h-48 overflow-hidden">
                 <img src="@/assets/images/EndStray/1.png" alt="志愿者活动" class="w-full h-full object-cover">
@@ -142,13 +142,13 @@
           </div>
         </div>
       </div>
-  
+
       <!-- 领养须知 -->
       <div class="bg-white py-16">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
           <div class="max-w-4xl mx-auto">
             <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">领养须知</h2>
-            
+
             <div class="bg-gray-50 rounded-xl p-8 shadow-md">
               <ul class="space-y-4">
                 <li class="flex items-start">
@@ -192,7 +192,7 @@
                   </div>
                 </li>
               </ul>
-              
+
               <div class="mt-8 text-center">
                 <router-link to="/rescue/adoption-info" class="bg-lemon hover:bg-lemon/90 text-white font-medium py-3 px-8 rounded-full transition-all transform hover:scale-105">
                   我已了解，准备领养
@@ -202,7 +202,7 @@
           </div>
         </div>
       </div>
-  
+
       <!-- 号召行动 -->
       <div class="bg-lemon/20 py-16">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -223,7 +223,7 @@
           </div>
         </div>
       </div>
-  
+
       <!-- 页脚 -->
       <footer class="bg-gray-800 text-white py-12">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -251,7 +251,7 @@
       </footer>
     </div>
   </template>
-  
+
   <script>
   export default {
     name: 'EndStray',
@@ -268,4 +268,4 @@
       // 页面方法
     }
   }
-  </script>  
+  </script>

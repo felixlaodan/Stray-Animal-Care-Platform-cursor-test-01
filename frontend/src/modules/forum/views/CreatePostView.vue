@@ -5,7 +5,7 @@
         <el-form-item label="标题">
         <el-input v-model="form.title" placeholder="请输入帖子标题"></el-input>
         </el-form-item>
-      
+
         <el-form-item label="内容">
         <el-input
           v-model="form.content"
@@ -28,7 +28,7 @@
           <el-icon v-else class="image-uploader-icon"><Plus /></el-icon>
         </el-upload>
         </el-form-item>
-      
+
         <el-form-item>
         <el-button type="primary" @click="submitForm">立即发布</el-button>
         <el-button @click="goBack">取消</el-button>
@@ -148,4 +148,4 @@ const goBack = () => {
   height: 178px;
   display: block;
 }
-</style> 
+</style>

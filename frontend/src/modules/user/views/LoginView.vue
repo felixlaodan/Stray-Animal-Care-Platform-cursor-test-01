@@ -8,8 +8,8 @@
       <el-form-item label="密码">
         <el-input type="password" v-model="form.password" show-password @keyup.enter="onSubmit"></el-input>
       </el-form-item>
-      <el-form-item>
-        <el-button type="primary" @click="onSubmit" :loading="loading">登录</el-button>
+      <el-form-item class="center-btn">
+        <el-button type="primary" @click="onSubmit" :loading="loading" class="lemon-btn">登录</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -99,4 +99,12 @@ const onSubmit = async () => {
 .login-container :deep(.el-input__inner::placeholder) {
   color: #999 !important;
 }
-</style> 
+
+.lemon-btn {
+  background-color: rgb(252,211, 55) !important;
+  border-color: rgb(252,211, 55) !important;
+}
+
+.center-btn {
+}
+</style>
