@@ -37,7 +37,7 @@
               </div>
             </div>
 
-            <router-link to="/rescue-base" class="nav-link flex items-center">救助基地</router-link>
+            <router-link to="/rescue/base" class="nav-link flex items-center">救助基地</router-link>
 
             <router-link to="/posts" class="nav-link flex items-center">社区论坛</router-link>
 
