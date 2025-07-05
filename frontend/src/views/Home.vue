@@ -332,21 +332,12 @@ export default {
     }
   }
 };
-/*   methods: {
-    nextSlide() {
-      this.currentSlide = (this.currentSlide + 1) % 4
-    },
-    prevSlide() {
-      this.currentSlide = (this.currentSlide - 1 + 4) % 4
-    }
-  }
-}
 // // @ts-ignore
 // createAiChat({
 //   appId: "1940005408542314497",
 //   iconPosition: "bottom-right"
 // });
-} */
+//}
 // @ts-ignore
 /* createAiChat({
   appId: "1940005408542314497",

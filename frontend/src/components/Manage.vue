@@ -37,10 +37,10 @@
               </div>
             </div>
 
-            <!-- TODO: 救助基地页面待创建 -->
-            <!-- <router-link to="/rescue-base" class="nav-link flex items-center">救助基地</router-link> -->
+            <router-link to="/rescue-base" class="nav-link flex items-center">救助基地</router-link>
 
             <router-link to="/posts" class="nav-link flex items-center">社区论坛</router-link>
+
             <router-link to="/ai" class="nav-link flex items-center">智能科普</router-link>
           </div>
 
@@ -50,11 +50,11 @@
             <div v-if="userStore.isAdmin">
               <el-button type="warning" @click="goToAdmin">进入管理后台</el-button>
             </div>
-            
+
             <!-- 用户信息 (登录/未登录状态) -->
             <div v-if="userStore.isAuthenticated" class="hidden md:flex items-center space-x-4">
               <span class="font-medium text-gray-700">欢迎, {{ userStore.user?.nickname || '用户' }}</span>
-              <button @click="handleLogout" class="nav-link !bg-grey !text-lemon ">退出登录</button>
+              <button @click="handleLogout" class="!hover:bg-lemon !hover:text-white !bg-grey !text-lemon ">退出登录</button>
             </div>
             <div v-else class="hidden md:flex items-center space-x-4">
               <router-link to="/login" class="nav-link">登录</router-link>
