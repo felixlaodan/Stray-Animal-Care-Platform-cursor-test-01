@@ -1,15 +1,15 @@
 <template>
-  <div class="post-list-container">
-    <el-card class="page-header-card">
+  <div class="post-list-container img-bg1">
+    <el-card class="page-header-card max-w-[90%] mx-auto">
       <div class="page-header-content">
         <h1 class="page-title">流浪动物交流论坛</h1>
-        <el-button v-if="userStore.isAuthenticated" type="primary" @click="goToCreatePost">发表新帖</el-button>
+        <el-button v-if="userStore.isAuthenticated" type="success" @click="goToCreatePost">发表新帖</el-button>
       </div>
       <div class="action-bar">
         <div class="sort-options">
           <el-radio-group v-model="sortBy" size="large">
-            <el-radio-button value="latest">最新发布</el-radio-button>
-            <el-radio-button value="popular">热度最高</el-radio-button>
+            <el-radio-button size="large" style="--el-radio-button-bg-color: var(--el-color-warning); --el-radio-button-text-color: var(--el-color-white);" value="latest">最新发布</el-radio-button>
+            <el-radio-button size="large" style="--el-radio-button-bg-color: var(--el-color-white); --el-radio-button-text-color: var(--el-color-primary);" value="popular">热度最高</el-radio-button>
           </el-radio-group>
         </div>
         <div class="search-bar">
@@ -21,21 +21,21 @@
             @keyup.enter="handleSearch"
           >
             <template #append>
-              <el-button @click="handleSearch">搜索</el-button>
+              <el-button type="lemon" @click="handleSearch">搜索</el-button>
             </template>
           </el-input>
         </div>
       </div>
     </el-card>
 
-    <div class="post-list">
+    <div class="post-list max-w-[90%] mx-auto">
       <el-card v-for="post in posts" :key="post.id" class="post-card" shadow="hover">
         <template #header>
           <div class="card-header">
             <span>{{ post.authorName }}</span>
             <div class="post-actions" v-if="userStore.isAuthenticated && (userStore.user?.id === post.userId || userStore.isAdmin)">
-              <el-button type="primary" link @click="handleEdit(post.id)">编辑</el-button>
-              <el-button type="danger" link @click="handleDelete(post.id)">删除</el-button>
+              <el-button type="white" link @click="handleEdit(post.id)">编辑</el-button>
+              <el-button type="warning" link @click="handleDelete(post.id)">删除</el-button>
             </div>
           </div>
         </template>
@@ -212,7 +212,7 @@ onMounted(() => {
 }
 .page-header-card {
   margin-bottom: 20px;
-  background-color: #409eff;
+  background-color: rgba(252, 213, 55, 0.9);
   color: white;
   overflow: visible;
 }
@@ -299,5 +299,50 @@ onMounted(() => {
   font-size: 1.4em;
   margin: 0 0 10px 0;
   color: #333;
+}
+.img-bg1 {
+  background-image: url('@/assets/images/background.jpg');
+  background-size: cover;
+  background-position: auto;
+}
+/* 覆盖Element Plus，设置lemon样式 */
+.el-button--lemon {
+  background-color: rgb(252, 211, 55);
+  border-color: rgb(252, 211, 55);
+  color: #ffffff;
+}
+.el-button--lemon:hover {
+  background-color: rgb(245, 198, 21); /* 悬停时稍深的黄色 */
+  border-color: rgb(245, 198, 21);
+  color: #ffffff;
+}
+
+.el-message--lemon {
+  background-color: rgba(255, 255, 255, 0.1); /* 半透明黄色背景 */
+  border-left-color: rgb(252, 211, 55);
+  color: #ffffff;
+}
+.el-message--lemon .el-message__content {
+  color: #ffffff;
+}
+/* 覆盖Element Plus，设置white样式 */
+.el-button--white {
+  background-color: rgb(255, 255, 255);
+  border-color: rgb(252, 211, 55);
+  color: #5a5a5a;
+}
+.el-button--white:hover {
+  background-color: rgb(252, 211, 55); /* 悬停时稍深的黄色 */
+  border-color: rgb(245, 198, 21);
+  color: #ffffff;
+}
+
+.el-message--white {
+  background-color: rgba(255, 255, 255, 0.1); /* 半透明黄色背景 */
+  border-left-color: rgb(252, 211, 55);
+  color: #ffffff;
+}
+.el-message--white .el-message__content {
+  color: #ffffff;
 }
 </style>
