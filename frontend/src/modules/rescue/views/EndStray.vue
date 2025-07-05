@@ -37,11 +37,11 @@
             <ul class="space-y-3 text-gray-600">
               <li class="flex items-start">
                 <i class="fas fa-paw text-lemon-500 mt-1 mr-2"></i>
-                <span>全球有数亿只流浪动物，仅中国就有约4000万只流浪猫狗</span>
+                <span>全球有数亿只流浪动物，仅中国就有超过4000万只流浪猫狗</span>
               </li>
               <li class="flex items-start">
                 <i class="fas fa-paw text-lemon-500 mt-1 mr-2"></i>
-                <span>流浪动物平均寿命仅2-3年，远低于家养宠物的10-15年</span>
+                <span>流浪动物平均寿命仅2-5年，远低于家养宠物的12-15年</span>
               </li>
               <li class="flex items-start">
                 <i class="fas fa-paw text-lemon-500 mt-1 mr-2"></i>
@@ -272,7 +272,7 @@
           <div class="md:w-1/2 md:pr-12 md:text-right mb-6 md:mb-0">
             <div class="process-text p-4 rounded-lg transition-all duration-500 bg-lemon/50 hover:shadow-xl hover:bg-lemon hover:scale-[1.02]">
               <h3 class="text-xl font-bold text-gray-800 mb-2">完成领养手续</h3>
-              <p class="text-gray-600">签署领养协议，支付领养费用（如有），获取宠物的健康记录和疫苗信息。</p>
+              <p class="text-gray-600">登记个人信息，签署领养协议，获取宠物的健康记录和疫苗信息。</p>
             </div>
           </div>
           <div class="z-10 w-12 h-12 rounded-full bg-lemon flex items-center justify-center text-black font-bold text-xl shadow-lg transform transition-transform duration-500 hover:rotate-12 hover:scale-110 hover:bg-lemon-700">5</div>
@@ -404,7 +404,7 @@
 
         <div class="text-center">
           <div class="relative inline-block">
-            <img src="@/assets/images/EndStray/hero.jpg" alt="领养" class="w-full h-auto rounded-xl shadow-lg">
+            <img src="@/assets/images/EndStray/appeal.jpg" alt="领养" class="w-full h-auto rounded-xl shadow-lg">
             <div class="absolute inset-0 bg-black bg-opacity-30 rounded-xl flex items-center justify-center">
               <button id="careTipsBtn" class=" hover:bg-lemon text-white font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
                 做好准备后，试着去领养一只动物吧
