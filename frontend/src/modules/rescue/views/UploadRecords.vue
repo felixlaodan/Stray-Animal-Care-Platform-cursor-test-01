@@ -1,11 +1,10 @@
 <template>
   <div class="p-4 sm:p-6 lg:p-8 bg-gray-50 min-h-screen bg-img">
     <div class="max-w-7xl mx-auto">
-      <h1 class="text-3xl font-bold text-gray-800 mb-6">我的上报记录</h1>
-<<<<<<< Updated upstream
-      
+      <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">我的上报记录</h1>
+
       <!-- 搜索区域 -->
-      <div class="p-4 bg-white rounded-lg shadow mb-6">
+      <div class="p-4 bg-white/80 rounded-lg shadow mb-6">
         <div class="flex items-center space-x-4">
           <el-input
             v-model="searchKeyword"
@@ -15,12 +14,10 @@
             @keyup.enter="handleSearch"
             class="flex-grow"
           />
-          <el-button type="primary" @click="handleSearch">搜索</el-button>
+          <el-button type="lemon" @click="handleSearch">搜索</el-button>
           <el-button @click="handleReset">重置</el-button>
         </div>
       </div>
-=======
->>>>>>> Stashed changes
 
       <div v-if="loading" class="text-center py-10">
         <p>加载中...</p>
@@ -28,16 +25,16 @@
 
       <div v-else-if="tableData.length === 0" class="text-center py-10 bg-white rounded-lg shadow">
         <p class="text-gray-500">您还没有任何上报记录。</p>
-        <el-button type="primary" class="mt-4" @click="$router.push('/rescue/upload-stray')">去上报</el-button>
+        <el-button type="lemon" class="mt-4" @click="$router.push('/rescue/upload-stray')">去上报</el-button>
       </div>
 
       <div v-else class="bg-white rounded-lg shadow overflow-hidden">
         <el-table :data="tableData" stripe style="width: 100%" row-key="id">
           <el-table-column type="expand">
             <template #default="props">
-              <div class="p-4 bg-gray-100">
+              <div class="bg-white/90 p-4 bg-gray-100">
                 <h3 class="font-semibold text-lg mb-2">详细信息</h3>
-                <el-descriptions :column="2" border>
+                <el-descriptions :column="2">
                   <el-descriptions-item label="上报人">{{ props.row.reporter }}</el-descriptions-item>
                   <el-descriptions-item label="联系电话">{{ props.row.reporterPhone }}</el-descriptions-item>
                   <el-descriptions-item label="发现时间">{{ props.row.discoveryTime }}</el-descriptions-item>
@@ -170,7 +167,7 @@ const handleDelete = async (id) => {
         type: 'warning',
       }
     );
-    
+
     await deleteUploadRecord(id);
     ElMessage.success('删除成功!');
     fetchData(); // 刷新列表
