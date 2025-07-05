@@ -160,6 +160,63 @@
               </div>
             </div>
           </div>
+
+          <!-- 案例3 -->
+          <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col md:flex-row">
+            <div class="md:w-1/2 h-64 md:h-auto overflow-hidden">
+              <img src="@/assets/images/Home/example1.png" alt="小黑的故事" class="w-full h-full object-cover">
+            </div>
+            <div class="md:w-1/2 p-6 flex flex-col justify-center">
+              <h3 class="text-xl font-bold text-gray-900 mb-2">小黑的新生</h3>
+              <p class="text-gray-600 mb-4">小黑是一只被遗弃的流浪狗，浑身是伤地被我们发现。经过两个月的治疗和照顾，现在它已经找到了一个充满爱的新家。</p>
+              <div class="flex items-center mt-auto">
+                <span class="text-sm text-gray-500">救助时间: 2025年3月</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 案例4 -->
+          <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col md:flex-row">
+            <div class="md:w-1/2 h-64 md:h-auto overflow-hidden">
+              <img src="@/assets/images/Home/example1.png" alt="小黑的故事" class="w-full h-full object-cover">
+            </div>
+            <div class="md:w-1/2 p-6 flex flex-col justify-center">
+              <h3 class="text-xl font-bold text-gray-900 mb-2">小黑的新生</h3>
+              <p class="text-gray-600 mb-4">小黑是一只被遗弃的流浪狗，浑身是伤地被我们发现。经过两个月的治疗和照顾，现在它已经找到了一个充满爱的新家。</p>
+              <div class="flex items-center mt-auto">
+                <span class="text-sm text-gray-500">救助时间: 2025年3月</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 案例5 -->
+          <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col md:flex-row">
+            <div class="md:w-1/2 h-64 md:h-auto overflow-hidden">
+              <img src="@/assets/images/Home/example1.png" alt="小黑的故事" class="w-full h-full object-cover">
+            </div>
+            <div class="md:w-1/2 p-6 flex flex-col justify-center">
+              <h3 class="text-xl font-bold text-gray-900 mb-2">小黑的新生</h3>
+              <p class="text-gray-600 mb-4">小黑是一只被遗弃的流浪狗，浑身是伤地被我们发现。经过两个月的治疗和照顾，现在它已经找到了一个充满爱的新家。</p>
+              <div class="flex items-center mt-auto">
+                <span class="text-sm text-gray-500">救助时间: 2025年3月</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 案例6 -->
+          <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col md:flex-row">
+            <div class="md:w-1/2 h-64 md:h-auto overflow-hidden">
+              <img src="@/assets/images/Home/example1.png" alt="小黑的故事" class="w-full h-full object-cover">
+            </div>
+            <div class="md:w-1/2 p-6 flex flex-col justify-center">
+              <h3 class="text-xl font-bold text-gray-900 mb-2">小黑的新生</h3>
+              <p class="text-gray-600 mb-4">小黑是一只被遗弃的流浪狗，浑身是伤地被我们发现。经过两个月的治疗和照顾，现在它已经找到了一个充满爱的新家。</p>
+              <div class="flex items-center mt-auto">
+                <span class="text-sm text-gray-500">救助时间: 2025年3月</span>
+              </div>
+            </div>
+          </div>
+
         </div>
 
         <div class="text-center mt-10">
@@ -265,6 +322,14 @@ export default {
   beforeDestroy() {
     // 清除定时器
     clearInterval(this.slideInterval)
+  },
+  methods: {
+    nextSlide() {
+      this.currentSlide = (this.currentSlide + 1) % 4
+    },
+    prevSlide() {
+      this.currentSlide = (this.currentSlide - 1 + 4) % 4
+    }
   }
 };
 /*   methods: {
