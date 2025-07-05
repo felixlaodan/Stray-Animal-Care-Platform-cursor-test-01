@@ -21,7 +21,7 @@
     </header>
 
  <!-- 主要内容区 -->
- <main class="container mx-auto px-4 py-12 md:py-16">
+ <main class="container mx-auto px-4 py-12 md:py-16" id="status">
       <!-- 流浪动物现状 -->
       <section class="mb-16 md:mb-24">
         <div class="flex flex-col md:flex-row items-center gap-8">
@@ -30,17 +30,17 @@
               流浪动物的现状
             </h2>
             <p class="text-lg mb-4 leading-relaxed">
-              据统计，全球范围内流浪动物的数量已超过10亿只，仅在中国就有超过4000万只流浪猫狗。这些动物大多生活在城市的角落、废弃建筑或街头巷尾，面临着食物短缺、疾病威胁和人为伤害等多重挑战。
+            截止2025年初，中国培森动保公益研究院的数据表明，全球范围内流浪动物的数量已超过2亿只，仅在中国就有超过4000万只流浪猫狗。<br>这些动物大多生活在城市的角落、废弃建筑或街头巷尾，面临着食物短缺、疾病威胁和人为伤害等多重挑战。
             </p>
             <p class="text-lg mb-6 leading-relaxed">
-              流浪动物的繁殖速度惊人，一对流浪猫在7年内理论上可以繁殖出37万只后代，流浪狗则可繁殖出6万只后代。这种快速繁殖导致流浪动物数量持续增长，形成恶性循环。
+              流浪动物的繁殖速度惊人，一对流浪猫在7年内理论上可以繁殖出37万只后代，流浪狗则可繁殖出6万只后代。<br>这种快速繁殖导致流浪动物数量持续增长，形成恶性循环。
             </p>
             <div class="bg-yellow-50 p-4 rounded-lg">
               <h3 class="font-bold text-yellow-700 mb-2">关键数据</h3>
               <ul class="space-y-2">
                 <li class="flex items-start">
                   <span class="text-yellow-600 font-bold mr-2">•</span>
-                  <span>全球流浪动物数量：超过10亿只</span>
+                  <span>全球流浪动物数量：超过2亿只</span>
                 </li>
                 <li class="flex items-start">
                   <span class="text-yellow-600 font-bold mr-2">•</span>
@@ -289,21 +289,23 @@
       </section>
 
       <!-- 呼吁行动 -->
-      <section class="bg-yellow-600 text-white py-12 md:py-16 rounded-2xl">
-        <div class="container mx-auto px-4 text-center">
+      <section class="relative text-white py-12 md:py-16 rounded-2xl overflow-hidden">
+        <img src="@/assets/images/AI/appeal.jpg" alt="流浪动物" class="absolute inset-0 w-full h-full object-cover z-0">
+        <div class="absolute inset-0 bg-lemon/40 z-10"></div>
+        <div class="container mx-auto px-4 text-center relative z-20">
           <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold mb-6">
-            让我们一起为流浪动物创造更美好的未来
+            让我们一起帮助流浪动物“爪印归途”
           </h2>
           <p class="text-lg md:text-xl max-w-2xl mx-auto mb-8">
-            即使是微小的行动，也能带来改变。从今天起，用我们的爱心和行动，让更多流浪动物感受到温暖和关怀。
+            一个微小的善举，能给一个生命带来天翻地覆的改变。<br>从今天起，用我们的爱心和行动，帮助更多的流浪动物“爪印归途”。
           </p>
           <div class="flex flex-col sm:flex-row justify-center gap-4">
-            <a href="#" class="bg-white text-yellow-600 font-bold py-3 px-8 rounded-lg hover:bg-gray-100 transition-colors duration-300 transform hover:-translate-y-1">
-              了解更多救助方法
-            </a>
-            <a href="#" class="bg-transparent border-2 border-white text-white font-bold py-3 px-8 rounded-lg hover:bg-white/10 transition-colors duration-300 transform hover:-translate-y-1">
-              寻找领养机会
-            </a>
+            <router-link to="/posts" class="bg-white text-yellow-600 font-bold py-3 px-8 rounded-lg hover:bg-gray-100 transition-colors duration-300 transform hover:-translate-y-1">
+              呼吁更多人加入
+            </router-link>
+            <router-link to="/team" class="bg-transparent border-2 border-white text-white font-bold py-3 px-8 rounded-lg hover:bg-white/10 transition-colors duration-300 transform hover:-translate-y-1">
+              了解平台搭建者
+            </router-link>
           </div>
         </div>
       </section>
@@ -369,5 +371,6 @@ export default {
 .tutu{
   height: 320px;
 }
+
 </style>
 
