@@ -1,6 +1,6 @@
 <template>
   <div class="login-container">
-    <h2>登录</h2>
+    <div class="text-xl">用户登录</div>
     <el-form :model="form" label-width="80px">
       <el-form-item label="用户名">
         <el-input v-model="form.username"></el-input>
@@ -8,8 +8,9 @@
       <el-form-item label="密码">
         <el-input type="password" v-model="form.password" show-password @keyup.enter="onSubmit"></el-input>
       </el-form-item>
-      <el-form-item class="center-btn">
-        <el-button type="primary" @click="onSubmit" :loading="loading" class="lemon-btn">登录</el-button>
+      <br><br>
+      <el-form-item class="center">
+        <el-button type="lemon" @click="onSubmit" :loading="loading">登录</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -57,7 +58,7 @@ const onSubmit = async () => {
       } else {
         router.push('/'); // 普通用户跳转到主页
       }
-      
+
     } else {
       ElMessage.error(res.message || '登录失败');
     }
@@ -72,39 +73,21 @@ const onSubmit = async () => {
 
 <style scoped>
 .login-container {
-  max-width: 400px;
+  width: 500px;
+  height: 300px;
   margin: 50px auto;
-  padding: 20px;
+  padding: 30px;
   border: 1px solid #ebeef5;
-  border-radius: 4px;
+  border-radius: 30px;
   background-color: #fff;
+  text-align: center;
 }
 
 .login-container h2 {
   color: #333;
+  text:bold;
   text-align: center;
   margin-bottom: 30px;
 }
 
-/* 覆盖 Element Plus 的默认样式，确保文字清晰可见 */
-.login-container :deep(.el-form-item__label) {
-  color: #333 !important;
-  font-weight: 500;
-}
-
-.login-container :deep(.el-input__inner) {
-  color: #333 !important;
-}
-
-.login-container :deep(.el-input__inner::placeholder) {
-  color: #999 !important;
-}
-
-.lemon-btn {
-  background-color: rgb(252,211, 55) !important;
-  border-color: rgb(252,211, 55) !important;
-}
-
-.center-btn {
-}
 </style>
