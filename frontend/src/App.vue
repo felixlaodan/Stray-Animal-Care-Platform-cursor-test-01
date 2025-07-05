@@ -20,7 +20,9 @@ watch(() => route.path, () => {
 </script>
 
 <style>
-/* Global style overrides for ElMessage */
+#app {
+  min-height: 100vh;
+  /* Global style overrides for ElMessage */
 .el-message.el-message--success {
   background-color: #f0f9eb !important;
   border-color: #e1f3d8 !important;
@@ -33,6 +35,12 @@ watch(() => route.path, () => {
 .el-message.el-message--success .el-message__icon {
   color: #67c23a !important;
 }
+  background-image: url('@/assets/images/background.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 </style>
 
 <style scoped>
