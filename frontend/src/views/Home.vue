@@ -23,7 +23,7 @@
           <div class="absolute inset-0 z-20 flex flex-col justify-center items-center text-white text-center px-6">
             <h2 class="text-[clamp(2rem,5vw,4rem)] font-bold mb-4 tracking-tight">上报流浪动物足迹</h2>
             <p class="text-[clamp(1rem,2vw,1.5rem)] max-w-3xl mb-8">您的一次上传分享，可能是它们生命的一个转折点</p>
-            <button @click="$router.push('/rescue/upload-records')" class="bg-[rgb(252,211,55)] hover:bg-[rgb(252,200,0)] text-gray-900 font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[rgb(252,211,55)] focus:ring-opacity-50">
+            <button @click="$router.push('/rescue/')" class="bg-[rgb(252,211,55)] hover:bg-[rgb(252,200,0)] text-gray-900 font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[rgb(252,211,55)] focus:ring-opacity-50">
               我要上报
             </button>
           </div>
@@ -34,10 +34,10 @@
           <div class="absolute inset-0 bg-black/40 z-10"></div>
           <img src="@/assets/images/Home/slide3.jpg" alt="志愿者照顾流浪动物" class="w-full h-full object-cover">
           <div class="absolute inset-0 z-20 flex flex-col justify-center items-center text-white text-center px-6">
-            <h2 class="text-[clamp(2rem,5vw,4rem)] font-bold mb-4 tracking-tight">爱心人士互助交流</h2>
-            <p class="text-[clamp(1rem,2vw,1.5rem)] max-w-3xl mb-8">与其他动物爱好者分享经验，互助解决问题，<br>一起守护流浪动物的生存和健康</p>
-            <button @click="$router.push('/posts')" class="bg-[rgb(252,211,55)] hover:bg-[rgb(252,200,0)] text-gray-900 font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[rgb(252,211,55)] focus:ring-opacity-50">
-              加入交流
+            <h2 class="text-[clamp(2rem,5vw,4rem)] font-bold mb-4 tracking-tight">和爱心人士一起交流</h2>
+            <p class="text-[clamp(1rem,2vw,1.5rem)] max-w-3xl mb-8">相互帮助，共享知识，共同保护流浪动物</p>
+            <button class="bg-[rgb(252,211,55)] hover:bg-[rgb(252,200,0)] text-gray-900 font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[rgb(252,211,55)] focus:ring-opacity-50">
+              交流互助
             </button>
           </div>
         </div>
@@ -48,8 +48,8 @@
           <img src="@/assets/images/Home/slide4.jpg" alt="捐赠帮助流浪动物" class="w-full h-full object-cover">
           <div class="absolute inset-0 z-20 flex flex-col justify-center items-center text-white text-center px-6">
             <h2 class="text-[clamp(2rem,5vw,4rem)] font-bold mb-4 tracking-tight">科普先于行动</h2>
-            <p class="text-[clamp(1rem,2vw,1.5rem)] max-w-3xl mb-8">了解更多关于流浪动物的知识，帮助您更好地保护它们</p>
-            <button @click="$router.push('/ai')" class="bg-[rgb(252,211,55)] hover:bg-[rgb(252,200,0)] text-gray-900 font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[rgb(252,211,55)] focus:ring-opacity-50">
+            <p class="text-[clamp(1rem,2vw,1.5rem)] max-w-3xl mb-8">学习科普知识，科学救助流浪动物，保护他们的未来</p>
+            <button class="bg-[rgb(252,211,55)] hover:bg-[rgb(252,200,0)] text-gray-900 font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[rgb(252,211,55)] focus:ring-opacity-50">
               查看科普
             </button>
           </div>
@@ -149,11 +149,11 @@
                 <div class="md:w-1/2">
                   <h3 class="text-2xl font-semibold text-gray-800 mb-4">它们也有生存的权利</h3>
                   <p class="text-gray-600 leading-relaxed">
-                    流浪动物并非天生就该流浪，很多是因为人类的遗弃或疏忽而失去了家园。每一个生命都有感受痛苦和快乐的能力，我们有责任给予它们respect和保护。
+                    流浪动物并非天生就该流浪，很多是因为人类的遗弃或疏忽而失去了家园。每一个生命都有感受痛苦和快乐的能力，我们有责任给予它们尊重和保护。
                   </p>
                 </div>
                 <div class="md:w-1/2 rounded-xl overflow-hidden shadow-lg">
-                  <img src="@/assets/images/EndStray/hero.jpg" alt="流浪猫在街头寻找食物" class="w-full h-auto object-cover">
+                  <img src="@/assets/images/Home/why1.jpg" class="w-full h-auto object-cover">
                 </div>
               </div>
 
@@ -165,7 +165,7 @@
                   </p>
                 </div>
                 <div class="md:w-1/2 rounded-xl overflow-hidden shadow-lg">
-                  <img src="@/assets/images/EndStray/hero.jpg" alt="流浪狗在公园休息" class="w-full h-auto object-cover">
+                  <img src="@/assets/images/Home/why2.jpg"  class="w-full h-auto object-cover">
                 </div>
               </div>
 
@@ -177,7 +177,7 @@
                   </p>
                 </div>
                 <div class="md:w-1/2 rounded-xl overflow-hidden shadow-lg">
-                  <img src="@/assets/images/EndStray/hero.jpg" alt="幸福的领养家庭" class="w-full h-auto object-cover">
+                  <img src="@/assets/images/Home/why3.png" class="w-full h-auto object-cover">
                 </div>
               </div>
             </div>
@@ -199,11 +199,11 @@
           <!-- 案例1 -->
           <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col md:flex-row">
             <div class="md:w-1/2 h-64 md:h-auto overflow-hidden">
-              <img src="@/assets/images/Home/example1.png" alt="小黑的故事" class="w-full h-full object-cover">
+              <img src="@/assets/images/Home/example1.png" alt="小黑的新生" class="w-full h-full object-cover">
             </div>
             <div class="md:w-1/2 p-6 flex flex-col justify-center">
               <h3 class="text-xl font-bold text-gray-900 mb-2">小黑的新生</h3>
-              <p class="text-gray-600 mb-4">小黑是一只被遗弃的流浪狗，浑身是伤地被我们发现。经过两个月的治疗和照顾，现在它已经找到了一个充满爱的新家。</p>
+              <p class="text-gray-600 mb-4">小黑是街头一只腿部残疾的流浪狗，艰难地挪动着身体寻找食物。<br>爱心人士发现它后，立即送往宠物医院进行手术治疗。经过三个月的康复训练和精心护理，小黄不仅能自由奔跑，还被一位善良的女士领养，开启了幸福新生活。</p>
               <div class="flex items-center mt-auto">
                 <span class="text-sm text-gray-500">救助时间: 2025年3月</span>
               </div>
@@ -213,13 +213,13 @@
           <!-- 案例2 -->
           <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col md:flex-row">
             <div class="md:w-1/2 h-64 md:h-auto overflow-hidden">
-              <img src="@/assets/images/Home/example2.jpg" alt="咪咪的故事" class="w-full h-full object-cover">
+              <img src="@/assets/images/Home/example2.jpg" alt="咪咪的幸福转折" class="w-full h-full object-cover">
             </div>
             <div class="md:w-1/2 p-6 flex flex-col justify-center">
-              <h3 class="text-xl font-bold text-gray-900 mb-2">咪咪的幸福生活</h3>
-              <p class="text-gray-600 mb-4">咪咪是一只被救助的流浪猫，曾经非常胆小怕人。在我们的照顾下，它逐渐恢复了信任，现在已经成为一个活泼可爱的家庭成员。</p>
+              <h3 class="text-xl font-bold text-gray-900 mb-2">咪咪的幸福转折</h3>
+              <p class="text-gray-600 mb-4">零下5度的清晨，咪咪蜷缩在快递柜下，冻得连叫声都发不出来。<br>爱心人士用暖水袋焐热它冻僵的爪子，喂下温羊奶后送进保温箱。治疗猫鼻支的20天里，它从抗拒触摸到主动蹭人手心。<br>现在它在领养家庭的毛毯上打盹，爪子总爱搭在主人手腕上——那是它记住温暖的方式。</p>
               <div class="flex items-center mt-auto">
-                <span class="text-sm text-gray-500">救助时间: 2025年5月</span>
+                <span class="text-sm text-gray-500">救助时间: 2025年3月</span>
               </div>
             </div>
           </div>
@@ -227,13 +227,13 @@
           <!-- 案例3 -->
           <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col md:flex-row">
             <div class="md:w-1/2 h-64 md:h-auto overflow-hidden">
-              <img src="@/assets/images/Home/example1.png" alt="小黑的故事" class="w-full h-full object-cover">
+              <img src="@/assets/images/Home/example3.jpg" alt="布丁的重生日记" class="w-full h-full object-cover">
             </div>
             <div class="md:w-1/2 p-6 flex flex-col justify-center">
-              <h3 class="text-xl font-bold text-gray-900 mb-2">小黑的新生</h3>
-              <p class="text-gray-600 mb-4">小黑是一只被遗弃的流浪狗，浑身是伤地被我们发现。经过两个月的治疗和照顾，现在它已经找到了一个充满爱的新家。</p>
+              <h3 class="text-xl font-bold text-gray-900 mb-2">布丁的重生日记</h3>
+              <p class="text-gray-600 mb-4">布丁是只被遗弃在巷口的流浪猫，右前爪骨折化脓，浑身沾满沥青。<br>爱心人士用橄榄油一点点清理它的毛发，送往医院手术后，又经历45天的笼养康复。<br>如今它在领养家庭里每天趴在飘窗晒太阳，还学会了用完好的爪子扒拉逗猫棒——曾经瑟缩在垃圾桶旁的小可怜，终于成了会踩奶的撒娇精。</p>
               <div class="flex items-center mt-auto">
-                <span class="text-sm text-gray-500">救助时间: 2025年3月</span>
+                <span class="text-sm text-gray-500">救助时间: 2025年4月</span>
               </div>
             </div>
           </div>
@@ -241,13 +241,13 @@
           <!-- 案例4 -->
           <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col md:flex-row">
             <div class="md:w-1/2 h-64 md:h-auto overflow-hidden">
-              <img src="@/assets/images/Home/example1.png" alt="小黑的故事" class="w-full h-full object-cover">
+              <img src="@/assets/images/Home/example4.jpg" alt="阿旺的晴天" class="w-full h-full object-cover">
             </div>
             <div class="md:w-1/2 p-6 flex flex-col justify-center">
-              <h3 class="text-xl font-bold text-gray-900 mb-2">小黑的新生</h3>
-              <p class="text-gray-600 mb-4">小黑是一只被遗弃的流浪狗，浑身是伤地被我们发现。经过两个月的治疗和照顾，现在它已经找到了一个充满爱的新家。</p>
+              <h3 class="text-xl font-bold text-gray-900 mb-2">阿旺的晴天</h3>
+              <p class="text-gray-600 mb-4">暴雨夜发现阿旺时，这只瘸腿的流浪狗正躲在汽车底盘下，耳朵撕裂的伤口还在渗血。<br>爱心人士用毛巾裹着它送医，缝针、打疫苗、驱跳蚤，整整两个月的悉心照料让它从瘦骨嶙峋变得毛发油亮。<br>现在它的新主人每天带它去公园跑步，曾经警惕躲闪的眼神，如今总亮晶晶地追着飞盘跑。</p>
               <div class="flex items-center mt-auto">
-                <span class="text-sm text-gray-500">救助时间: 2025年3月</span>
+                <span class="text-sm text-gray-500">救助时间: 2025年5月</span>
               </div>
             </div>
           </div>
@@ -255,13 +255,13 @@
           <!-- 案例5 -->
           <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col md:flex-row">
             <div class="md:w-1/2 h-64 md:h-auto overflow-hidden">
-              <img src="@/assets/images/Home/example1.png" alt="小黑的故事" class="w-full h-full object-cover">
+              <img src="@/assets/images/Home/example5.jpg" alt="泡泡的春日" class="w-full h-full object-cover">
             </div>
             <div class="md:w-1/2 p-6 flex flex-col justify-center">
-              <h3 class="text-xl font-bold text-gray-900 mb-2">小黑的新生</h3>
-              <p class="text-gray-600 mb-4">小黑是一只被遗弃的流浪狗，浑身是伤地被我们发现。经过两个月的治疗和照顾，现在它已经找到了一个充满爱的新家。</p>
+              <h3 class="text-xl font-bold text-gray-900 mb-2">泡泡的春日</h3>
+              <p class="text-gray-600 mb-4">工地旁发现泡泡时，它瘦得只剩骨头，尾巴被铁丝勒出深痕。<br>解开铁丝、消炎护理后，它慢慢变得亲人。<br>现在新主人每天带它遛弯，曾经躲闪的小狗，如今会主动把爪子搭在人掌心。</p>
               <div class="flex items-center mt-auto">
-                <span class="text-sm text-gray-500">救助时间: 2025年3月</span>
+                <span class="text-sm text-gray-500">救助时间: 2025年6月</span>
               </div>
             </div>
           </div>
@@ -269,23 +269,25 @@
           <!-- 案例6 -->
           <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col md:flex-row">
             <div class="md:w-1/2 h-64 md:h-auto overflow-hidden">
-              <img src="@/assets/images/Home/example1.png" alt="小黑的故事" class="w-full h-full object-cover">
+              <img src="@/assets/images/Home/example6.jpg" alt="豆豆的第二次生命" class="w-full h-full object-cover">
             </div>
             <div class="md:w-1/2 p-6 flex flex-col justify-center">
-              <h3 class="text-xl font-bold text-gray-900 mb-2">小黑的新生</h3>
-              <p class="text-gray-600 mb-4">小黑是一只被遗弃的流浪狗，浑身是伤地被我们发现。经过两个月的治疗和照顾，现在它已经找到了一个充满爱的新家。</p>
+              <h3 class="text-xl font-bold text-gray-900 mb-2">豆豆的第二次生命</h3>
+              <p class="text-gray-600 mb-4">被发现时，黑豆拖着半截尾巴在绿化带里啃树皮，尾巴溃烂处爬满蛆虫。清创手术时它疼得发抖，却始终没咬过医护人员一口。<br>三个月后，断尾愈合的它在领养家庭学会了巡回游戏，每当主人回家，这只曾被伤害的小狗总会叼来拖鞋，用摇尾巴的弧度画出最圆的句号。</p>
               <div class="flex items-center mt-auto">
-                <span class="text-sm text-gray-500">救助时间: 2025年3月</span>
+                <span class="text-sm text-gray-500">救助时间: 2025年6月</span>
               </div>
             </div>
           </div>
 
         </div>
 
+        <p class="text-gray-800 max-w-3xl mx-auto text-xl text-center mt-12">因为被看见，它们拥有了幸福。<br>发现并上报您身边的流浪动物，赐予它们一个幸福的机会，<br>帮助流浪动物们与爱它们的家人找到彼此。</p>
+
         <div class="text-center mt-10">
-          <a href="#" class="inline-block bg-[rgb(252,211,55)] hover:bg-[rgb(252,200,0)] text-gray-900 font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[rgb(252,211,55)] focus:ring-opacity-50">
-            分享我的故事
-          </a>
+          <router-link to="/rescue/upload-stray" class="inline-block bg-[rgb(252,211,55)] hover:bg-[rgb(252,200,0)] text-gray-900 font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[rgb(252,211,55)] focus:ring-opacity-50">
+            点击上报
+          </router-link>
         </div>
       </div>
     </div>
