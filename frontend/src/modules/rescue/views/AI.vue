@@ -48,16 +48,16 @@
                 </li>
                 <li class="flex items-start">
                   <span class="text-yellow-600 font-bold mr-2">•</span>
-                  <span>流浪动物平均寿命：3-5年（家养动物为12-15年）</span>
+                  <span>流浪动物平均寿命：2-5年（宠物平均寿命为12-15年）</span>
                 </li>
               </ul>
             </div>
           </div>
           <div class="md:w-1/2 grid grid-cols-2 gap-4">
-            <img src="https://picsum.photos/id/1025/600/400" alt="流浪猫" class="rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
-            <img src="https://picsum.photos/id/1027/600/400" alt="流浪狗" class="rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
-            <img src="https://picsum.photos/id/1062/600/400" alt="流浪动物生活环境" class="rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
-            <img src="https://picsum.photos/id/1074/600/400" alt="流浪动物救助" class="rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
+            <img src="@/assets/images/AI/status1.jpg" class="rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
+            <img src="@/assets/images/AI/status2.jpg" class="rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
+            <img src="@/assets/images/AI/status3.jpg" class="rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
+            <img src="@/assets/images/AI/status4.jpg" class="rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
           </div>
         </div>
       </section>
@@ -114,7 +114,7 @@
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 group">
-            <img src="https://picsum.photos/id/1059/600/400" alt="食物短缺" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500">
+            <img src="@/assets/images/AI/threat1.jpg" alt="食物短缺" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500">
             <div class="p-6">
               <h3 class="text-xl font-bold mb-3 text-yellow-700">食物与水源短缺</h3>
               <p class="text-gray-700 leading-relaxed">
@@ -123,7 +123,7 @@
             </div>
           </div>
           <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 group">
-            <img src="https://picsum.photos/id/1082/600/400" alt="疾病威胁" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500">
+            <img src="@/assets/images/AI/threat2.jpg" alt="疾病威胁" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500">
             <div class="p-6">
               <h3 class="text-xl font-bold mb-3 text-yellow-700">疾病与伤害威胁</h3>
               <p class="text-gray-700 leading-relaxed">
@@ -132,7 +132,7 @@
             </div>
           </div>
           <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 group">
-            <img src="https://picsum.photos/id/1060/600/400" alt="恶劣环境" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500">
+            <img src="@/assets/images/AI/threat3.jpg" alt="恶劣环境" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500">
             <div class="p-6">
               <h3 class="text-xl font-bold mb-3 text-yellow-700">恶劣的生存环境</h3>
               <p class="text-gray-700 leading-relaxed">
@@ -151,7 +151,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
           <div class="grid grid-cols-1 gap-6">
             <div class="tutu">
-              <img src="https://picsum.photos/id/1071/600/400" alt="TNR救助方法" class="tutu rounded-lg shadow-lg w-full">
+              <img src="@/assets/images/AI/help1.webp" alt="救助" class="tutu rounded-lg shadow-lg w-full">
             </div>
             <div class="bg-white p-6 rounded-lg shadow-md">
               <h3 class="text-xl font-bold mb-3 text-yellow-700 flex items-center">
@@ -207,7 +207,7 @@
               </ul>
             </div>
             <div>
-              <img src="https://picsum.photos/id/1071/600/400" alt="TNR救助方法" class="rounded-lg shadow-lg w-full">
+              <img src="@/assets/images/AI/help2.jpg" alt="救助" class="rounded-lg shadow-lg w-full">
             </div>
           </div>
         </div>
@@ -266,18 +266,18 @@
         <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
           <div class="md:flex">
             <div class="md:w-1/2">
-              <img src="https://picsum.photos/id/1069/800/600" alt="救助故事" class="w-full h-full object-cover">
+              <img src="@/assets/images/AI/story.jpg" alt="救助故事" class="w-full h-full object-cover">
             </div>
             <div class="md:w-1/2 p-8 md:p-12">
               <h3 class="text-2xl font-bold mb-4 text-yellow-700">从街头流浪到家庭温暖：小花的故事</h3>
               <p class="text-gray-700 mb-6 leading-relaxed">
-                小花是一只在街头流浪了半年多的橘猫，被发现时骨瘦如柴，身上长满了跳蚤和皮肤病。志愿者小李发现它后，立即带它去了宠物医院。经过检查，小花不仅营养不良，还患有严重的呼吸道感染。
+                小花是一只被遗弃在街头废纸箱里的小奶狗，被发现时骨瘦如柴，身上长满了跳蚤和皮肤病。志愿者小李发现它后，立即带它去了宠物医院。经过检查，小花不仅营养不良，还患有严重的呼吸道感染。
               </p>
               <p class="text-gray-700 mb-6 leading-relaxed">
                 在接下来的一个月里，小李每天给小花喂食、擦药、陪伴它。小花从最初的警惕害怕，到后来逐渐信任小李，开始主动亲近她。经过精心照料，小花的身体逐渐康复，变得活泼可爱。
               </p>
               <p class="text-gray-700 mb-6 leading-relaxed">
-                康复后，小李为小花找到了一个充满爱的领养家庭。现在的小花每天都生活在温暖的家中，有了自己的猫窝和玩具，再也不用在街头忍受风吹雨打。这是一个普通却温暖的救助故事，这样的故事每天都在世界各地上演。
+                康复后，小李为小花找到了一个充满爱的领养家庭。现在的小花每天都生活在温暖的家中，有了自己的狗窝和玩具，再也不用在街头忍受风吹雨打。这是一个普通却温暖的救助故事，这样的故事每天都在世界各地上演。
               </p>
               <div class="mt-6 text-yellow-600 font-bold">
                 <i class="fas fa-quote-left mr-2"></i>
