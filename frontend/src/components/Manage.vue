@@ -48,7 +48,7 @@
           <div class="flex items-center space-x-5">
             <!-- 管理后台入口 -->
             <div v-if="userStore.isAdmin">
-              <el-button class="houtai" @click="goToAdmin">进入管理后台</el-button>
+              <el-button type="warning" @click="goToAdmin">进入管理后台</el-button>
             </div>
 
             <!-- 用户信息 (登录/未登录状态) -->
@@ -117,11 +117,11 @@ onBeforeUnmount(() => {
 }
 
 .quit {
-  @apply px-3 py-2 rounded-md text-base font-medium text-gray-700 bg-lemon hover:bg-lemon hover:text-white transition-colors duration-200;
+  @apply px-3 py-2 rounded-md text-base font-medium text-gray-700 bg-lemon/50 hover:bg-lemon hover:text-white transition-colors duration-200;
 }
 
 .houtai{
-  @apply px-3 py-2 rounded-md text-base font-medium text-gray-700 bg-lemon hover:bg-lemon hover:text-white transition-colors duration-200;
+  @apply px-3 py-2 rounded-md text-base font-medium text-gray-700 bg-white hover:bg-lemon hover:text-white transition-colors duration-200 !important;
 }
 
 /* 导航栏样式 */
