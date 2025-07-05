@@ -6,12 +6,12 @@
         <!-- 轮播图1 -->
         <div class="carousel-slide w-full h-full flex-shrink-0 relative">
           <div class="absolute inset-0 bg-black/40 z-10"></div>
-          <img src="@/assets/images/Home/slide1.jpg" alt="流浪狗狗等待救助" class="w-full h-full object-cover">
+          <img src="@/assets/images/Home/slide1.jpg" alt="等待领养" class="w-full h-full object-cover">
           <div class="absolute inset-0 z-20 flex flex-col justify-center items-center text-white text-center px-6">
             <h2 class="text-[clamp(2rem,5vw,4rem)] font-bold mb-4 tracking-tight">给予它们一个温暖的家</h2>
             <p class="text-[clamp(1rem,2vw,1.5rem)] max-w-3xl mb-8">每只流浪动物都有自己的故事，您的爱心可以改变它们的命运</p>
-            <button class="bg-[rgb(252,211,55)] hover:bg-[rgb(252,200,0)] text-gray-900 font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[rgb(252,211,55)] focus:ring-opacity-50">
-              立即救助
+            <button @click="$router.push('/rescue/adoption-info')" class="bg-[rgb(252,211,55)] hover:bg-[rgb(252,200,0)] text-gray-900 font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[rgb(252,211,55)] focus:ring-opacity-50">
+              我要领养
             </button>
           </div>
         </div>
@@ -19,12 +19,12 @@
         <!-- 轮播图2 -->
         <div class="carousel-slide w-full h-full flex-shrink-0 relative">
           <div class="absolute inset-0 bg-black/40 z-10"></div>
-          <img src="@/assets/images/Home/slide2.png" alt="流浪猫咪等待领养" class="w-full h-full object-cover">
+          <img src="@/assets/images/Home/slide2.png" alt="等待救助" class="w-full h-full object-cover">
           <div class="absolute inset-0 z-20 flex flex-col justify-center items-center text-white text-center px-6">
-            <h2 class="text-[clamp(2rem,5vw,4rem)] font-bold mb-4 tracking-tight">领养代替购买</h2>
-            <p class="text-[clamp(1rem,2vw,1.5rem)] max-w-3xl mb-8">每一个生命都值得被尊重和爱护，领养一只流浪动物，给它们一个新的开始</p>
-            <button class="bg-[rgb(252,211,55)] hover:bg-[rgb(252,200,0)] text-gray-900 font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[rgb(252,211,55)] focus:ring-opacity-50">
-              我要领养
+            <h2 class="text-[clamp(2rem,5vw,4rem)] font-bold mb-4 tracking-tight">上报流浪动物足迹</h2>
+            <p class="text-[clamp(1rem,2vw,1.5rem)] max-w-3xl mb-8">您的一次上传分享，可能是它们生命的一个转折点</p>
+            <button @click="$router.push('/rescue/upload-records')" class="bg-[rgb(252,211,55)] hover:bg-[rgb(252,200,0)] text-gray-900 font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[rgb(252,211,55)] focus:ring-opacity-50">
+              我要上报
             </button>
           </div>
         </div>
@@ -34,10 +34,10 @@
           <div class="absolute inset-0 bg-black/40 z-10"></div>
           <img src="@/assets/images/Home/slide3.jpg" alt="志愿者照顾流浪动物" class="w-full h-full object-cover">
           <div class="absolute inset-0 z-20 flex flex-col justify-center items-center text-white text-center px-6">
-            <h2 class="text-[clamp(2rem,5vw,4rem)] font-bold mb-4 tracking-tight">加入我们的志愿者团队</h2>
-            <p class="text-[clamp(1rem,2vw,1.5rem)] max-w-3xl mb-8">即使是最小的善举，也能带来巨大的改变。成为志愿者，用爱和行动帮助这些无助的生命</p>
-            <button class="bg-[rgb(252,211,55)] hover:bg-[rgb(252,200,0)] text-gray-900 font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[rgb(252,211,55)] focus:ring-opacity-50">
-              成为志愿者
+            <h2 class="text-[clamp(2rem,5vw,4rem)] font-bold mb-4 tracking-tight">爱心人士互助交流</h2>
+            <p class="text-[clamp(1rem,2vw,1.5rem)] max-w-3xl mb-8">与其他动物爱好者分享经验，互助解决问题，<br>一起守护流浪动物的生存和健康</p>
+            <button @click="$router.push('/posts')" class="bg-[rgb(252,211,55)] hover:bg-[rgb(252,200,0)] text-gray-900 font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[rgb(252,211,55)] focus:ring-opacity-50">
+              加入交流
             </button>
           </div>
         </div>
@@ -47,10 +47,10 @@
           <div class="absolute inset-0 bg-black/40 z-10"></div>
           <img src="@/assets/images/Home/slide4.jpg" alt="捐赠帮助流浪动物" class="w-full h-full object-cover">
           <div class="absolute inset-0 z-20 flex flex-col justify-center items-center text-white text-center px-6">
-            <h2 class="text-[clamp(2rem,5vw,4rem)] font-bold mb-4 tracking-tight">您的捐赠，它们的希望</h2>
-            <p class="text-[clamp(1rem,2vw,1.5rem)] max-w-3xl mb-8">每一笔捐款都能帮助我们为流浪动物提供食物、医疗和庇护所，让它们感受到温暖和关怀</p>
-            <button class="bg-[rgb(252,211,55)] hover:bg-[rgb(252,200,0)] text-gray-900 font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[rgb(252,211,55)] focus:ring-opacity-50">
-              立即捐赠
+            <h2 class="text-[clamp(2rem,5vw,4rem)] font-bold mb-4 tracking-tight">科普先于行动</h2>
+            <p class="text-[clamp(1rem,2vw,1.5rem)] max-w-3xl mb-8">了解更多关于流浪动物的知识，帮助您更好地保护它们</p>
+            <button @click="$router.push('/ai')" class="bg-[rgb(252,211,55)] hover:bg-[rgb(252,200,0)] text-gray-900 font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[rgb(252,211,55)] focus:ring-opacity-50">
+              查看科普
             </button>
           </div>
         </div>
@@ -149,11 +149,11 @@
                 <div class="md:w-1/2">
                   <h3 class="text-2xl font-semibold text-gray-800 mb-4">它们也有生存的权利</h3>
                   <p class="text-gray-600 leading-relaxed">
-                    流浪动物并非天生就该流浪，很多是因为人类的遗弃或疏忽而失去了家园。每一个生命都有感受痛苦和快乐的能力，我们有责任给予它们尊重和保护。
+                    流浪动物并非天生就该流浪，很多是因为人类的遗弃或疏忽而失去了家园。每一个生命都有感受痛苦和快乐的能力，我们有责任给予它们respect和保护。
                   </p>
                 </div>
                 <div class="md:w-1/2 rounded-xl overflow-hidden shadow-lg">
-                  <img src="@/assets/images/EndStray/1.png" alt="流浪猫在街头寻找食物" class="w-full h-auto object-cover">
+                  <img src="@/assets/images/EndStray/hero.jpg" alt="流浪猫在街头寻找食物" class="w-full h-auto object-cover">
                 </div>
               </div>
 
@@ -165,7 +165,7 @@
                   </p>
                 </div>
                 <div class="md:w-1/2 rounded-xl overflow-hidden shadow-lg">
-                  <img src="@/assets/images/EndStray/1.png" alt="流浪狗在公园休息" class="w-full h-auto object-cover">
+                  <img src="@/assets/images/EndStray/hero.jpg" alt="流浪狗在公园休息" class="w-full h-auto object-cover">
                 </div>
               </div>
 
@@ -177,7 +177,7 @@
                   </p>
                 </div>
                 <div class="md:w-1/2 rounded-xl overflow-hidden shadow-lg">
-                  <img src="@/assets/images/EndStray/1.png" alt="幸福的领养家庭" class="w-full h-auto object-cover">
+                  <img src="@/assets/images/EndStray/hero.jpg" alt="幸福的领养家庭" class="w-full h-auto object-cover">
                 </div>
               </div>
             </div>
@@ -298,19 +298,19 @@
         <div class="grid md:grid-cols-4 gap-8">
           <div>
             <h3 class="text-lg font-bold mb-4">关于平台</h3>
-            <p class="text-gray-400 mb-4">平台致力于流浪动物救助信息交流，希望通过我们的努力，让每一只流浪动物都能得到关爱和保护。</p>
+            <p class="text-gray-400 mb-4">平台致力于流浪动物救助信息交流，<br>希望通过所有爱心人士的努力，<br>让每一只流浪动物都能得到关爱和保护。</p>
             <div class="flex space-x-4">
-              <a href="#" class="text-gray-400 hover:text-[rgb(252,211,55)] transition-colors">
-                <i class="fa fa-weixin"></i>
+              <a href="https://web2.wechat.com/?lang=zh_HK" class="text-gray-400 hover:text-[rgb(252,211,55)] transition-colors">
+                <i class="fab fa-weixin"></i>
               </a>
-              <a href="#" class="text-gray-400 hover:text-[rgb(252,211,55)] transition-colors">
-                <i class="fa fa-weibo"></i>
+              <a href="https://im.qq.com/" class="text-gray-400 hover:text-[rgb(252,211,55)] transition-colors">
+                <i class="fab fa-qq"></i>
               </a>
-              <a href="#" class="text-gray-400 hover:text-[rgb(252,211,55)] transition-colors">
-                <i class="fa fa-instagram"></i>
+              <a href="https://www.bilibili.com/" class="text-gray-400 hover:text-[rgb(252,211,55)] transition-colors">
+                <i class="fab fa-bilibili"></i>
               </a>
-              <a href="#" class="text-gray-400 hover:text-[rgb(252,211,55)] transition-colors">
-                <i class="fa fa-youtube-play"></i>
+              <a href="https://weibo.com/" class="text-gray-400 hover:text-[rgb(252,211,55)] transition-colors">
+                <i class="fab fa-weibo"></i>
               </a>
             </div>
           </div>
@@ -318,10 +318,10 @@
           <div>
             <h3 class="text-lg font-bold mb-4">快速链接</h3>
             <ul class="space-y-2">
-              <li><a href="#" class="text-gray-400 hover:text-[rgb(252,211,55)] transition-colors">平台建设者</a></li>
-              <li><a href="#" class="text-gray-400 hover:text-[rgb(252,211,55)] transition-colors">领养信息</a></li>
-              <li><a href="#" class="text-gray-400 hover:text-[rgb(252,211,55)] transition-colors">交流互动</a></li>
-              <li><a href="#" class="text-gray-400 hover:text-[rgb(252,211,55)] transition-colors">智能科普</a></li>
+              <li><router-link to="/team" class="text-gray-400 hover:text-[rgb(252,211,55)] transition-colors">平台建设者</router-link></li>
+              <li><router-link to="/rescue/adoption-info" class="text-gray-400 hover:text-[rgb(252,211,55)] transition-colors">领养信息</router-link></li>
+              <li><router-link to="/posts" class="text-gray-400 hover:text-[rgb(252,211,55)] transition-colors">交流互动</router-link></li>
+              <li><router-link to="/ai" class="text-gray-400 hover:text-[rgb(252,211,55)] transition-colors">智能科普</router-link></li>
             </ul>
           </div>
 
@@ -330,37 +330,40 @@
             <ul class="space-y-2">
               <li class="flex items-center">
                 <i class="fa fa-map-marker mr-2 text-[rgb(252,211,55)]"></i>
-                <span class="text-gray-400">北京市朝阳区建国路88号爱心大厦5层</span>
+                <span class="text-gray-400">克拉玛依市安定路爱心大厦3层</span>
               </li>
               <li class="flex items-center">
                 <i class="fa fa-phone mr-2 text-[rgb(252,211,55)]"></i>
-                <span class="text-gray-400">010-12345678</span>
+                <span class="text-gray-400">010-0990-888</span>
               </li>
               <li class="flex items-center">
                 <i class="fa fa-envelope mr-2 text-[rgb(252,211,55)]"></i>
-                <span class="text-gray-400">contact@animal-rescue.org</span>
+                <span class="text-gray-400">cupk@helpstray.org</span>
               </li>
               <li class="flex items-center">
-                <i class="fa fa-clock-o mr-2 text-[rgb(252,211,55)]"></i>
+                <i class="fa fa-clock mr-2 text-[rgb(252,211,55)]"></i>
                 <span class="text-gray-400">周一至周日 9:00 - 18:00</span>
               </li>
             </ul>
           </div>
 
           <div>
-            <h3 class="text-lg font-bold mb-4">订阅我们</h3>
-            <p class="text-gray-400 mb-4">订阅我们的电子通讯，获取最新的救助信息和活动通知</p>
+            <h3 class="text-lg font-bold mb-4">联系我们</h3>
+            <p class="text-gray-400 mb-4">通过电子邮箱，向我们发送您的意见建议</p>
             <form class="flex">
-              <input type="email" placeholder="您的电子邮箱" class="px-4 py-2 rounded-l-lg w-full focus:outline-none text-gray-900">
-              <button type="submit" class="bg-[rgb(252,211,55)] hover:bg-[rgb(252,200,0)] text-gray-900 px-4 py-2 rounded-r-lg transition-colors">
-                <i class="fa fa-paper-plane"></i>
-              </button>
+              <input type="email" placeholder="请输入您的QQ邮箱" class="px-4 py-2 rounded-l-lg w-full focus:outline-none text-gray-900">
+              <a href="https://wx.mail.qq.com/" class="bg-[rgb(252,211,55)] hover:bg-[rgb(252,200,0)] text-gray-900 px-4 py-2 rounded-r-lg transition-colors">
+                <button type="submit"
+                class="bg-[rgb(252,211,55)] hover:bg-[rgb(252,200,0)] text-gray-900 px-4 py-2 rounded-r-lg transition-colors">
+                  <i class="fa fa-paper-plane"></i>
+                </button>
+              </a>
             </form>
           </div>
         </div>
 
         <div class="border-t border-gray-800 mt-10 pt-6 text-center text-gray-500">
-          <p>&copy; 2025 流浪动物救助信息交流平台. 保留所有权利.</p>
+          <p>&copy; 2025 爪印归途——流浪动物救助信息交流平台. 保留所有权利.</p>
         </div>
       </div>
     </footer>

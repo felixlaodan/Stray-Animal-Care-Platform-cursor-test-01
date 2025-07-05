@@ -3,20 +3,20 @@
     <!-- 英雄区 -->
     <header class="relative overflow-hidden bg-lemon-500 py-16 md:py-24">
       <div class="container mx-auto px-4 relative z-10">
-        <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-bold text-center text-gray-800 mb-4 animate-fadeIn">
+        <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-bold text-center text-white mb-4 animate-fadeIn">
           关于它的科普
         </h1>
-        <p class="text-[clamp(1rem,2vw,1.25rem)] text-center text-gray-700 max-w-3xl mx-auto mb-8">
+        <p class="text-[clamp(1rem,2vw,1.25rem)] text-center text-white max-w-3xl mx-auto mb-8">
           了解如何救助流浪动物，以及救助后的那些知识
         </p>
         <div class="flex justify-center mt-12">
           <a href="#status" class="bg-lemon/70 hover:bg-lemon text-white font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
-            参与讨论 <i class="fas fa-paw ml-2"></i>
+            了解更多 <i class="fas fa-paw ml-2"></i>
           </a>
         </div>
       </div>
-      <div class="absolute inset-0 opacity-80">
-        <img src="@/assets/images/AI/1.jpg" alt="流浪动物" class="w-full h-full object-cover">
+      <div class="absolute inset-0 opacity-100">
+        <img src="@/assets/images/AI/hero.jpg" alt="流浪动物" class="w-full h-full object-cover">
       </div>
     </header>
 
@@ -148,8 +148,11 @@
         <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-yellow-600 mb-8 text-center">
           流浪动物救助科普
         </h2>
-        <div class="flex flex-col md:flex-row items-center gap-8">
-          <div class="md:w-1/2 grid grid-cols-1 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+          <div class="grid grid-cols-1 gap-6">
+            <div class="tutu">
+              <img src="https://picsum.photos/id/1071/600/400" alt="TNR救助方法" class="tutu rounded-lg shadow-lg w-full">
+            </div>
             <div class="bg-white p-6 rounded-lg shadow-md">
               <h3 class="text-xl font-bold mb-3 text-yellow-700 flex items-center">
                 <i class="fas fa-hand-holding-heart text-yellow-500 mr-2"></i>
@@ -175,12 +178,14 @@
               </ol>
             </div>
           </div>
-          <div class="md:w-1/2">
-            <h3 class="text-xl font-bold mb-4 text-yellow-700">科学救助的核心原则 - TNR</h3>
-            <p class="text-lg mb-6 leading-relaxed">
-              TNR（Trap-Neuter-Return）即捕捉-绝育-放归，是目前国际上公认的控制流浪动物数量的科学方法。通过对流浪动物进行绝育，可以有效减少其繁殖数量，同时保留它们的自然生活状态。
-            </p>
-            <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+          <div class="grid grid-cols-1 gap-6">
+            <div class="bg-white p-6 rounded-lg shadow-md">
+              <h3 class="font-bold text-yellow-700 mb-3">科学救助的核心原则 - TNR</h3>
+              <p class="space-y-2 text-gray-700">
+                TNR（Trap-Neuter-Return）即捕捉-绝育-放归，是目前国际上公认的控制流浪动物数量的科学方法。通过对流浪动物进行绝育，可以有效减少其繁殖数量，同时保留它们的自然生活状态。
+              </p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md">
               <h4 class="font-bold text-yellow-700 mb-3">TNR的优势</h4>
               <ul class="space-y-2 text-gray-700">
                 <li class="flex items-start">
@@ -201,7 +206,7 @@
                 </li>
               </ul>
             </div>
-            <div class="text-center">
+            <div>
               <img src="https://picsum.photos/id/1071/600/400" alt="TNR救助方法" class="rounded-lg shadow-lg w-full">
             </div>
           </div>
@@ -359,6 +364,10 @@ export default {
   .grid-cols-1 md\\:grid-cols-3 {
     grid-template-columns: 1fr;
   }
+}
+
+.tutu{
+  height: 320px;
 }
 </style>
 

@@ -3,7 +3,7 @@
     <el-container style="height: 100vh;">
       <el-aside width="200px" class="admin-aside">
         <div class="logo">
-          爪印归途 - 管理后台
+          欢迎您，管理员！
         </div>
         <el-menu
           :default-active="activeMenu"
@@ -18,22 +18,14 @@
             <el-icon><user /></el-icon>
             <span>用户管理</span>
           </el-menu-item>
-          <el-menu-item index="/admin/adoption-management" disabled>
-            <el-icon><finished /></el-icon>
-            <span>领养记录管理</span>
-          </el-menu-item>
-          <el-menu-item index="/admin/forum-management" disabled>
+          <el-menu-item index="/posts">
             <el-icon><chat-dot-square /></el-icon>
             <span>论坛管理</span>
           </el-menu-item>
         </el-menu>
       </el-aside>
-      
+
       <el-container>
-        <el-header class="admin-header">
-          <span>欢迎您，管理员！</span>
-          <el-button type="primary" @click="logout">退出登录</el-button>
-        </el-header>
         <el-main class="admin-main">
           <router-view />
         </el-main>
@@ -91,4 +83,4 @@ const logout = () => {
 .admin-main {
   padding: 20px;
 }
-</style> 
+</style>

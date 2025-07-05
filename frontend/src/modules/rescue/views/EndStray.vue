@@ -15,8 +15,8 @@
           </a>
         </div>
       </div>
-      <div class="absolute inset-0 opacity-80">
-        <img src="@/assets/images/AI/1.jpg" alt="流浪动物" class="w-full h-full object-cover">
+      <div class="absolute inset-0 opacity-100">
+        <img src="@/assets/images/EndStray/hero.jpg" alt="流浪动物" class="w-full h-full object-cover">
       </div>
     </header>
 
@@ -55,9 +55,9 @@
           </div>
 
           <div class="relative">
-            <img src="@/assets/images/AI/1.jpg" alt="流浪动物" class="w-full h-auto rounded-xl shadow-lg">
+            <img src="@/assets/images/EndStray/hero.jpg" alt="流浪动物" class="w-full h-auto rounded-xl shadow-lg">
             <div class="absolute -bottom-6 -right-6 bg-white rounded-lg shadow-lg max-w-xs transform transition-transform hover:scale-105">
-              <img src="@/assets/images/AI/1.jpg" alt="流浪动物" class="w-full h-auto rounded-xl shadow-lg">
+              <img src="@/assets/images/EndStray/hero.jpg" alt="流浪动物" class="w-full h-auto rounded-xl shadow-lg">
             </div>
           </div>
         </div>
@@ -170,7 +170,7 @@
 
           <div class="grid grid-cols-2 gap-4">
             <div class="group">
-              <img src="@/assets/images/AI/1.jpg" alt="领养宠物" class="w-full h-64 object-cover rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
+              <img src="@/assets/images/EndStray/hero.jpg" alt="领养宠物" class="w-full h-64 object-cover rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
               <div class="bg-white p-4">
                 <h4 class="font-bold text-gray-800">小黑 - 2岁</h4>
                 <p class="text-gray-600 text-sm">已绝育，疫苗齐全，温顺亲人</p>
@@ -178,7 +178,7 @@
             </div>
 
             <div class="group">
-              <img src="@/assets/images/AI/1.jpg" alt="领养宠物" class="w-full h-64 object-cover rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
+              <img src="@/assets/images/EndStray/hero.jpg" alt="领养宠物" class="w-full h-64 object-cover rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
               <div class="bg-white p-4">
                 <h4 class="font-bold text-gray-800">花花 - 1岁</h4>
                 <p class="text-gray-600 text-sm">已绝育，活泼好动，喜欢互动</p>
@@ -186,7 +186,7 @@
             </div>
 
             <div class="group">
-              <img src="@/assets/images/AI/1.jpg" alt="领养宠物" class="w-full h-64 object-cover rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
+              <img src="@/assets/images/EndStray/hero.jpg" alt="领养宠物" class="w-full h-64 object-cover rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
               <div class="bg-white p-4">
                 <h4 class="font-bold text-gray-800">小白 - 3岁</h4>
                 <p class="text-gray-600 text-sm">已绝育，安静乖巧，适合家庭</p>
@@ -194,7 +194,7 @@
             </div>
 
             <div class="group">
-              <img src="@/assets/images/AI/1.jpg" alt="领养宠物" class="w-full h-64 object-cover rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
+              <img src="@/assets/images/EndStray/hero.jpg" alt="领养宠物" class="w-full h-64 object-cover rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
               <div class="bg-white p-4">
                 <h4 class="font-bold text-gray-800">豆豆 - 2岁</h4>
                 <p class="text-gray-600 text-sm">已绝育，聪明伶俐，会基本指令</p>
@@ -404,7 +404,7 @@
 
         <div class="text-center">
           <div class="relative inline-block">
-            <img src="@/assets/images/AI/1.jpg" alt="领养" class="w-full h-auto rounded-xl shadow-lg">
+            <img src="@/assets/images/EndStray/hero.jpg" alt="领养" class="w-full h-auto rounded-xl shadow-lg">
             <div class="absolute inset-0 bg-black bg-opacity-30 rounded-xl flex items-center justify-center">
               <button id="careTipsBtn" class=" hover:bg-lemon text-white font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
                 做好准备后，试着去领养一只动物吧
@@ -558,17 +558,6 @@ export default {
 </script>
 
 <style scoped>
-/* 自定义动画 */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
 .animate-fadeIn {
   animation: fadeIn 0.8s ease-out forwards;
 }
