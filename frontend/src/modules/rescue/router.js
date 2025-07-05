@@ -5,6 +5,7 @@ import AdoptionInfoView from './views/AdoptionInfoView.vue';
 import AdoptionRecordView from './views/AdoptionRecordView.vue';
 import AI from './views/AI.vue';
 import Team from '@/views/Team.vue';
+import RescueBase from './views/RescueBase.vue';
 
 const routes = [
   {
@@ -34,6 +35,12 @@ const routes = [
     path: '/rescue/upload-records',
     name: 'UploadRecords',
     component: UploadRecords,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/rescue/base',
+    name: 'RescueBase',
+    component: RescueBase,
     meta: { requiresAuth: true }
   },
   {
