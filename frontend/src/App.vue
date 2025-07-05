@@ -8,7 +8,15 @@
 </template>
 
 <script setup>
+import { watch } from 'vue'
+import { useRoute } from 'vue-router'
 import Manage from './components/Manage.vue';
+
+const route = useRoute()
+watch(() => route.path, () => {
+  // 强制组件更新
+  document.documentElement.scrollTop = 0
+})
 </script>
 
 <style>
