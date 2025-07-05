@@ -206,7 +206,7 @@
     </section>
 
 <!-- 领养流程 -->
-<section id="process" class="py-16 relative overflow-hidden">
+<section id="process" class="py-16 relative overflow-hidden bg-img">
   <div class="container mx-auto px-4">
     <div class="text-center mb-12">
       <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-gray-800 mb-4">领养流程指南</h2>
@@ -296,7 +296,7 @@
   </section>
 
     <!-- 领养后的照顾 -->
-    <section id="care" class="py-16 bg-img">
+    <section id="care" class="py-16">
       <div class="container mx-auto px-4">
         <div class="text-center mb-12">
           <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-gray-800 mb-4">领养后的照顾指南</h2>
@@ -418,7 +418,6 @@
     <!-- 页脚 -->
 
 
-    <!-- 照顾小贴士模态框（时间不够先不做了） -->
   </div>
 </template>
 
@@ -453,108 +452,6 @@
         });
       });
     });
-//导入 Chart.js
-// import { Chart } from 'chart.js';
-
-export default {
-  name: 'AnimalAdoptionGuide',
-  data() {
-    return {
-      chart: null
-    }
-  },
-  mounted() {
-    this.initChart();
-    this.addScrollAnimations();
-    this.setupModalEvents();
-  },
-  methods: {
-    initChart() {
-      const ctx = document.getElementById('strayAnimalChart').getContext('2d');
-      // 使用导入的 Chart 类创建图表
-      this.chart = new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-          labels: ['流浪狗', '流浪猫', '其他'],
-          datasets: [{
-            data: [55, 35, 10],
-            backgroundColor: [
-              'rgba(252, 211, 55, 0.8)',
-              'rgba(59, 130, 246, 0.8)',
-              'rgba(16, 185, 129, 0.8)'
-            ],
-            borderWidth: 0
-          }]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: {
-              position: 'bottom',
-              labels: {
-                color: '#333',
-                padding: 10,
-                font: {
-                  size: 12
-                }
-              }
-            }
-          }
-        }
-      });
-    },
-    addScrollAnimations() {
-      const animateElements = document.querySelectorAll('.bg-white, .bg-gray-50, img[class*="rounded-xl"]');
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('animate-fadeInUp');
-            observer.unobserve(entry.target);
-          }
-        });
-      }, {
-        threshold: 0.1
-      });
-
-      animateElements.forEach(element => {
-        observer.observe(element);
-      });
-    },
-    setupModalEvents() {
-      const careTipsBtn = document.getElementById('careTipsBtn');
-      const closeModalBtn = document.getElementById('closeModalBtn');
-      const closeModalBtn2 = document.getElementById('closeModalBtn2');
-      const modal = document.getElementById('careTipsModal');
-
-      careTipsBtn.addEventListener('click', () => {
-        modal.classList.remove('hidden');
-        document.body.style.overflow = 'hidden';
-      });
-
-      closeModalBtn.addEventListener('click', () => {
-        modal.classList.add('hidden');
-        document.body.style.overflow = '';
-      });
-
-      closeModalBtn2.addEventListener('click', () => {
-        modal.classList.add('hidden');
-        document.body.style.overflow = '';
-      });
-
-      // 点击模态框外部关闭
-      modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-          modal.classList.add('hidden');
-          document.body.style.overflow = '';
-        }
-      });
-
-
-    }
-  }
-}
 </script>
 
 <style scoped>
