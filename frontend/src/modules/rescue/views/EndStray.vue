@@ -25,12 +25,12 @@
       <div class="container mx-auto px-4">
         <div class="text-center mb-12">
           <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-gray-800 mb-4">流浪动物的现状</h2>
-          <div class="w-20 h-1 bg-lemon-500 mx-auto mb-6"></div>
+          <div class="w-20 h-1 bg-lemon mx-auto mb-6"></div>
           <p class="text-lg text-gray-600 max-w-2xl mx-auto">了解我们身边流浪动物的生存状况，以及它们面临的挑战</p>
         </div>
 
         <div class="grid md:grid-cols-2 gap-8 items-center">
-          <div class="bg-gray-50 p-8 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 transform hover:-translate-y-1">
+          <div class="bg-gray-50 p-8 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 transform hover:-translate-y-1 bg-lemon/70">
             <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
               <i class="fas fa-exclamation-triangle text-lemon-600 mr-3"></i> 严峻的生存挑战
             </h3>
@@ -55,9 +55,9 @@
           </div>
 
           <div class="relative">
-            <img src="@/assets/images/EndStray/hero.jpg" alt="流浪动物" class="w-full h-auto rounded-xl shadow-lg">
+            <img src="@/assets/images/EndStray/bigstatus.jpg" alt="流浪动物" class="w-full h-auto rounded-xl shadow-lg">
             <div class="absolute -bottom-6 -right-6 bg-white rounded-lg shadow-lg max-w-xs transform transition-transform hover:scale-105">
-              <img src="@/assets/images/EndStray/hero.jpg" alt="流浪动物" class="w-full h-auto rounded-xl shadow-lg">
+              <img src="@/assets/images/EndStray/smallstatus.jpg" alt="流浪动物" class="w-full h-auto rounded-xl shadow-lg">
             </div>
           </div>
         </div>
@@ -65,49 +65,49 @@
     </section>
 
     <!-- 如何救助流浪动物 -->
-    <section id="help" class="py-16 bg-gray-50">
+    <section id="help" class="py-16 bg-lemon/80">
       <div class="container mx-auto px-4">
         <div class="text-center mb-12">
           <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-gray-800 mb-4">如何救助流浪动物</h2>
-          <div class="w-20 h-1 bg-lemon-500 mx-auto mb-6"></div>
+          <div class="w-20 h-1 mx-auto mb-6"></div>
           <p class="text-lg text-gray-600 max-w-2xl mx-auto">每个人都可以为流浪动物伸出援手，这些方法简单而有效</p>
         </div>
 
         <div class="grid md:grid-cols-3 gap-8">
           <!-- 救助方法卡片1 -->
           <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 group">
-            <div class="w-16 h-16 bg-lemon-100 rounded-full flex items-center justify-center mb-4 group-hover:bg-lemon-200 transition-colors duration-300">
-              <i class="fas fa-feeding-bottle text-2xl text-lemon-600 group-hover:scale-110 transition-transform duration-300"></i>
+            <div class="w-16 h-16 bg-lemon rounded-full flex items-center justify-center mb-4 group-hover:bg-lemon-200 transition-colors duration-300">
+              <i class="fas fa-bone text-2xl text-lemon-600 group-hover:scale-110 transition-transform duration-300"></i>
             </div>
             <h3 class="text-xl font-bold text-gray-800 mb-3">提供食物和水</h3>
             <p class="text-gray-600 mb-4">在固定地点为流浪动物提供干净的食物和水，选择适合它们的猫粮或狗粮，保持喂食点清洁。</p>
-            <a href="#" class="text-lemon-600 font-medium flex items-center group-hover:text-lemon-800 transition-colors duration-300">
+            <router-link to="/ai" class="text-dragon font-medium flex items-center group-hover:bg-lemon/10 transition-colors duration-300">
               了解更多 <i class="fas fa-arrow-right ml-2 group-hover:ml-3 transition-all duration-300"></i>
-            </a>
+            </router-link>
           </div>
 
           <!-- 救助方法卡片2 -->
           <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 group">
-            <div class="w-16 h-16 bg-lemon-100 rounded-full flex items-center justify-center mb-4 group-hover:bg-lemon-200 transition-colors duration-300">
+            <div class="w-16 h-16 bg-lemon rounded-full flex items-center justify-center mb-4 group-hover:bg-lemon-200 transition-colors duration-300">
               <i class="fas fa-home text-2xl text-lemon-600 group-hover:scale-110 transition-transform duration-300"></i>
             </div>
             <h3 class="text-xl font-bold text-gray-800 mb-3">搭建临时庇护所</h3>
             <p class="text-gray-600 mb-4">用纸箱或塑料箱制作简易庇护所，放入旧衣物保暖，放置在避风处，帮助它们抵御恶劣天气。</p>
-            <a href="#" class="text-lemon-600 font-medium flex items-center group-hover:text-lemon-800 transition-colors duration-300">
+            <router-link to="/ai" class="text-dragon font-medium flex items-center group-hover:bg-lemon/10 transition-colors duration-300">
               了解更多 <i class="fas fa-arrow-right ml-2 group-hover:ml-3 transition-all duration-300"></i>
-            </a>
+            </router-link>
           </div>
 
           <!-- 救助方法卡片3 -->
           <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 group">
-            <div class="w-16 h-16 bg-lemon-100 rounded-full flex items-center justify-center mb-4 group-hover:bg-lemon-200 transition-colors duration-300">
+            <div class="w-16 h-16 bg-lemon rounded-full flex items-center justify-center mb-4 group-hover:bg-lemon-200 transition-colors duration-300">
               <i class="fas fa-heartbeat text-2xl text-lemon-600 group-hover:scale-110 transition-transform duration-300"></i>
             </div>
             <h3 class="text-xl font-bold text-gray-800 mb-3">联系救助机构</h3>
             <p class="text-gray-600 mb-4">发现受伤或生病的动物，及时联系当地动物保护协会或流浪动物救助站，寻求专业帮助。</p>
-            <a href="#" class="text-lemon-600 font-medium flex items-center group-hover:text-lemon-800 transition-colors duration-300">
-              了解更多 <i class="fas fa-arrow-right ml-2 group-hover:ml-3 transition-all duration-300"></i>
-            </a>
+            <router-link to="/ai" class="text-dragon font-medium flex items-center group-hover:bg-lemon/10 transition-colors duration-300">
+              了解更多 <i class="fas fa-arrow-right ml-2 group-hover: ml-3 transition-all duration-300"></i>
+            </router-link>
           </div>
         </div>
       </div>
@@ -118,7 +118,7 @@
       <div class="container mx-auto px-4">
         <div class="text-center mb-12">
           <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-gray-800 mb-4">领养代替购买</h2>
-          <div class="w-20 h-1 bg-lemon-500 mx-auto mb-6"></div>
+          <div class="w-20 h-1 bg-lemon mx-auto mb-6"></div>
           <p class="text-lg text-gray-600 max-w-2xl mx-auto">领养一只流浪动物，给它们一个家，也给自己一个温暖的伙伴</p>
         </div>
 
@@ -168,38 +168,9 @@
             </div>
           </div>
 
-          <div class="grid grid-cols-2 gap-4">
-            <div class="group">
-              <img src="@/assets/images/EndStray/hero.jpg" alt="领养宠物" class="w-full h-64 object-cover rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
-              <div class="bg-white p-4">
-                <h4 class="font-bold text-gray-800">小黑 - 2岁</h4>
-                <p class="text-gray-600 text-sm">已绝育，疫苗齐全，温顺亲人</p>
-              </div>
-            </div>
+          <div>
+              <img src="@/assets/images/EndStray/adoption.jpg" alt="领养宠物" class="w-full object-cover rounded-lg shadow-md hover:shadow-xl transition-shadow transform hover:-translate-y-1">
 
-            <div class="group">
-              <img src="@/assets/images/EndStray/hero.jpg" alt="领养宠物" class="w-full h-64 object-cover rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
-              <div class="bg-white p-4">
-                <h4 class="font-bold text-gray-800">花花 - 1岁</h4>
-                <p class="text-gray-600 text-sm">已绝育，活泼好动，喜欢互动</p>
-              </div>
-            </div>
-
-            <div class="group">
-              <img src="@/assets/images/EndStray/hero.jpg" alt="领养宠物" class="w-full h-64 object-cover rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
-              <div class="bg-white p-4">
-                <h4 class="font-bold text-gray-800">小白 - 3岁</h4>
-                <p class="text-gray-600 text-sm">已绝育，安静乖巧，适合家庭</p>
-              </div>
-            </div>
-
-            <div class="group">
-              <img src="@/assets/images/EndStray/hero.jpg" alt="领养宠物" class="w-full h-64 object-cover rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
-              <div class="bg-white p-4">
-                <h4 class="font-bold text-gray-800">豆豆 - 2岁</h4>
-                <p class="text-gray-600 text-sm">已绝育，聪明伶俐，会基本指令</p>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -210,7 +181,7 @@
   <div class="container mx-auto px-4">
     <div class="text-center mb-12">
       <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-gray-800 mb-4">领养流程指南</h2>
-      <div class="w-20 h-1 bg-lemon mx-auto mb-6 transition-all duration-300 hover:scale-x-150"></div>
+      <div class="w-20 h-1 mx-auto mb-6 transition-all duration-300 hover:scale-x-150"></div>
       <p class="text-lg text-gray-600 max-w-2xl mx-auto">了解领养宠物的基本流程，做好准备迎接新伙伴</p>
     </div>
 
@@ -296,11 +267,11 @@
   </section>
 
     <!-- 领养后的照顾 -->
-    <section id="care" class="py-16">
+    <section id="care" class="py-16 bg-lemon/60">
       <div class="container mx-auto px-4">
         <div class="text-center mb-12">
           <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-gray-800 mb-4">领养后的照顾指南</h2>
-          <div class="w-20 h-1 bg-lemon-500 mx-auto mb-6"></div>
+          <div class="w-20 h-1 bg-lemon mx-auto mb-6"></div>
           <p class="text-lg text-gray-600 max-w-2xl mx-auto">领养只是开始，正确的照顾才能让宠物健康快乐成长</p>
         </div>
 
