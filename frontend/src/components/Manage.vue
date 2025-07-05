@@ -43,6 +43,11 @@
 
           <!-- 用户信息和移动端菜单按钮 -->
           <div class="flex items-center space-x-5">
+            <!-- 管理后台入口 -->
+            <div v-if="userStore.isAdmin">
+              <el-button type="warning" @click="goToAdmin">进入管理后台</el-button>
+            </div>
+            
             <!-- 用户信息 (登录/未登录状态) -->
             <div v-if="userStore.isAuthenticated" class="hidden md:flex items-center space-x-4">
               <span class="font-medium text-gray-700">欢迎, {{ userStore.user?.nickname || '用户' }}</span>
@@ -95,6 +100,10 @@ const router = useRouter();
 
 const handleScroll = () => {
   scrollPosition.value = window.scrollY;
+};
+
+const goToAdmin = () => {
+  router.push('/admin');
 };
 
 const handleLogout = () => {

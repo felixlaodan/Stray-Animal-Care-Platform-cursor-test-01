@@ -1,8 +1,10 @@
 package com.strayanimal.platform.user.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.strayanimal.platform.user.entity.enums.UserStatus;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -37,6 +39,12 @@ public class User {
      * 角色
      */
     private String role;
+
+    /**
+     * 用户状态
+     */
+    @TableField("status")
+    private UserStatus status;
 
     /**
      * 昵称

@@ -50,8 +50,14 @@ const onSubmit = async () => {
         newUser: res.data.user
       });
       ElMessage.success('登录成功！');
-      // 登录成功后，跳转到首页或用户之前想访问的页面
-      router.push('/');
+
+      // 关键修改：根据用户角色进行跳转
+      if (userStore.isAdmin) {
+        router.push('/admin'); // 管理员跳转到管理页
+      } else {
+        router.push('/'); // 普通用户跳转到主页
+      }
+      
     } else {
       ElMessage.error(res.message || '登录失败');
     }

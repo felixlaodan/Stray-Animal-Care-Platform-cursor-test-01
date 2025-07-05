@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.strayanimal.platform.core.common.Result;
 import com.strayanimal.platform.rescue.dto.AdoptionInfoDto;
 import com.strayanimal.platform.rescue.dto.AdoptionRecordCreationDto;
+import com.strayanimal.platform.rescue.dto.AdoptionRecordDetailDto;
+import com.strayanimal.platform.rescue.dto.UpdateAdoptionRecordDto;
 import com.strayanimal.platform.rescue.entity.AdoptionInfo;
 import com.strayanimal.platform.rescue.entity.AdoptionRecord;
 import com.strayanimal.platform.rescue.service.AdoptionInfoService;
@@ -63,11 +65,25 @@ public class AdoptionController {
         }
     }
 
+    @PutMapping("/records/{id}")
+    @PreAuthorize("hasAuthority('ROLE_USER')")
+    public Result<AdoptionRecord> updateAdoptionRecord(@PathVariable Long id,
+                                                       @RequestBody UpdateAdoptionRecordDto updateDto,
+                                                       @AuthenticationPrincipal UserDetails userDetails) {
+        try {
+            User currentUser = userService.findByUsername(userDetails.getUsername());
+            AdoptionRecord updatedRecord = adoptionRecordService.updateAdoptionRecord(id, updateDto, currentUser.getId());
+            return Result.success(updatedRecord);
+        } catch (IllegalStateException e) {
+            return Result.error(403, e.getMessage());
+        }
+    }
+
     @GetMapping("/records/my")
     @PreAuthorize("hasAuthority('ROLE_USER')")
-    public Result<List<AdoptionRecord>> getMyAdoptionRecords(@AuthenticationPrincipal UserDetails userDetails) {
+    public Result<List<AdoptionRecordDetailDto>> getMyAdoptionRecords(@AuthenticationPrincipal UserDetails userDetails) {
         User currentUser = userService.findByUsername(userDetails.getUsername());
-        List<AdoptionRecord> records = adoptionRecordService.getAdoptionRecordsByUserId(currentUser.getId());
+        List<AdoptionRecordDetailDto> records = adoptionRecordService.getAdoptionRecordsByUserId(currentUser.getId());
         return Result.success(records);
     }
 } 

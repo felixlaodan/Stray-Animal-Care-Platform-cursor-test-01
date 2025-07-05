@@ -4,10 +4,12 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.strayanimal.platform.core.common.Result;
 import com.strayanimal.platform.user.entity.User;
+import com.strayanimal.platform.user.entity.enums.UserStatus;
 import com.strayanimal.platform.user.mapper.UserMapper;
 import com.strayanimal.platform.user.service.UserService;
 import jakarta.annotation.Resource;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -56,6 +58,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
         if (user == null) {
             throw new UsernameNotFoundException("用户不存在: " + username);
+        }
+
+        // 关键新增：检查用户是否被禁用
+        if (user.getStatus() == UserStatus.DISABLED) {
+            throw new DisabledException("用户已被禁用，如有疑问请联系管理员");
         }
 
         // 将我们自己的User实体转换为Spring Security需要的UserDetails对象

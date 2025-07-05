@@ -3,6 +3,22 @@
     <div class="max-w-7xl mx-auto">
       <h1 class="text-3xl font-bold text-gray-800 mb-6">我的上报记录</h1>
       
+      <!-- 搜索区域 -->
+      <div class="p-4 bg-white rounded-lg shadow mb-6">
+        <div class="flex items-center space-x-4">
+          <el-input
+            v-model="searchKeyword"
+            placeholder="搜索健康状况、描述、发现地点..."
+            clearable
+            @clear="handleSearch"
+            @keyup.enter="handleSearch"
+            class="flex-grow"
+          />
+          <el-button type="primary" @click="handleSearch">搜索</el-button>
+          <el-button @click="handleReset">重置</el-button>
+        </div>
+      </div>
+
       <div v-if="loading" class="text-center py-10">
         <p>加载中...</p>
       </div>
@@ -13,7 +29,7 @@
       </div>
 
       <div v-else class="bg-white rounded-lg shadow overflow-hidden">
-        <el-table :data="tableData" stripe style="width: 100%">
+        <el-table :data="tableData" stripe style="width: 100%" row-key="id">
           <el-table-column type="expand">
             <template #default="props">
               <div class="p-4 bg-gray-100">
@@ -54,6 +70,13 @@
           </el-table-column>
 
           <el-table-column prop="createTime" label="上报时间" sortable></el-table-column>
+
+          <el-table-column label="操作" width="150" fixed="right">
+            <template #default="scope">
+              <el-button size="small" @click="handleEdit(scope.row)">编辑</el-button>
+              <el-button size="small" type="danger" @click="handleDelete(scope.row.id)">删除</el-button>
+            </template>
+          </el-table-column>
         </el-table>
 
         <div class="flex justify-center p-4">
@@ -73,11 +96,14 @@
 
 <script setup>
 import { ref, onMounted, reactive } from 'vue';
-import { getUploadRecordsPage } from '@/modules/rescue/api.js';
-import { ElMessage } from 'element-plus';
+import { getUploadRecordsPage, deleteUploadRecord } from '@/modules/rescue/api.js';
+import { ElMessage, ElMessageBox } from 'element-plus';
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
 const loading = ref(true);
 const tableData = ref([]);
+const searchKeyword = ref('');
 const pagination = reactive({
   currentPage: 1,
   pageSize: 10,
@@ -91,6 +117,7 @@ const fetchData = async () => {
     const params = {
       pageNum: pagination.currentPage,
       pageSize: pagination.pageSize,
+      keyword: searchKeyword.value,
     };
     console.log("请求参数:", params);
 
@@ -112,6 +139,42 @@ const fetchData = async () => {
   } finally {
     loading.value = false;
     console.log("获取数据流程结束.");
+  }
+};
+
+const handleSearch = () => {
+  pagination.currentPage = 1; // 搜索时重置到第一页
+  fetchData();
+};
+
+const handleReset = () => {
+  searchKeyword.value = '';
+  handleSearch(); // 调用搜索以刷新
+};
+
+const handleEdit = (record) => {
+  router.push(`/rescue/upload-stray/${record.id}`);
+};
+
+const handleDelete = async (id) => {
+  try {
+    await ElMessageBox.confirm(
+      '此操作将永久删除该上报记录及其关联的待领养信息，是否继续?',
+      '警告',
+      {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning',
+      }
+    );
+    
+    await deleteUploadRecord(id);
+    ElMessage.success('删除成功!');
+    fetchData(); // 刷新列表
+  } catch (error) {
+    if (error !== 'cancel') {
+      ElMessage.error(error.message || '删除失败');
+    }
   }
 };
 

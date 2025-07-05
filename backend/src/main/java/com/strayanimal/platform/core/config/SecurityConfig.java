@@ -92,6 +92,9 @@ public class SecurityConfig {
                         // 新增：文件上传需要认证
                         .requestMatchers(HttpMethod.POST, "/api/files/upload").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
 
+                        // 新增：所有/api/admin/下的请求都需要ADMIN角色
+                        .requestMatchers("/api/admin/**").hasAuthority("ROLE_ADMIN")
+
                         // 其他所有请求都需要认证 (例如获取个人信息等)
                         .anyRequest().authenticated()
                 )

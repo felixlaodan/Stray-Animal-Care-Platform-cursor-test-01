@@ -22,7 +22,7 @@ const routes = [
     component: EndStray,
   },
   {
-    path: '/rescue/upload-stray',
+    path: '/rescue/upload-stray/:id?',
     name: 'UploadStray',
     component: UploadStray,
     meta: { requiresAuth: true }

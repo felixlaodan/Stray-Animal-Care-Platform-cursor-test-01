@@ -1,14 +1,14 @@
 <template>
   <div id="app">
     <Manage />
-    <main class="pt-16"> <!-- pt-16 (padding-top: 4rem) to offset the fixed navbar height -->
+    <main class="pt-16">
       <router-view />
     </main>
-    </div>
+  </div>
 </template>
 
 <script setup>
-import Manage from './components/Manage.vue'
+import Manage from './components/Manage.vue';
 </script>
 
 <style>

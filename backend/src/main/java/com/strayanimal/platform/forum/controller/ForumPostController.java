@@ -9,8 +9,12 @@ import com.strayanimal.platform.forum.service.ForumCommentService;
 import com.strayanimal.platform.forum.service.ForumPostService;
 import com.strayanimal.platform.user.entity.User;
 import com.strayanimal.platform.user.service.UserService;
+import com.strayanimal.platform.forum.dto.CreatePostDto;
+import com.strayanimal.platform.forum.dto.UpdatePostDto;
 import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -54,51 +58,42 @@ public class ForumPostController {
     }
 
     @PostMapping
-    public Result<ForumPost> createPost(@RequestBody ForumPost post) {
-        // 获取当前登录用户
-        String currentUsername = SecurityUtil.getCurrentUsername();
-        if (currentUsername == null) {
-            return Result.error("用户未登录");
+    public Result<ForumPost> createPost(@RequestBody CreatePostDto createPostDto,
+                                        @AuthenticationPrincipal UserDetails userDetails) {
+        if (userDetails == null) {
+            return Result.error(401, "用户未登录");
         }
+        User currentUser = userService.findByUsername(userDetails.getUsername());
         
-        // 查询用户信息并设置到帖子中
-        User currentUser = userService.findByUsername(currentUsername);
-        if (currentUser == null) {
-            return Result.error("用户信息不存在");
-        }
+        ForumPost newPost = new ForumPost();
+        newPost.setTitle(createPostDto.getTitle());
+        newPost.setContent(createPostDto.getContent());
+        newPost.setImageUrl(createPostDto.getImageUrl());
+        newPost.setUserId(currentUser.getId());
+        newPost.setAuthorName(currentUser.getNickname());
         
-        post.setUserId(currentUser.getId());
-        post.setAuthorName(currentUser.getNickname());
-        
-        forumPostService.save(post);
-        return Result.success(post);
+        forumPostService.save(newPost);
+        return Result.success(newPost);
     }
 
     @DeleteMapping("/{id}")
-    public Result<Void> deletePost(@PathVariable Long id) {
-        // 获取当前登录用户
-        String currentUsername = SecurityUtil.getCurrentUsername();
-        if (currentUsername == null) {
-            return Result.error("用户未登录");
+    public Result<Void> deletePost(@PathVariable Long id,
+                                   @AuthenticationPrincipal UserDetails userDetails) {
+        if (userDetails == null) {
+            return Result.error(401, "用户未登录");
         }
+        User currentUser = userService.findByUsername(userDetails.getUsername());
         
-        // 查询用户信息
-        User currentUser = userService.findByUsername(currentUsername);
-        if (currentUser == null) {
-            return Result.error("用户信息不存在");
-        }
-        
-        // 检查权限：只有帖子作者或管理员才能删除
         ForumPost existingPost = forumPostService.getById(id);
         if (existingPost == null) {
-            return Result.error("帖子不存在");
+            return Result.error(404, "帖子不存在");
         }
         
         boolean isOwner = existingPost.getUserId().equals(currentUser.getId());
         boolean isAdmin = "ADMIN".equals(currentUser.getRole());
 
         if (!isOwner && !isAdmin) {
-            return Result.error("无权限删除此帖子");
+            return Result.error(403, "无权限删除此帖子");
         }
         
         forumPostService.removeById(id);
@@ -106,36 +101,29 @@ public class ForumPostController {
     }
 
     @PutMapping("/{id}")
-    public Result<ForumPost> updatePost(@PathVariable Long id, @RequestBody ForumPost postUpdate) {
-        // 获取当前登录用户
-        String currentUsername = SecurityUtil.getCurrentUsername();
-        if (currentUsername == null) {
-            return Result.error("用户未登录");
+    public Result<ForumPost> updatePost(@PathVariable Long id, 
+                                        @RequestBody UpdatePostDto postUpdateDto,
+                                        @AuthenticationPrincipal UserDetails userDetails) {
+        if (userDetails == null) {
+            return Result.error(401, "用户未登录");
         }
+        User currentUser = userService.findByUsername(userDetails.getUsername());
 
-        // 查询用户信息
-        User currentUser = userService.findByUsername(currentUsername);
-        if (currentUser == null) {
-            return Result.error("用户信息不存在");
-        }
-
-        // 检查权限：只有帖子作者或管理员才能编辑
         ForumPost existingPost = forumPostService.getById(id);
         if (existingPost == null) {
-            return Result.error("帖子不存在");
+            return Result.error(404, "帖子不存在");
         }
 
         boolean isOwner = existingPost.getUserId().equals(currentUser.getId());
         boolean isAdmin = "ADMIN".equals(currentUser.getRole());
 
         if (!isOwner && !isAdmin) {
-            return Result.error("无权限编辑此帖子");
+            return Result.error(403, "无权限编辑此帖子");
         }
 
-        // 更新字段
-        existingPost.setTitle(postUpdate.getTitle());
-        existingPost.setContent(postUpdate.getContent());
-        existingPost.setImageUrl(postUpdate.getImageUrl());
+        existingPost.setTitle(postUpdateDto.getTitle());
+        existingPost.setContent(postUpdateDto.getContent());
+        existingPost.setImageUrl(postUpdateDto.getImageUrl());
         
         forumPostService.updateById(existingPost);
 

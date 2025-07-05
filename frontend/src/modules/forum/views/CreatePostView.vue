@@ -18,7 +18,7 @@
       <el-form-item label="上传图片（可选）">
         <el-upload
           class="image-uploader"
-          :action="uploadUrl"
+          action="http://localhost:8080/api/files/upload"
           :show-file-list="false"
           :on-success="handleImageSuccess"
           :before-upload="beforeImageUpload"
@@ -53,8 +53,6 @@ const form = reactive({
   content: '',
   imageUrl: '',
 });
-
-const uploadUrl = 'http://localhost:8080/upload/image';
 
 const uploadHeaders = computed(() => {
   return {

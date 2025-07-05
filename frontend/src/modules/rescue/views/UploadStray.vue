@@ -1,7 +1,9 @@
 <template>
   <div class="flex justify-center items-start min-h-screen bg-gray-50 p-4">
     <div class="w-full max-w-4xl bg-white p-8 rounded-lg shadow-lg">
-      <h1 class="text-3xl font-bold mb-8 text-center text-gray-800">上报流浪动物信息</h1>
+      <h1 class="text-3xl font-bold mb-8 text-center text-gray-800">
+        {{ isEditMode ? '编辑流浪动物信息' : '上报流浪动物信息' }}
+      </h1>
       
       <el-form :model="form" :rules="rules" ref="formRef" label-position="top">
         
@@ -91,7 +93,9 @@
         </el-form-item>
         
         <div class="text-center mt-6">
-          <el-button type="primary" @click="submitForm" :loading="loading" size="large" class="w-1/2">提交上报</el-button>
+          <el-button type="primary" @click="submitForm" :loading="loading" size="large" class="w-1/2">
+            {{ isEditMode ? '确认修改' : '提交上报' }}
+          </el-button>
         </div>
       </el-form>
     </div>
@@ -99,17 +103,28 @@
 </template>
 
 <script setup>
-import { ref, computed, reactive } from 'vue';
-import { useRouter } from 'vue-router';
+import { ref, computed, reactive, onMounted } from 'vue';
+import { useRouter, useRoute } from 'vue-router';
 import { ElMessage } from 'element-plus';
 import { Plus } from '@element-plus/icons-vue';
-import { createUploadRecord } from '@/modules/rescue/api.js';
+import { 
+  createUploadRecord, 
+  updateUploadRecord, 
+  getUploadRecordById,
+  adminUpdateUploadRecord,
+  adminGetUploadById // 引入Admin API
+} from '@/modules/rescue/api.js';
 import { useUserStore } from '@/stores/user';
 
 const userStore = useUserStore();
 const router = useRouter();
+const route = useRoute();
 const formRef = ref(null);
 const loading = ref(false);
+
+const isEditMode = computed(() => !!route.params.id);
+const recordId = computed(() => route.params.id ? Number(route.params.id) : null);
+const isAdminMode = computed(() => route.path.startsWith('/admin'));
 
 const form = reactive({
   reporter: '',
@@ -160,56 +175,105 @@ const beforeUpload = (rawFile) => {
   return true;
 };
 
-const submitForm = async () => {
-  if (!formRef.value) return;
-
-  // 1. 先校验表单的基础字段
-  const valid = await formRef.value.validate().catch(() => {});
-  if (!valid) {
-    ElMessage.error('请检查表单，填写所有必填项');
-    return;
-  }
-
-  // 2. 单独校验图片是否已上传
-  const uploadedImageUrls = fileList.value
-    .filter(file => file.status === 'success' && file.response?.data)
-    .map(file => file.response.data);
-
-  if (uploadedImageUrls.length === 0) {
-    ElMessage.error('请至少上传一张有效的照片');
-    return;
-  }
-
-  // 3. 组合最终数据并提交
-  const finalData = {
-    ...form,
-    imageUrls: uploadedImageUrls
-  };
-
-  console.log('最终提交的数据:', JSON.stringify(finalData, null, 2));
+const fetchRecordData = async () => {
+  if (!isEditMode.value) return;
   loading.value = true;
   try {
-    const res = await createUploadRecord(finalData);
-    if (res.code === '200') {
-      console.log('后端返回成功, code: 200. ElMessage即将弹出。');
-      ElMessage.success('上报成功！感谢您的爱心！');
-      
-      console.log('准备在1秒后执行跳转。Router实例:', router);
-      setTimeout(() => {
-        console.log('setTimeout回调触发！准备执行 router.push("/")');
-        router.push('/');
-        console.log('router.push("/") 已调用。');
-      }, 1000);
-
+    // 关键修改：根据是否为管理员模式，调用不同的API
+    const apiToCall = isAdminMode.value ? adminGetUploadById : getUploadRecordById;
+    const res = await apiToCall(recordId.value);
+    
+    if (res.code === 200 && res.data) {
+      // 填充表单
+      Object.assign(form, res.data);
+      // 关键修复：填充图片列表
+      if (res.data.imageUrls && Array.isArray(res.data.imageUrls)) {
+        fileList.value = res.data.imageUrls.map(url => ({
+          name: url.split('/').pop(),
+          url: `http://localhost:8080${url}`,
+          status: 'success', // 标记为已成功状态
+          response: { data: url } // 模拟上传成功后的响应体，方便删除时获取URL
+        }));
+      }
     } else {
-      ElMessage.error(res.message || '上报失败，请稍后重试');
+      ElMessage.error('获取记录详情失败: ' + (res.message || '未知错误'));
+      router.push('/rescue/upload-records');
     }
   } catch (error) {
-    console.error("Error submitting form:", error);
-    ElMessage.error('请求失败：' + (error.message || '请检查网络或联系管理员'));
+    ElMessage.error('网络错误，无法获取记录详情');
+    router.push('/rescue/upload-records');
   } finally {
     loading.value = false;
   }
+};
+
+onMounted(() => {
+  fetchRecordData();
+});
+
+const submitForm = async () => {
+  if (!formRef.value) return;
+  await formRef.value.validate(async (valid) => {
+    if (valid) {
+      // 从 fileList 提取 URLs
+      const uploadedImageUrls = fileList.value
+        .map(file => {
+          // 对于新上传的文件，URL在response.data中
+          // 对于已存在的文件，URL在url中
+          if (file.response && file.response.data) {
+            return file.response.data;
+          }
+          // 从完整的url中提取路径
+          try {
+            const urlObject = new URL(file.url);
+            return urlObject.pathname;
+          } catch (e) {
+            return null; // 无效的URL
+          }
+        })
+        .filter(Boolean);
+
+      if (uploadedImageUrls.length === 0) {
+        ElMessage.error('请至少上传一张有效的照片');
+        return;
+      }
+      
+      const finalData = { ...form, imageUrls: uploadedImageUrls };
+      loading.value = true;
+      try {
+        let successMessage = '';
+        
+        if (isAdminMode.value) {
+          // --- 管理员模式 ---
+          if (isEditMode.value) {
+            await adminUpdateUploadRecord(recordId.value, finalData);
+            successMessage = '管理员修改成功！';
+          } else {
+            await createUploadRecord(finalData); // 复用创建接口
+            successMessage = '管理员新增上报成功！';
+          }
+        } else {
+          // --- 用户模式 ---
+          if (isEditMode.value) {
+            await updateUploadRecord(recordId.value, finalData);
+            successMessage = '修改成功！';
+          } else {
+            await createUploadRecord(finalData);
+            successMessage = '上报成功！感谢您的爱心！';
+          }
+        }
+        
+        ElMessage.success(successMessage);
+        // 根据模式跳转到不同的列表页
+        router.push(isAdminMode.value ? '/admin/upload-management' : '/rescue/upload-records');
+
+      } catch (error) {
+        ElMessage.error('操作失败: ' + error.message);
+      } finally {
+        loading.value = false;
+      }
+    }
+  });
 };
 </script>
 
