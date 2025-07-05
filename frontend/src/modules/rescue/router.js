@@ -22,6 +22,7 @@ const routes = [
     path: '/rescue/end-stray',
     name: 'EndStray',
     component: EndStray,
+    meta: { requiresAuth: true }
   },
   {
     path: '/rescue/upload-stray/:id?',
@@ -38,7 +39,8 @@ const routes = [
   {
     path: '/ai',
     name: 'AI',
-    component: AI
+    component: AI,
+    meta: { requiresAuth: true }
   },
   {
     path: '/team',
