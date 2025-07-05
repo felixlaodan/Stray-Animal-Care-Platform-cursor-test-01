@@ -28,7 +28,7 @@
       </div>
     </el-card>
 
-    <div class="post-list max-w-[90%] mx-auto">
+    <div class="post-list max-w-[90%] mx-auto grid md:grid-cols-2 gap-4">
       <el-card v-for="post in posts" :key="post.id" class="post-card" shadow="hover">
         <template #header>
           <div class="card-header">
@@ -227,8 +227,6 @@ onMounted(() => {
   font-size: 1.8em;
 }
 .post-list {
-  display: flex;
-  flex-direction: column;
   gap: 20px;
 }
 .post-card {
