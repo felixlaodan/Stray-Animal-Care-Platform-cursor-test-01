@@ -454,7 +454,7 @@
       });
     });
 //导入 Chart.js
-import { Chart } from 'chart.js';
+// import { Chart } from 'chart.js';
 
 export default {
   name: 'AnimalAdoptionGuide',

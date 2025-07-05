@@ -61,7 +61,7 @@
           >
           <h3 class="font-bold text-xl text-gray-800 mb-1">{{ activeMember.name }}</h3>
           <div class="flex flex-wrap justify-center gap-2 mb-4">
-            <span v-for="skill in activeMember.skills" class="px-2.5 py-0.5 bg-gray-100 rounded-full text-xs text-gray-700">
+            <span v-for="(skill, index) in activeMember.skills" :key="index" class="px-2.5 py-0.5 bg-gray-100 rounded-full text-xs text-gray-700">
               {{ skill }}
             </span>
           </div>
@@ -79,6 +79,7 @@ import jfwImg from '@/assets/images/Team/jfw.jpg'
 import ljhImg from '@/assets/images/Team/ljh.jpg'
 
 export default {
+  name: 'TeamPage',
   data() {
     return {
       teamMembers: [
@@ -150,22 +151,14 @@ export default {
       event.stopPropagation();
       clearTimeout(this.hoverTimer);
       this.activeMember = member;
-
-      // 添加轻微延迟，避免意外触发
-      this.hoverTimer = setTimeout(() => {
-        this.showDetail = true;
-      }, 200);
+      this.showDetail = true; // 立即显示详情
     },
     handleMouseLeave(event) {
       event.stopPropagation();
       if (!this.isDetailHovered) {
         clearTimeout(this.hoverTimer);
         this.showDetail = false;
-        setTimeout(() => {
-          if (!this.isDetailHovered) {
-            this.activeMember = null;
-          }
-        }, 300);
+        this.activeMember = null; // 立即隐藏详情
       }
     },
     keepDetailVisible() {
@@ -175,11 +168,7 @@ export default {
     hideDetail() {
       this.isDetailHovered = false;
       this.showDetail = false;
-      setTimeout(() => {
-        if (!this.isDetailHovered) {
-          this.activeMember = null;
-        }
-      }, 300);
+      this.activeMember = null; // 立即隐藏详情
     },
     getPlanetColor(index) {
       const colors = [
@@ -235,6 +224,7 @@ export default {
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 50%;
   animation: orbit var(--orbit-duration) linear infinite;
+  pointer-events: none;
 }
 
 /* 行星 */
@@ -252,6 +242,7 @@ export default {
   background-position: center;
   box-shadow: 0 0 12px var(--planet-color);
   z-index: calc(10 + var(--orbit-index));
+  pointer-events: auto;
 }
 
 .planet:hover {
