@@ -3,7 +3,7 @@
     <div class="relative">
       <img :src="'http://localhost:8080' + animal.coverImageUrl" alt="Animal Image" class="w-full h-48 object-cover">
       <div v-if="animal.adoptionStatus === 'ADOPTED'" class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-        <span class="text-white text-2xl font-bold bg-red-500 px-4 py-2 rounded-lg">已领养</span>
+        <span class="text-lemon text-2xl font-bold px-4 py-2 rounded-lg">已领养</span>
       </div>
     </div>
     <div class="p-4">
@@ -17,10 +17,10 @@
       </p>
     </div>
     <div class="p-4 bg-gray-50 border-t flex justify-end space-x-2">
-      <el-button @click="$emit('view-detail', animal.id)" plain>详细信息</el-button>
-      <el-button 
-        type="primary" 
-        @click="$emit('adopt', animal)" 
+      <el-button type="white" @click="$emit('view-detail', animal.id)" plain>详细信息</el-button>
+      <el-button
+        type="lemon"
+        @click="$emit('adopt', animal)"
         :disabled="animal.adoptionStatus === 'ADOPTED'"
       >
         我要领养
@@ -46,4 +46,4 @@ defineEmits(['view-detail', 'adopt']);
   flex-direction: column;
   justify-content: space-between;
 }
-</style> 
+</style>
