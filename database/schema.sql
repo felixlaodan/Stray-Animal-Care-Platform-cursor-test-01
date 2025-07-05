@@ -115,4 +115,30 @@ CREATE TABLE `adoption_record` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `adoption_info_id` bigint NOT NULL COMMENT '被领养动物信息ID',
   `adopter_user_id` bigint NOT NULL COMMENT '领养用户ID',
-  `adopter_name`
+  `adopter_name` varchar(50) NOT NULL COMMENT '领养人真实姓名',
+  `adopter_phone` char(11) NOT NULL COMMENT '领养人联系电话',
+  `adopter_id_card` varchar(255) NOT NULL COMMENT '领养人身份证号码（加密存储）',
+  `adoption_reason` text COMMENT '领养理由',
+  `create_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uk_adoption_info_id` (`adoption_info_id`),
+  KEY `fk_record_adopter_user` (`adopter_user_id`),
+  CONSTRAINT `fk_record_adoption_info` FOREIGN KEY (`adoption_info_id`) REFERENCES `adoption_info` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_record_adopter_user` FOREIGN KEY (`adopter_user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='领养记录表';
+
+-- ----------------------------
+-- Table structure for upload_record_image
+-- ----------------------------
+DROP TABLE IF EXISTS `upload_record_image`;
+CREATE TABLE `upload_record_image` (
+  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+  `upload_record_id` bigint NOT NULL COMMENT '关联的上报记录ID',
+  `image_url` varchar(255) NOT NULL COMMENT '单张图片的URL',
+  `create_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  PRIMARY KEY (`id`),
+  KEY `idx_upload_record_id` (`upload_record_id`),
+  CONSTRAINT `fk_image_upload_record` FOREIGN KEY (`upload_record_id`) REFERENCES `upload_records` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='上报记录图片表';
+
