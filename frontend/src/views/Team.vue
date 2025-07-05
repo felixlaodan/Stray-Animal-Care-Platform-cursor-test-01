@@ -16,10 +16,10 @@
         v-for="(member, index) in teamMembers"
         :key="member.id"
         :style="{
-          '--orbit-radius': `${120 + index * 60}px`,
-          '--orbit-duration': `${30 + index * 10}s`,
-          '--planet-color': getPlanetColor(index),
-          '--orbit-index': index
+          width: `${(120 + index * 60) * 2}px`,
+          height: `${(120 + index * 60) * 2}px`,
+          'animation-duration': `${30 + index * 10}s`,
+          borderColor: getPlanetColor(index)
         }"
         class="planet-orbit"
       >
@@ -132,7 +132,7 @@ export default {
       mouseX: 0,
       mouseY: 0,
       showDetail: false,
-      detailCardHeight: 280, // 详情卡片高度
+      detailCardHeight: 280,
       isDetailHovered: false,
       hoverTimer: null,
       detailCard: null
@@ -147,17 +147,19 @@ export default {
   },
   methods: {
     handleMouseEnter(member, event) {
-      event.stopPropagation();
+      // 兼容IE的事件冒泡处理
+      if (event.stopPropagation) event.stopPropagation();
+      else event.cancelBubble = true;
+
       clearTimeout(this.hoverTimer);
       this.activeMember = member;
-
-      // 添加轻微延迟，避免意外触发
-      this.hoverTimer = setTimeout(() => {
-        this.showDetail = true;
-      }, 200);
+      this.showDetail = true;
     },
     handleMouseLeave(event) {
-      event.stopPropagation();
+      // 兼容IE的事件冒泡处理
+      if (event.stopPropagation) event.stopPropagation();
+      else event.cancelBubble = true;
+
       if (!this.isDetailHovered) {
         clearTimeout(this.hoverTimer);
         this.showDetail = false;
@@ -183,11 +185,11 @@ export default {
     },
     getPlanetColor(index) {
       const colors = [
-        'rgba(255, 99, 71, 0.8)',    // tomato
-        'rgba(135, 206, 250, 0.8)',  // lightskyblue
-        'rgba(152, 251, 152, 0.8)',  // palegreen
-        'rgba(255, 215, 0, 0.8)',    // gold
-        'rgba(218, 112, 214, 0.8)'   // orchid
+        'rgba(255, 99, 71, 0.8)',
+        'rgba(135, 206, 250, 0.8)',
+        'rgba(152, 251, 152, 0.8)',
+        'rgba(255, 215, 0, 0.8)',
+        'rgba(218, 112, 214, 0.8)'
       ];
       return colors[index % colors.length];
     },
@@ -196,16 +198,15 @@ export default {
       return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
     },
     trackMouse(e) {
-      // 防止详情框超出视口
       const popupWidth = 288;
       const popupHeight = this.detailCardHeight;
       const maxX = window.innerWidth - popupWidth;
       const minX = 0;
-      const maxY = window.innerHeight;
+      const maxY = window.innerHeight + popupHeight;
       const minY = popupHeight;
 
       this.mouseX = Math.min(Math.max(e.clientX - popupWidth / 2, minX), maxX);
-      this.mouseY = Math.min(Math.max(e.clientY, minY), maxY);
+      this.mouseY = Math.min(Math.max(e.clientY + popupHeight, minY), maxY);
     }
   }
 }
@@ -230,11 +231,11 @@ export default {
 /* 小行星轨道 */
 .planet-orbit {
   position: absolute;
-  width: calc(var(--orbit-radius) * 2);
-  height: calc(var(--orbit-radius) * 2);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 50%;
-  animation: orbit var(--orbit-duration) linear infinite;
+  animation: orbit linear infinite;
+  transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
 }
 
 /* 行星 */
@@ -243,6 +244,7 @@ export default {
   top: 50%;
   left: 100%;
   transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
   width: 48px;
   height: 48px;
   border-radius: 50%;
@@ -256,6 +258,7 @@ export default {
 
 .planet:hover {
   transform: translateX(-50%) scale(1.4);
+  -ms-transform: translateX(-50%) scale(1.4);
   box-shadow: 0 0 25px var(--planet-color);
   z-index: 30;
 }
@@ -266,6 +269,7 @@ export default {
   bottom: 120%;
   left: 50%;
   transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
   background-color: rgba(0, 0, 0, 0.85);
   color: white;
   padding: 6px 12px;
@@ -283,16 +287,16 @@ export default {
   visibility: visible;
 }
 
-/* 轨道动画 */
+/* 轨道动画 - 添加IE前缀 */
 @keyframes orbit {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from { transform: rotate(0deg); -ms-transform: rotate(0deg); }
+  to { transform: rotate(360deg); -ms-transform: rotate(360deg); }
 }
 
 /* 详情卡片 */
 .absolute {
   transform-origin: bottom center;
+  -ms-transform-origin: bottom center;
   z-index: 50;
 }
 </style>
-    
