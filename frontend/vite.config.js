@@ -20,12 +20,13 @@ export default defineConfig({
       '@components': fileURLToPath(new URL('./src/components', import.meta.url)),
     }
   },
-  server: {
-    proxy: {
-      '/api': {
-        target: 'http://localhost:8080',
-        changeOrigin: true,
-      }
-    }
+  server: { 
+    port: 5173, 
+    proxy: { 
+      '/api': { 
+        target: 'http://localhost:8080', 
+        changeOrigin: true, 
+      } 
+    } 
   }
 })
