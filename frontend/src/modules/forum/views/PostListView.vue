@@ -50,14 +50,14 @@
         </router-link>
 
         <div class="post-footer">
-          <LikeButton 
-            :liked="post.likedByCurrentUser" 
-            :likes-count="post.likesCount" 
-            @toggle-like="handleLike(post)" 
+          <LikeButton
+            :liked="post.likedByCurrentUser"
+            :likes-count="post.likesCount"
+            @toggle-like="handleLike(post)"
           />
         </div>
       </el-card>
-      
+
       <el-empty v-if="!posts.length" description="暂无帖子"></el-empty>
     </div>
 
@@ -142,7 +142,7 @@ const handleLike = async (post) => {
     ElMessage.warning('请先登录再点赞');
     return;
   }
-  
+
   // 乐观更新
   const originalLikedState = post.likedByCurrentUser;
   const originalLikesCount = post.likesCount;
@@ -157,7 +157,7 @@ const handleLike = async (post) => {
     post.likedByCurrentUser = originalLikedState;
     post.likesCount = originalLikesCount;
     ElMessage.error('操作失败，请稍后重试');
-    console.error('点赞操作失败:', error); 
+    console.error('点赞操作失败:', error);
   }
 };
 
@@ -208,7 +208,6 @@ onMounted(() => {
 
 <style scoped>
 .post-list-container {
-  max-width: 800px;
   margin: 0 auto;
 }
 .page-header-card {
@@ -301,4 +300,4 @@ onMounted(() => {
   margin: 0 0 10px 0;
   color: #333;
 }
-</style> 
+</style>
