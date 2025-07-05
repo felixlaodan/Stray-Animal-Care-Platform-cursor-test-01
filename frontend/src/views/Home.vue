@@ -93,7 +93,7 @@
           </div>
         </div>
 
-        <!-- 领养服务 -->
+        <!-- 领养信息 -->
         <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
           <div class="h-48 overflow-hidden">
             <img src="@/assets/images/Home/aboutus2.jpg" alt="宠物领养服务" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
@@ -124,9 +124,9 @@
     </div>
 
       <!-- 呼吁内容 -->
-      <div class="bg-white py-16">
+      <div class="py-16  bg-lemon/70">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="max-w-4xl mx-auto">
+          <div class="max-w-4xl mx-auto rounded-xl p-14">
             <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">我们为什么要救助流浪动物</h2>
             <!-- 统计数据 -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -187,7 +187,7 @@
 
 
     <!-- 成功案例 -->
-    <div class="py-16 px-6 bg-gray-100">
+    <div class="py-16 px-6 bg-gray-100 img-bg1">
       <div class="max-w-7xl mx-auto">
         <div class="text-center mb-12">
           <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-gray-900 mb-4">救助成功案例</h2>
@@ -281,14 +281,15 @@
           </div>
 
         </div>
-
-        <p class="text-gray-800 max-w-3xl mx-auto text-xl text-center mt-12">因为被看见，它们拥有了幸福。<br>发现并上报您身边的流浪动物，赐予它们一个幸福的机会，<br>帮助流浪动物们与爱它们的家人找到彼此。</p>
-
-        <div class="text-center mt-10">
+        <div class="max-w-4xl mx-auto rounded-xl p-3 text-center mt-10">
+          <p class="text-gray-800 text-xl text-center mt-12">因为被看见，它们拥有了幸福。<br>发现并上报您身边的流浪动物，赐予它们一个幸福的机会，<br>帮助流浪动物们与爱它们的家人找到彼此。</p>
+          <br>
           <router-link to="/rescue/upload-stray" class="inline-block bg-[rgb(252,211,55)] hover:bg-[rgb(252,200,0)] text-gray-900 font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[rgb(252,211,55)] focus:ring-opacity-50">
             点击上报
           </router-link>
+          <br><br>
         </div>
+
       </div>
     </div>
 
