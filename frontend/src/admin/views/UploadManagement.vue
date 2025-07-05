@@ -1,9 +1,10 @@
 <template>
-  <div>
-    <h2 class="text-2xl font-bold mb-4">流浪动物上报管理</h2>
+  <div class="img-bg">
+    <br>
+    <h2 class="text-2xl font-bold mb-4 text-center">流浪动物上报管理</h2>
 
     <!-- 搜索区域 -->
-    <div class="p-4 bg-white rounded-lg shadow mb-6">
+    <div class="p-4 bg-white/90 rounded-lg shadow mb-6 max-w-[90%] mx-auto">
       <div class="flex justify-between items-center">
         <div class="flex items-center space-x-4 flex-grow">
           <el-input
@@ -13,19 +14,16 @@
             @clear="handleSearch"
             @keyup.enter="handleSearch"
           />
-          <el-button type="primary" @click="handleSearch">搜索</el-button>
-          <el-button @click="handleReset">重置</el-button>
-        </div>
-        <!-- 新增按钮 -->
-        <div>
+          <el-button type="lemon" @click="handleSearch">搜索</el-button>
+          <el-button type="white" @click="handleReset">重置</el-button>
           <el-button type="success" @click="handleCreate">新增上报记录</el-button>
         </div>
       </div>
     </div>
 
     <!-- 表格区域 -->
-    <div class="bg-white rounded-lg shadow overflow-hidden">
-      <el-table :data="tableData" v-loading="loading" stripe style="width: 100%">
+    <div class="bg-white/90 rounded-lg shadow overflow-hidden max-w-[90%] mx-auto">
+      <el-table :data="tableData" v-loading="loading" stripe style="width: auto">
         <el-table-column prop="id" label="ID" width="80" sortable></el-table-column>
         <el-table-column prop="reporter" label="上报人" width="120"></el-table-column>
         <el-table-column prop="name" label="动物名" width="120"></el-table-column>
@@ -34,16 +32,17 @@
         <el-table-column prop="createTime" label="上报时间" sortable width="180"></el-table-column>
         <el-table-column label="操作" width="180" fixed="right">
           <template #default="scope">
-            <el-button size="small" @click="handleEdit(scope.row.id)">编辑</el-button>
-            <el-button size="small" type="danger" @click="handleDelete(scope.row.id)">删除</el-button>
+            <el-button size="small" type="white" @click="handleEdit(scope.row.id)">编辑</el-button>
+            <el-button size="small" type="warning" @click="handleDelete(scope.row.id)">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
 
       <!-- 分页区域 -->
-      <div class="flex justify-center p-4">
+      <div class="flex justify-center p-4" >
         <el-pagination
           background
+          type="white"
           layout="prev, pager, next, jumper, ->, total"
           :total="pagination.total"
           v-model:current-page="pagination.currentPage"
@@ -118,7 +117,7 @@ const handleDelete = async (id) => {
       cancelButtonText: '取消',
       type: 'warning',
     });
-    
+
     await adminDeleteUploadRecord(id);
     ElMessage.success('删除成功!');
     fetchData(); // 刷新列表
@@ -133,4 +132,59 @@ const handleDelete = async (id) => {
 onMounted(() => {
   fetchData();
 });
-</script> 
+</script>
+<style>
+.add {
+  @apply px-3 py-2 rounded-md text-base font-medium text-white bg-lemon hover:bg-dragon hover:text-white transition-colors duration-200;
+}
+.img-bg {
+  position: fixed;
+  top: 66px;
+  left: 200px;
+  right: 0px;
+  bottom: 0px;
+  background-image: url('@/assets/images/background.jpg');
+  background-size: cover;
+  background-position: auto；
+}
+/* 覆盖Element Plus，设置lemon样式 */
+.el-button--lemon {
+  background-color: rgb(252, 211, 55);
+  border-color: rgb(252, 211, 55);
+  color: #ffffff;
+}
+.el-button--lemon:hover {
+  background-color: rgb(245, 198, 21); /* 悬停时稍深的黄色 */
+  border-color: rgb(245, 198, 21);
+  color: #ffffff;
+}
+
+.el-message--lemon {
+  background-color: rgba(255, 255, 255, 0.1); /* 半透明黄色背景 */
+  border-left-color: rgb(252, 211, 55);
+  color: #ffffff;
+}
+.el-message--lemon .el-message__content {
+  color: #ffffff;
+}
+/* 覆盖Element Plus，设置white样式 */
+.el-button--white {
+  background-color: rgb(255, 255, 255);
+  border-color: rgb(252, 211, 55);
+  color: #5a5a5a;
+}
+.el-button--white:hover {
+  background-color: rgb(252, 211, 55); /* 悬停时稍深的黄色 */
+  border-color: rgb(245, 198, 21);
+  color: #ffffff;
+}
+
+.el-message--white {
+  background-color: rgba(255, 255, 255, 0.1); /* 半透明黄色背景 */
+  border-left-color: rgb(252, 211, 55);
+  color: #ffffff;
+}
+.el-message--white .el-message__content {
+  color: #ffffff;
+}
+</style>

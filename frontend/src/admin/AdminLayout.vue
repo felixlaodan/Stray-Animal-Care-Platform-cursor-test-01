@@ -83,4 +83,5 @@ const logout = () => {
 .admin-main {
   padding: 20px;
 }
+
 </style>
