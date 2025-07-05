@@ -23,7 +23,7 @@
           <div class="absolute inset-0 z-20 flex flex-col justify-center items-center text-white text-center px-6">
             <h2 class="text-[clamp(2rem,5vw,4rem)] font-bold mb-4 tracking-tight">上报流浪动物足迹</h2>
             <p class="text-[clamp(1rem,2vw,1.5rem)] max-w-3xl mb-8">您的一次上传分享，可能是它们生命的一个转折点</p>
-            <button @click="$router.push('/rescue/')" class="bg-[rgb(252,211,55)] hover:bg-[rgb(252,200,0)] text-gray-900 font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[rgb(252,211,55)] focus:ring-opacity-50">
+            <button @click="$router.push('/rescue/upload-stray')" class="bg-[rgb(252,211,55)] hover:bg-[rgb(252,200,0)] text-gray-900 font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[rgb(252,211,55)] focus:ring-opacity-50">
               我要上报
             </button>
           </div>
@@ -36,7 +36,7 @@
           <div class="absolute inset-0 z-20 flex flex-col justify-center items-center text-white text-center px-6">
             <h2 class="text-[clamp(2rem,5vw,4rem)] font-bold mb-4 tracking-tight">和爱心人士一起交流</h2>
             <p class="text-[clamp(1rem,2vw,1.5rem)] max-w-3xl mb-8">相互帮助，共享知识，共同保护流浪动物</p>
-            <button class="bg-[rgb(252,211,55)] hover:bg-[rgb(252,200,0)] text-gray-900 font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[rgb(252,211,55)] focus:ring-opacity-50">
+            <button @click="$router.push('/posts')" class="bg-[rgb(252,211,55)] hover:bg-[rgb(252,200,0)] text-gray-900 font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[rgb(252,211,55)] focus:ring-opacity-50">
               交流互助
             </button>
           </div>
@@ -49,7 +49,7 @@
           <div class="absolute inset-0 z-20 flex flex-col justify-center items-center text-white text-center px-6">
             <h2 class="text-[clamp(2rem,5vw,4rem)] font-bold mb-4 tracking-tight">科普先于行动</h2>
             <p class="text-[clamp(1rem,2vw,1.5rem)] max-w-3xl mb-8">学习科普知识，科学救助流浪动物，保护他们的未来</p>
-            <button class="bg-[rgb(252,211,55)] hover:bg-[rgb(252,200,0)] text-gray-900 font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[rgb(252,211,55)] focus:ring-opacity-50">
+            <button @click="$router.push('/ai')" class="bg-[rgb(252,211,55)] hover:bg-[rgb(252,200,0)] text-gray-900 font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[rgb(252,211,55)] focus:ring-opacity-50">
               查看科普
             </button>
           </div>
@@ -87,9 +87,9 @@
           <div class="p-6">
             <h3 class="text-xl font-bold text-gray-900 mb-3">流浪动物救助</h3>
             <p class="text-gray-600 mb-4">我们让好心路人和有能力帮助流浪动物的爱心人士聚集起来，共同拯救流浪动物。</p>
-            <a href="#" class="inline-flex items-center text-[rgb(252,211,55)] font-medium hover:text-[rgb(252,200,0)] transition-colors">
+            <router-link to="/ai" class="text-dragon font-medium flex items-center group-hover:bg-lemon/10 transition-colors duration-300">
               了解更多 <i class="fa fa-arrow-right ml-2"></i>
-            </a>
+            </router-link>
           </div>
         </div>
 
@@ -101,9 +101,9 @@
           <div class="p-6">
             <h3 class="text-xl font-bold text-gray-900 mb-3">流浪动物领养</h3>
             <p class="text-gray-600 mb-4">我们提供流浪动物上报与领养双侧信息，为流浪动物寻找合适的领养家庭。</p>
-            <a href="#" class="inline-flex items-center text-[rgb(252,211,55)] font-medium hover:text-[rgb(252,200,0)] transition-colors">
+            <router-link to="/rescue/adoption-info" class="text-dragon font-medium flex items-center group-hover:bg-lemon/10 transition-colors duration-300">
               了解更多 <i class="fa fa-arrow-right ml-2"></i>
-            </a>
+            </router-link>
           </div>
         </div>
 
@@ -115,9 +115,9 @@
           <div class="p-6">
             <h3 class="text-xl font-bold text-gray-900 mb-3">互助交流论坛</h3>
             <p class="text-gray-600 mb-4">我们鼓励每一位有爱心的人士信息共享，互帮互助，一起为流浪动物的福利努力</p>
-            <a href="#" class="inline-flex items-center text-[rgb(252,211,55)] font-medium hover:text-[rgb(252,200,0)] transition-colors">
+            <router-link to="/posts" class="text-dragon font-medium flex items-center group-hover:bg-lemon/10 transition-colors duration-300">
               了解更多 <i class="fa fa-arrow-right ml-2"></i>
-            </a>
+            </router-link>
           </div>
         </div>
       </div>
@@ -370,6 +370,7 @@
         </div>
       </div>
     </footer>
+    
   </div>
 </template>
 
