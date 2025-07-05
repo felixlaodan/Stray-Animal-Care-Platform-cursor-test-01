@@ -38,8 +38,7 @@ const routes = [
   {
     path: '/ai',
     name: 'AI',
-    component: AI,
-    meta: { requiresAuth: true }
+    component: AI
   },
   {
     path: '/team',
