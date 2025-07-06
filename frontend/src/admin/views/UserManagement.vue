@@ -1,9 +1,10 @@
 <template>
-  <div>
-    <h2 class="text-2xl font-bold mb-4">用户管理</h2>
+  <div class="img-bg">
+    <br>
+    <h2 class="text-2xl font-bold mb-4 text-center">用户管理</h2>
 
     <!-- 搜索区域 -->
-    <div class="p-4 bg-white rounded-lg shadow mb-6">
+    <div class="p-4 bg-white rounded-lg shadow mb-6 max-w-[90%] mx-auto">
       <div class="flex items-center space-x-4">
         <el-input
           v-model="searchKeyword"
@@ -13,13 +14,14 @@
           @keyup.enter="handleSearch"
           class="flex-grow"
         />
-        <el-button type="primary" @click="handleSearch">搜索</el-button>
+        <el-button type="warning" @click="handleSearch">搜索</el-button>
         <el-button @click="handleReset">重置</el-button>
+        <el-button type="success" @click="handleCreate">新增用户</el-button>
       </div>
     </div>
 
     <!-- 表格区域 -->
-    <div class="bg-white rounded-lg shadow overflow-hidden">
+    <div class="bg-white/90 rounded-lg shadow overflow-hidden max-w-[90%] mx-auto">
       <div class="flex justify-between items-center">
         <el-table :data="tableData" v-loading="loading" stripe style="width: 100%">
           <el-table-column prop="id" label="ID" width="80" sortable />
@@ -37,8 +39,8 @@
           <el-table-column label="操作" width="200" fixed="right">
             <template #default="scope">
               <el-button size="small" @click="handleEdit(scope.row)">编辑</el-button>
-              <el-button 
-                size="small" 
+              <el-button
+                size="small"
                 :type="scope.row.status === 'ACTIVE' ? 'warning' : 'success'"
                 @click="handleToggleStatus(scope.row)"
               >
@@ -48,10 +50,6 @@
           </el-table-column>
         </el-table>
 
-        <!-- 新增按钮 -->
-        <div>
-          <el-button type="success" @click="handleCreate">新增用户</el-button>
-        </div>
       </div>
 
       <!-- 分页区域 -->
@@ -68,7 +66,7 @@
     </div>
 
     <!-- 用户表单弹窗 -->
-    <UserFormModal 
+    <UserFormModal
       v-model="formModal.visible"
       :user-to-edit="formModal.user"
       @submit-success="onFormSubmitSuccess"
@@ -169,4 +167,16 @@ const handleToggleStatus = async (user) => {
 onMounted(() => {
   fetchData();
 });
-</script> 
+</script>
+<style>
+.img-bg {
+  position: fixed;
+  top: 66px;
+  left: 200px;
+  right: 0px;
+  bottom: 0px;
+  background-image: url('@/assets/images/background.jpg');
+  background-size: cover;
+  background-position: auto；
+}
+</style>

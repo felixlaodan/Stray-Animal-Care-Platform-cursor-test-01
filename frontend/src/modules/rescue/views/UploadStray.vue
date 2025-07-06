@@ -11,7 +11,7 @@
         <el-row :gutter="20">
           <el-col :span="12">
             <el-form-item label="您的姓名" prop="reporter">
-              <el-input v-model="form.reporter" placeholder="请输入您的姓名"></el-input>
+              <el-input class="opacity-80" v-model="form.reporter" placeholder="请输入您的姓名"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="12">
@@ -77,6 +77,7 @@
         <!-- 图片上传 -->
         <el-form-item label="上传动物照片 (最多5张)" required>
           <el-upload
+            class="opacity-80"
             v-model:file-list="fileList"
             action="http://localhost:8080/api/files/upload"
             :headers="uploadHeaders"
@@ -93,7 +94,7 @@
         </el-form-item>
 
         <div class="text-center mt-6">
-          <el-button type="primary" @click="submitForm" :loading="loading" size="large" class="w-1/2">
+          <el-button type="lemon" @click="submitForm" :loading="loading" size="large" class="w-1/2">
             {{ isEditMode ? '确认修改' : '提交上报' }}
           </el-button>
         </div>

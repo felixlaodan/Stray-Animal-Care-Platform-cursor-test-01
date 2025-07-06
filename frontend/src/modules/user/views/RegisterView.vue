@@ -1,6 +1,6 @@
 <template>
   <div class="register-container">
-    <h2>注册</h2>
+    <div class="text-xl">注册新用户</div>
     <el-form :model="form" label-width="80px">
       <el-form-item label="用户名">
         <el-input v-model="form.username"></el-input>
@@ -12,7 +12,7 @@
         <el-input type="password" v-model="form.password" show-password></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="onSubmit" :loading="loading" class="lemon-btn">注册</el-button>
+        <el-button type="lemon" @click="onSubmit" :loading="loading">注册</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -64,37 +64,23 @@ const onSubmit = async () => {
 
 <style scoped>
 .register-container {
-  max-width: 400px;
+  width: 500px;
+  height: 300px;
   margin: 50px auto;
-  padding: 20px;
+  padding: 30px;
   border: 1px solid #ebeef5;
-  border-radius: 4px;
+  border-radius: 30px;
   background-color: #fff;
+  text-align: center;
 }
 
 .register-container h2 {
   color: #333;
+  text:bold;
   text-align: center;
   margin-bottom: 30px;
 }
 
-.lemon-btn {
-  text-align: center;
-  background-color: rgb(252,211, 55) !important;
-  border-color: rgb(252,211, 55) !important;
-}
 
-/* 覆盖 Element Plus 的默认样式，确保文字清晰可见 */
-.register-container :deep(.el-form-item__label) {
-  color: #333 !important;
-  font-weight: 500;
-}
 
-.register-container :deep(.el-input__inner) {
-  color: #333 !important;
-}
-
-.register-container :deep(.el-input__inner::placeholder) {
-  color: #999 !important;
-}
 </style>

@@ -1,20 +1,20 @@
 <template>
-  <div class="p-4 sm:p-6 lg:p-8 bg-gray-50 min-h-screen">
+  <div class="p-4 sm:p-6 lg:p-8 bg-gray-50 min-h-screen img-bg1">
     <div class="max-w-7xl mx-auto">
-      <h1 class="text-3xl font-bold text-gray-800 mb-6">我的领养记录</h1>
-      
+      <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">我的领养记录</h1>
+
       <div v-if="loading" class="text-center py-10">
         <p>正在加载您的领养记录...</p>
       </div>
-      
-      <div v-else-if="records.length === 0" class="text-center py-10 bg-white rounded-lg shadow">
+
+      <div v-else-if="records.length === 0" class="text-center py-10 bg-white/90 rounded-lg shadow">
         <p class="text-gray-500">您还没有任何领养记录。</p>
-        <el-button type="primary" class="mt-4" @click="$router.push('/rescue/adoption-info')">去领养中心看看</el-button>
+        <el-button type="lemon" class="mt-4" @click="$router.push('/rescue/adoption-info')">去领养中心看看</el-button>
       </div>
 
       <div v-else class="bg-white rounded-lg shadow overflow-hidden">
         <el-table :data="records" stripe style="width: 100%" row-key="id">
-          
+
           <el-table-column label="被领养动物" width="250">
             <template #default="scope">
               <div class="flex items-center">
@@ -31,12 +31,12 @@
               </div>
             </template>
           </el-table-column>
-          
+
           <el-table-column prop="adopterName" label="领养人姓名" width="150"></el-table-column>
           <el-table-column prop="adopterPhone" label="联系电话" width="180"></el-table-column>
           <el-table-column prop="adopterIdCard" label="身份证号" width="200"></el-table-column>
           <el-table-column prop="adoptionReason" label="领养理由" show-overflow-tooltip></el-table-column>
-          
+
           <el-table-column prop="createTime" label="申请时间" sortable width="200">
              <template #default="scope">
               {{ new Date(scope.row.createTime).toLocaleString() }}
@@ -54,11 +54,11 @@
     </div>
 
     <!-- 编辑表单弹窗 -->
-    <AdoptionFormModal 
-      v-model="editModal.visible" 
+    <AdoptionFormModal
+      v-model="editModal.visible"
       :animal-to-adopt="editModal.recordToEdit.animalInfo"
       :record-to-edit="editModal.recordToEdit"
-      @adoption-success="onUpdateSuccess" 
+      @adoption-success="onUpdateSuccess"
     />
   </div>
 </template>
@@ -107,4 +107,4 @@ const onUpdateSuccess = () => {
 onMounted(() => {
   fetchMyRecords();
 });
-</script> 
+</script>

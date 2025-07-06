@@ -8,11 +8,21 @@
 </template>
 
 <script setup>
+import { watch } from 'vue'
+import { useRoute } from 'vue-router'
 import Manage from './components/Manage.vue';
+
+const route = useRoute()
+watch(() => route.path, () => {
+  // 强制组件更新
+  document.documentElement.scrollTop = 0
+})
 </script>
 
 <style>
-/* Global style overrides for ElMessage */
+#app {
+  min-height: 100vh;
+  /* Global style overrides for ElMessage */
 .el-message.el-message--success {
   background-color: #f0f9eb !important;
   border-color: #e1f3d8 !important;
@@ -25,6 +35,12 @@ import Manage from './components/Manage.vue';
 .el-message.el-message--success .el-message__icon {
   color: #67c23a !important;
 }
+  background-image: url('@/assets/images/background.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 </style>
 
 <style scoped>

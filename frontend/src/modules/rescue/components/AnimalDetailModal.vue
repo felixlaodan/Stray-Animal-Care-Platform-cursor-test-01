@@ -1,9 +1,9 @@
 <template>
-  <el-dialog v-model="visible" title="动物详细信息" width="60%">
+  <el-dialog v-model="visible" title="动物详细信息" width="60%"  class="img-bg1 text-center text-xl">
     <div v-if="loading" class="text-center">加载中...</div>
     <div v-else-if="error" class="text-center text-red-500">{{ error }}</div>
-    <div v-else-if="animalDetail">
-      <el-descriptions :column="2" border>
+    <div v-else-if="animalDetail" >
+      <el-descriptions :column="2" border class="bg-white/80">
         <el-descriptions-item label="名字">{{ animalDetail.name }}</el-descriptions-item>
         <el-descriptions-item label="物种">{{ animalDetail.species }}</el-descriptions-item>
         <el-descriptions-item label="性别">{{ animalDetail.gender }}</el-descriptions-item>
@@ -12,9 +12,9 @@
         <el-descriptions-item label="绝育状况">{{ animalDetail.sterilizationStatus }}</el-descriptions-item>
         <el-descriptions-item label="补充描述" :span="2">{{ animalDetail.description }}</el-descriptions-item>
       </el-descriptions>
-      <h4 class="font-semibold mt-4 mb-2">照片集</h4>
+      <h4 class="font-semibold mt-4 mb-2 left">照片集</h4>
       <div class="flex flex-wrap gap-4">
-        <el-image 
+        <el-image
           v-for="url in animalDetail.imageUrls" :key="url"
           :src="'http://localhost:8080' + url"
           fit="cover"
@@ -26,7 +26,7 @@
       </div>
     </div>
     <template #footer>
-      <el-button @click="visible = false">关闭</el-button>
+      <el-button type="lemon" @click="visible = false">关闭</el-button>
     </template>
   </el-dialog>
 </template>
@@ -84,4 +84,11 @@ const fetchDetail = async () => {
     loading.value = false;
   }
 };
-</script> 
+</script>
+<style>
+.img-bg1 {
+  background-image: url('@/assets/images/background.jpg');
+  background-size: cover;
+  background-position: auto；
+}
+</style>

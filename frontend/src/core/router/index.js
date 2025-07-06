@@ -31,13 +31,13 @@ const router = createRouter({
 // 全局前置导航守卫
 router.beforeEach((to, from, next) => {
   const userStore = useUserStore()
-  
+
   if (to.path.startsWith('/admin') && !userStore.isAdmin) {
     ElMessage.error('您没有权限访问此页面')
     next({ name: 'Home' })
     return
   }
-  
+
   const requiresAuth = to.matched.some(record => record.meta.requiresAuth)
 
   if (requiresAuth && !userStore.isAuthenticated) {
