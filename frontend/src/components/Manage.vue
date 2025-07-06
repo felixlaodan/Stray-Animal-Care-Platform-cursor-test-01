@@ -38,7 +38,7 @@
             </div>
 
             <router-link to="/rescue/base" class="nav-link flex items-center">救助基地</router-link>
-
+            <!-- <router-link to="/rescue/base" class="block nav-link">救助基地</router-link> -->
             <router-link to="/posts" class="nav-link flex items-center">社区论坛</router-link>
 
             <router-link to="/ai" class="nav-link flex items-center">智能科普</router-link>
@@ -63,8 +63,18 @@
           </div>
         </div>
 
-
-
+        <!-- <div v-if="isMobileMenuOpen" class="md:hidden mt-2 space-y-2">
+          <router-link to="/" class="block nav-link">主页</router-link>
+          <router-link to="/rescue/upload-stray" class="block nav-link">上报流浪</router-link>
+          <router-link to="/rescue/adoption-info" class="block nav-link">领养中心</router-link>
+          <router-link to="/rescue/adoption-records" class="block nav-link">我的领养记录</router-link>
+          <router-link to="/rescue/base" class="block nav-link">救助基地</router-link>
+          <router-link to="/posts" class="block nav-link">社区论坛</router-link>
+          <div v-if="!userStore.isAuthenticated" class="border-t pt-2 space-y-2">
+            <router-link to="/login" class="block nav-link">登录</router-link>
+            <router-link to="/register" class="block nav-link !bg-lemon !text-gray-900">注册</router-link>
+          </div>
+        </div> -->
       </div>
     </nav>
 </template>

@@ -402,17 +402,11 @@ export default {
     }
   }
 };
-// // @ts-ignore
-// createAiChat({
-//   appId: "1940005408542314497",
-//   iconPosition: "bottom-right"
-// });
-//}
 // @ts-ignore
-/* createAiChat({
+createAiChat({
   appId: "1940005408542314497",
   iconPosition: "bottom-right"
-}); */
+});
 </script>
 
 <style type="text/tailwindcss">
