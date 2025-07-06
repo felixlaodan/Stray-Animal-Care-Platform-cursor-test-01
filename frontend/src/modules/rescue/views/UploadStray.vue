@@ -82,7 +82,7 @@
             action="http://localhost:8080/api/files/upload"
             :headers="uploadHeaders"
             list-type="picture-card"
-            multiple
+                  multiple 
             :limit="5"
             :on-exceed="handleExceed"
             :before-upload="beforeUpload"
@@ -312,4 +312,4 @@ const submitForm = async () => {
   font-size: 16px;
   font-weight: bold;
 }
-</style>
+</style> 
