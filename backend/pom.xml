@@ -17,7 +17,7 @@
     <parent> 标签用于指定一个父项目。
     子项目会继承父项目中的大部分配置，这样可以简化配置，也能保证项目间依赖版本的一致性。
     -->
-    <parent>
+    <parent>·
         <!--
         <groupId> 和 <artifactId> 共同定义了一个项目在所有Maven项目中的唯一坐标。
         这里我们指定了 `spring-boot-starter-parent` 作为父项目。
